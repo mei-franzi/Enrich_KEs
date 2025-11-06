@@ -1,0 +1,1301 @@
+AOP_KE_ID,ke.name,AOP,KE
+Aop:3_Event:887,"Inhibition, NADH-ubiquinone oxidoreductase  (complex I)",Aop:3,Event:887
+Aop:3_Event:888,"Binding of inhibitor, NADH-ubiquinone oxidoreductase (complex I)",Aop:3,Event:888
+Aop:3_Event:188,Neuroinflammation,Aop:3,Event:188
+Aop:3_Event:890,Degeneration of dopaminergic neurons of the nigrostriatal pathway,Aop:3,Event:890
+Aop:6_Event:858,"Decreased, PPARalpha transactivation of gene expression",Aop:6,Event:858
+Aop:6_Event:862,"Not Increased, Circulating Ketone Bodies",Aop:6,Event:862
+Aop:6_Event:863,"Increased, Catabolism of Muscle Protein",Aop:6,Event:863
+Aop:6_Event:998,"Binding of antagonist, PPAR alpha",Aop:6,Event:998
+Aop:6_Event:1000,"stabilization, PPAR alpha co-repressor",Aop:6,Event:1000
+Aop:6_Event:1528,"Fatty Acid Beta Oxidation, Decreased",Aop:6,Event:1528
+Aop:7_Event:3,"Reduction, 17beta-estradiol synthesis by ovarian granulosa cells",Aop:7,Event:3
+Aop:7_Event:406,"impaired, Fertility",Aop:7,Event:406
+Aop:7_Event:405,"irregularities, ovarian cycle",Aop:7,Event:405
+Aop:7_Event:408,"reduction in ovarian granulosa cells, Aromatase (Cyp19a1)",Aop:7,Event:408
+Aop:8_Event:239,"Activation, Pregnane-X receptor, NR1l2",Aop:8,Event:239
+Aop:8_Event:280,"Thyroxine (T4) in neuronal tissue, Decreased ",Aop:8,Event:280
+Aop:8_Event:295,"Induction, Upregulation of glucuronyltransferase activity",Aop:8,Event:295
+Aop:8_Event:295,"Induction, Upregulation of glucuronyltransferase activity",Aop:8,Event:295
+Aop:8_Event:401,"Increase, Biliary excretion TH glucuronide",Aop:8,Event:401
+Aop:8_Event:757,"Hippocampal anatomy, Altered ",Aop:8,Event:757
+Aop:8_Event:758,"Hippocampal Physiology, Altered",Aop:8,Event:758
+Aop:8_Event:756,"Hippocampal gene expression, Altered ",Aop:8,Event:756
+Aop:10_Event:64,"Reduction, Ionotropic GABA receptor chloride channel conductance",Aop:10,Event:64
+Aop:10_Event:616,"Occurrence, A paroxysmal depolarizing shift",Aop:10,Event:616
+Aop:10_Event:667,"Binding at picrotoxin site, iGABAR chloride channel",Aop:10,Event:667
+Aop:10_Event:669,"Reduction, Neuronal synaptic inhibition",Aop:10,Event:669
+Aop:10_Event:682,"Generation, Amplified excitatory postsynaptic potential (EPSP)",Aop:10,Event:682
+Aop:11_Event:245,"Activation, PXR/SXR",Aop:11,Event:245
+Aop:12_Event:195,"Inhibition, NMDARs",Aop:12,Event:195
+Aop:12_Event:52,"Decreased, Calcium influx",Aop:12,Event:52
+Aop:12_Event:381,Reduced levels of BDNF,Aop:12,Event:381
+Aop:12_Event:381,Reduced levels of BDNF,Aop:12,Event:381
+Aop:12_Event:55,Cell injury/death,Aop:12,Event:55
+Aop:12_Event:188,Neuroinflammation,Aop:12,Event:188
+Aop:12_Event:341,"Impairment, Learning and memory",Aop:12,Event:341
+Aop:12_Event:341,"Impairment, Learning and memory",Aop:12,Event:341
+Aop:13_Event:52,"Decreased, Calcium influx",Aop:13,Event:52
+Aop:13_Event:195,"Inhibition, NMDARs",Aop:13,Event:195
+Aop:13_Event:341,"Impairment, Learning and memory",Aop:13,Event:341
+Aop:13_Event:341,"Impairment, Learning and memory",Aop:13,Event:341
+Aop:13_Event:381,Reduced levels of BDNF,Aop:13,Event:381
+Aop:13_Event:381,Reduced levels of BDNF,Aop:13,Event:381
+Aop:13_Event:382,"Aberrant, Dendritic morphology",Aop:13,Event:382
+Aop:13_Event:385,Decrease of synaptogenesis,Aop:13,Event:385
+Aop:13_Event:386,Decrease of neuronal network function,Aop:13,Event:386
+Aop:13_Event:383,"Reduced, Presynaptic release of glutamate",Aop:13,Event:383
+Aop:13_Event:55,Cell injury/death,Aop:13,Event:55
+Aop:14_Event:122,"Activation, Glucocorticoid Receptor",Aop:14,Event:122
+Aop:14_Event:202,"Inhibition, Nuclear factor kappa B (NF-kB)",Aop:14,Event:202
+Aop:14_Event:152,"Suppression, Inflammatory cytokines",Aop:14,Event:152
+Aop:14_Event:145,"Induction, IKB inhibitory protein",Aop:14,Event:145
+Aop:14_Event:323,"Increased, Disease susceptibility",Aop:14,Event:323
+Aop:14_Event:403,"Suppression, Immune system",Aop:14,Event:403
+Aop:15_Event:336,"Increase, Heritable mutations in offspring",Aop:15,Event:336
+Aop:15_Event:97,"Alkylation, DNA",Aop:15,Event:97
+Aop:15_Event:185,"Increase, Mutations",Aop:15,Event:185
+Aop:15_Event:155,"N/A, Inadequate DNA repair",Aop:15,Event:155
+Aop:16_Event:351,Increased Mortality,Aop:16,Event:351
+Aop:16_Event:12,Acetylcholinesterase (AchE) Inhibition,Aop:16,Event:12
+Aop:16_Event:360,"Decrease, Population trajectory",Aop:16,Event:360
+Aop:17_Event:55,Cell injury/death,Aop:17,Event:55
+Aop:17_Event:188,Neuroinflammation,Aop:17,Event:188
+Aop:17_Event:386,Decrease of neuronal network function,Aop:17,Event:386
+Aop:17_Event:341,"Impairment, Learning and memory",Aop:17,Event:341
+Aop:17_Event:341,"Impairment, Learning and memory",Aop:17,Event:341
+Aop:17_Event:1492,Tissue resident cell activation,Aop:17,Event:1492
+Aop:17_Event:1493,Increased Pro-inflammatory mediators,Aop:17,Event:1493
+Aop:18_Event:227,"Activation, PPARα",Aop:18,Event:227
+Aop:18_Event:406,"impaired, Fertility",Aop:18,Event:406
+Aop:18_Event:266,"Decrease, Steroidogenic acute regulatory protein (STAR)",Aop:18,Event:266
+Aop:18_Event:447,"Reduction, Cholesterol transport in mitochondria",Aop:18,Event:447
+Aop:18_Event:413,"Reduction, Testosterone synthesis in Leydig cells",Aop:18,Event:413
+Aop:18_Event:289,"Decrease, Translocator protein (TSPO)",Aop:18,Event:289
+Aop:19_Event:310,"Alteration, Wnt pathway",Aop:19,Event:310
+Aop:19_Event:240,"Feminisation or incomplete development, Primary and accessory male sex organs",Aop:19,Event:240
+Aop:19_Event:286,"Altered, Transcription of genes by AR",Aop:19,Event:286
+Aop:27_Event:41,"Inhibition, Bile Salt Export Pump (ABCB11)",Aop:27,Event:41
+Aop:27_Event:288,"Activation of specific nuclear receptors, Transcriptional change",Aop:27,Event:288
+Aop:27_Event:87,"Release, Cytokine",Aop:27,Event:87
+Aop:27_Event:149,"Increase, Inflammation",Aop:27,Event:149
+Aop:27_Event:249,"Production, Reactive oxygen species",Aop:27,Event:249
+Aop:31_Event:213,"N/A, Parent compound is converted to the reactive metabolite and forms free radicals leading to oxidation of heme iron(II) in hemoglobin to iron(III)",Aop:31,Event:213
+Aop:31_Event:21,"Altered regulation, Alpha hemoglobin",Aop:31,Event:21
+Aop:31_Event:118,"Formation, Formation of hemoglobin adducts",Aop:31,Event:118
+Aop:31_Event:118,"Formation, Formation of hemoglobin adducts",Aop:31,Event:118
+Aop:31_Event:131,"Down Regulation, Gulcose-6-phosphate dehydrogenase",Aop:31,Event:131
+Aop:31_Event:246,"Increase, RBC congestion in liver",Aop:31,Event:246
+Aop:32_Event:77,"Production, Critical Metabolites (CGA 330050 and CGA 265307)",Aop:32,Event:77
+Aop:32_Event:147,"Inhibition, Inducible Nitric Oxide Synthase by Metabolite CGA 265307",Aop:32,Event:147
+Aop:32_Event:270,"Induction, Sustained Hepatotoxicity",Aop:32,Event:270
+Aop:32_Event:269,"Induction, Sustained Cell Proliferation",Aop:32,Event:269
+Aop:33_Event:9,"Activation, 5HT2c",Aop:33,Event:9
+Aop:33_Event:759,"Increased, Kidney Failure",Aop:33,Event:759
+Aop:34_Event:167,"Activation, LXR",Aop:34,Event:167
+Aop:34_Event:54,"Up Regulation, CD36",Aop:34,Event:54
+Aop:34_Event:115,"Increase, FA Influx",Aop:34,Event:115
+Aop:34_Event:66,"Activation, ChREBP",Aop:34,Event:66
+Aop:34_Event:264,"Activation, SREBP-1c",Aop:34,Event:264
+Aop:34_Event:116,"Activation, FAS",Aop:34,Event:116
+Aop:34_Event:258,"Activation, SCD-1",Aop:34,Event:258
+Aop:34_Event:89,"Synthesis, De Novo FA",Aop:34,Event:89
+Aop:34_Event:176,"Damaging, Mitochondria",Aop:34,Event:176
+Aop:34_Event:228,peroxisome proliferator activated receptor promoter demethylation,Aop:34,Event:228
+Aop:36_Event:231,"Decreased, PPAR-alpha activation",Aop:36,Event:231
+Aop:36_Event:232,"Decreased, PPAR-beta activation",Aop:36,Event:232
+Aop:36_Event:233,"Decreased, PPAR-gamma activation",Aop:36,Event:233
+Aop:36_Event:140,"Decreased, HSD17B10 expression",Aop:36,Event:140
+Aop:36_Event:179,"Decreased, Mitochondrial fatty acid beta-oxidation",Aop:36,Event:179
+Aop:36_Event:8,"Decreased, 3-hydroxyacyl-CoA dehydrogenase type-2 activity",Aop:36,Event:8
+Aop:37_Event:227,"Activation, PPARα",Aop:37,Event:227
+Aop:37_Event:716,"Increase, Mitogenic cell proliferation (hepatocytes)",Aop:37,Event:716
+Aop:37_Event:716,"Increase, Mitogenic cell proliferation (hepatocytes)",Aop:37,Event:716
+Aop:38_Event:344,"N/A, Liver fibrosis",Aop:38,Event:344
+Aop:38_Event:244,"Alkylation, Protein",Aop:38,Event:244
+Aop:38_Event:55,Cell injury/death,Aop:38,Event:55
+Aop:38_Event:265,"Activation, Stellate cells",Aop:38,Event:265
+Aop:38_Event:68,"Accumulation, Collagen",Aop:38,Event:68
+Aop:38_Event:1492,Tissue resident cell activation,Aop:38,Event:1492
+Aop:38_Event:1493,Increased Pro-inflammatory mediators,Aop:38,Event:1493
+Aop:39_Event:151,"Activation, Inflammatory cytokines, chemokines, cytoprotective gene pathways",Aop:39,Event:151
+Aop:39_Event:151,"Activation, Inflammatory cytokines, chemokines, cytoprotective gene pathways",Aop:39,Event:151
+Aop:39_Event:398,"Activation, Dendritic Cells",Aop:39,Event:398
+Aop:39_Event:272,"Activation/Proliferation, T-cells",Aop:39,Event:272
+Aop:39_Event:272,"Activation/Proliferation, T-cells",Aop:39,Event:272
+Aop:39_Event:396,"Covalent Binding, Protein",Aop:39,Event:396
+Aop:40_Event:396,"Covalent Binding, Protein",Aop:40,Event:396
+Aop:40_Event:826,"Activation, Keratinocytes",Aop:40,Event:826
+Aop:40_Event:826,"Activation, Keratinocytes",Aop:40,Event:826
+Aop:40_Event:398,"Activation, Dendritic Cells",Aop:40,Event:398
+Aop:40_Event:272,"Activation/Proliferation, T-cells",Aop:40,Event:272
+Aop:40_Event:272,"Activation/Proliferation, T-cells",Aop:40,Event:272
+Aop:41_Event:165,"Activation, Long term AHR receptor driven direct and indirect gene expression changes",Aop:41,Event:165
+Aop:41_Event:853,"Changes/Inhibition, Cellular Homeostasis and Apoptosis",Aop:41,Event:853
+Aop:41_Event:853,"Changes/Inhibition, Cellular Homeostasis and Apoptosis",Aop:41,Event:853
+Aop:41_Event:854,"Alterations, Cellular proliferation / hyperplasia",Aop:41,Event:854
+Aop:42_Event:279,"Thyroperoxidase, Inhibition",Aop:42,Event:279
+Aop:42_Event:277,"Thyroid hormone synthesis, Decreased",Aop:42,Event:277
+Aop:42_Event:280,"Thyroxine (T4) in neuronal tissue, Decreased ",Aop:42,Event:280
+Aop:42_Event:402,"Cognitive Function, Decreased ",Aop:42,Event:402
+Aop:42_Event:402,"Cognitive Function, Decreased ",Aop:42,Event:402
+Aop:42_Event:756,"Hippocampal gene expression, Altered ",Aop:42,Event:756
+Aop:42_Event:757,"Hippocampal anatomy, Altered ",Aop:42,Event:757
+Aop:42_Event:758,"Hippocampal Physiology, Altered",Aop:42,Event:758
+Aop:43_Event:305,"Inhibition, VegfR2",Aop:43,Event:305
+Aop:43_Event:28,"Reduction, Angiogenesis",Aop:43,Event:28
+Aop:43_Event:110,"Impairment, Endothelial network",Aop:43,Event:110
+Aop:43_Event:298,"Insufficiency, Vascular",Aop:43,Event:298
+Aop:43_Event:1001,"Increased, Developmental Defects",Aop:43,Event:1001
+Aop:46_Event:373,"Formation, Pro-mutagenic DNA Adducts",Aop:46,Event:373
+Aop:46_Event:376,"Increased, Induced Mutations in Critical Genes",Aop:46,Event:376
+Aop:46_Event:409,"Metabolism of AFB1, Production of Reactive Electrophiles",Aop:46,Event:409
+Aop:46_Event:491,"Clonal Expansion/Cell Proliferation, to form Altered Hepatic Foci (AHF)",Aop:46,Event:491
+Aop:46_Event:493,"Increased, Insufficient repair or mis-repair of pro-mutagenic DNA adducts",Aop:46,Event:493
+Aop:48_Event:341,"Impairment, Learning and memory",Aop:48,Event:341
+Aop:48_Event:341,"Impairment, Learning and memory",Aop:48,Event:341
+Aop:48_Event:55,Cell injury/death,Aop:48,Event:55
+Aop:48_Event:388,"Overactivation, NMDARs",Aop:48,Event:388
+Aop:48_Event:389,"Increased, Intracellular Calcium overload",Aop:48,Event:389
+Aop:48_Event:618,"Decreased, Neuronal network function in adult brain",Aop:48,Event:618
+Aop:48_Event:875,"Binding of agonist, Ionotropic glutamate receptors",Aop:48,Event:875
+Aop:48_Event:188,Neuroinflammation,Aop:48,Event:188
+Aop:51_Event:406,"impaired, Fertility",Aop:51,Event:406
+Aop:51_Event:414,"Increase, Luteinizing hormone (LH) ",Aop:51,Event:414
+Aop:51_Event:416,"Increase proliferation, Leydig cell ",Aop:51,Event:416
+Aop:51_Event:227,"Activation, PPARα",Aop:51,Event:227
+Aop:51_Event:413,"Reduction, Testosterone synthesis in Leydig cells",Aop:51,Event:413
+Aop:51_Event:447,"Reduction, Cholesterol transport in mitochondria",Aop:51,Event:447
+Aop:54_Event:425,Decrease of Thyroidal iodide,Aop:54,Event:425
+Aop:54_Event:280,"Thyroxine (T4) in neuronal tissue, Decreased ",Aop:54,Event:280
+Aop:54_Event:381,Reduced levels of BDNF,Aop:54,Event:381
+Aop:54_Event:381,Reduced levels of BDNF,Aop:54,Event:381
+Aop:54_Event:385,Decrease of synaptogenesis,Aop:54,Event:385
+Aop:54_Event:341,"Impairment, Learning and memory",Aop:54,Event:341
+Aop:54_Event:341,"Impairment, Learning and memory",Aop:54,Event:341
+Aop:54_Event:424,"Inhibition, Na+/I- symporter (NIS)",Aop:54,Event:424
+Aop:54_Event:386,Decrease of neuronal network function,Aop:54,Event:386
+Aop:54_Event:277,"Thyroid hormone synthesis, Decreased",Aop:54,Event:277
+Aop:57_Event:18,"Activation, AhR",Aop:57,Event:18
+Aop:57_Event:450,"Suppression, VLDL secretion",Aop:57,Event:450
+Aop:57_Event:451,"Inhibition, Mitochondrial fatty acid beta-oxidation",Aop:57,Event:451
+Aop:57_Event:216,"Decreased, PCK1 expression (control point for glycolysis/gluconeogenesis pathway)",Aop:57,Event:216
+Aop:57_Event:54,"Up Regulation, CD36",Aop:57,Event:54
+Aop:57_Event:465,"Increased, FA Influx",Aop:57,Event:465
+Aop:57_Event:466,"Up Regulation, LDLR (low density lipoprotein receptor)",Aop:57,Event:466
+Aop:57_Event:467,"Increased, LDL uptake",Aop:57,Event:467
+Aop:57_Event:80,"Up Regulation, CYP1A1",Aop:57,Event:80
+Aop:57_Event:462,"Up Regulation, SCD-1",Aop:57,Event:462
+Aop:58_Event:456,"Suppression, Constitutive androstane receptor, NR1l3",Aop:58,Event:456
+Aop:58_Event:457,"Activation, SREBF1",Aop:58,Event:457
+Aop:58_Event:457,"Activation, SREBF1",Aop:58,Event:457
+Aop:58_Event:66,"Activation, ChREBP",Aop:58,Event:66
+Aop:58_Event:458,"Increased, De Novo FA synthesis",Aop:58,Event:458
+Aop:58_Event:454,"Increased, Triglyceride formation",Aop:58,Event:454
+Aop:58_Event:454,"Increased, Triglyceride formation",Aop:58,Event:454
+Aop:58_Event:54,"Up Regulation, CD36",Aop:58,Event:54
+Aop:58_Event:462,"Up Regulation, SCD-1",Aop:58,Event:462
+Aop:58_Event:463,"Up Regulation, FAS",Aop:58,Event:463
+Aop:58_Event:468,"Inhibition, PPAR alpha",Aop:58,Event:468
+Aop:58_Event:167,"Activation, LXR",Aop:58,Event:167
+Aop:58_Event:228,peroxisome proliferator activated receptor promoter demethylation,Aop:58,Event:228
+Aop:58_Event:451,"Inhibition, Mitochondrial fatty acid beta-oxidation",Aop:58,Event:451
+Aop:58_Event:470,"Up Regulation, Acetyl-CoA carboxylase-1 (ACC-1)",Aop:58,Event:470
+Aop:58_Event:465,"Increased, FA Influx",Aop:58,Event:465
+Aop:59_Event:461,"Suppression, HNF4alpha",Aop:59,Event:461
+Aop:60_Event:245,"Activation, PXR/SXR",Aop:60,Event:245
+Aop:60_Event:471,"Inhibition, FoxA2",Aop:60,Event:471
+Aop:60_Event:179,"Decreased, Mitochondrial fatty acid beta-oxidation",Aop:60,Event:179
+Aop:60_Event:472,"Down Regulation, CPT1A",Aop:60,Event:472
+Aop:60_Event:474,"Down Regulation, HMGCS2",Aop:60,Event:474
+Aop:60_Event:462,"Up Regulation, SCD-1",Aop:60,Event:462
+Aop:60_Event:54,"Up Regulation, CD36",Aop:60,Event:54
+Aop:60_Event:465,"Increased, FA Influx",Aop:60,Event:465
+Aop:60_Event:454,"Increased, Triglyceride formation",Aop:60,Event:454
+Aop:60_Event:454,"Increased, Triglyceride formation",Aop:60,Event:454
+Aop:61_Event:478,"Activation, NRF2",Aop:61,Event:478
+Aop:61_Event:479,"Activation, NR1H4",Aop:61,Event:479
+Aop:61_Event:480,"Activation, SHP",Aop:61,Event:480
+Aop:61_Event:227,"Activation, PPARα",Aop:61,Event:227
+Aop:61_Event:482,"Decreased, DHB4/HSD17B4",Aop:61,Event:482
+Aop:61_Event:451,"Inhibition, Mitochondrial fatty acid beta-oxidation",Aop:61,Event:451
+Aop:61_Event:483,"Activation, LXR alpha",Aop:61,Event:483
+Aop:61_Event:878,"Inhibition, SREBP1c",Aop:61,Event:878
+Aop:61_Event:879,"Activation, MTTP",Aop:61,Event:879
+Aop:61_Event:880,"Increased, ApoB100",Aop:61,Event:880
+Aop:61_Event:881,"Increased, Triglyceride",Aop:61,Event:881
+Aop:61_Event:458,"Increased, De Novo FA synthesis",Aop:61,Event:458
+Aop:62_Event:484,"Activation, AKT2",Aop:62,Event:484
+Aop:62_Event:486,systemic inflammation leading to hepatic steatosis,Aop:62,Event:486
+Aop:62_Event:457,"Activation, SREBF1",Aop:62,Event:457
+Aop:62_Event:457,"Activation, SREBF1",Aop:62,Event:457
+Aop:63_Event:675,"Reduced, Reproductive Success",Aop:63,Event:675
+Aop:63_Event:675,"Reduced, Reproductive Success",Aop:63,Event:675
+Aop:63_Event:79,"Inhibition, Cyclooxygenase activity",Aop:63,Event:79
+Aop:63_Event:488,"Decrease, Ovulation",Aop:63,Event:488
+Aop:63_Event:360,"Decrease, Population trajectory",Aop:63,Event:360
+Aop:64_Event:494,"Glucocorticoid Receptor Agonist, Activation",Aop:64,Event:494
+Aop:64_Event:495,Repressed expression of steroidogenic enzymes ,Aop:64,Event:495
+Aop:64_Event:496,"Increased apoptosis, decreased number of adult Leydig Cells ",Aop:64,Event:496
+Aop:64_Event:413,"Reduction, Testosterone synthesis in Leydig cells",Aop:64,Event:413
+Aop:64_Event:520,"Decreased sperm quantity or quality in the adult, Decreased fertility ",Aop:64,Event:520
+Aop:64_Event:406,"impaired, Fertility",Aop:64,Event:406
+Aop:66_Event:654,"Decreased testosterone by the fetal Leydig cells, Activation by other glucocorticoid receptor agonists",Aop:66,Event:654
+Aop:66_Event:655,"Decreased testosterone by the fetal Leydig cells, Increased COUP-TFII in fetal Leydig cells",Aop:66,Event:655
+Aop:66_Event:656,"Decreased number and function of adult Leydig cells, Decreased COUP-TFII stem Leydig cells",Aop:66,Event:656
+Aop:66_Event:657,"Decreased testosterone by the fetal Leydig cells, Dysgenesis of fetal Leydig cells",Aop:66,Event:657
+Aop:67_Event:659,"Decreased testosterone by the fetal Leydig cells, Activation by other estradiol agonists",Aop:67,Event:659
+Aop:67_Event:655,"Decreased testosterone by the fetal Leydig cells, Increased COUP-TFII in fetal Leydig cells",Aop:67,Event:655
+Aop:67_Event:660,"decreased testosterone by fetal Leydig cells, Dysgenesis of fetal Leydig cells",Aop:67,Event:660
+Aop:67_Event:656,"Decreased number and function of adult Leydig cells, Decreased COUP-TFII stem Leydig cells",Aop:67,Event:656
+Aop:68_Event:655,"Decreased testosterone by the fetal Leydig cells, Increased COUP-TFII in fetal Leydig cells",Aop:68,Event:655
+Aop:68_Event:657,"Decreased testosterone by the fetal Leydig cells, Dysgenesis of fetal Leydig cells",Aop:68,Event:657
+Aop:68_Event:656,"Decreased number and function of adult Leydig cells, Decreased COUP-TFII stem Leydig cells",Aop:68,Event:656
+Aop:69_Event:642,"Decreased Cholesterol, Decreased De Novo Biosynthesis of Choleseterol",Aop:69,Event:642
+Aop:69_Event:643,"Decreased Cholesterol, Decreased Uptake of Lipoproteins",Aop:69,Event:643
+Aop:69_Event:644,"Decreased Cholesterol, Decreased Transport of Cholesterol to the Inner Mitochondrial Membrane",Aop:69,Event:644
+Aop:69_Event:645,"Decreased Cholesterol, Decreased Testosterone Production by Adult Leydig Cells",Aop:69,Event:645
+Aop:70_Event:520,"Decreased sperm quantity or quality in the adult, Decreased fertility ",Aop:70,Event:520
+Aop:70_Event:640,"Decreased steroidogenesis, Proteomic alterations in the adult Leydig cell",Aop:70,Event:640
+Aop:70_Event:647,"Decreased steroidogenesis, Decreased Activity of Steroidogenic Enzymes in Adult Leydig cells",Aop:70,Event:647
+Aop:70_Event:648,"Decreased steroidogenesis, Increased Apoptosis of Adult Leydig Cells",Aop:70,Event:648
+Aop:70_Event:649,"Decreased steroidogenesis, Alterations in the Leydig Cell Cytoskeleton",Aop:70,Event:649
+Aop:71_Event:525,"Apoptosis of adult Leydig cells, Decreased testosterone by adult Leydig cells",Aop:71,Event:525
+Aop:71_Event:520,"Decreased sperm quantity or quality in the adult, Decreased fertility ",Aop:71,Event:520
+Aop:71_Event:650,"Stimulation of adult Leydig cells via the Adrenal Corticosterone, Increased Glucocorticoid",Aop:71,Event:650
+Aop:71_Event:650,"Stimulation of adult Leydig cells via the Adrenal Corticosterone, Increased Glucocorticoid",Aop:71,Event:650
+Aop:71_Event:651,"Glucocorticoid Receptor mediated alterations in steriodogenic enzymes, Decreased testosterone by adult Leydig cells",Aop:71,Event:651
+Aop:71_Event:652,"Direct effects of Corticosterone on steroidogenesis, Decreased testosterone by adult Leydig cells",Aop:71,Event:652
+Aop:72_Event:228,peroxisome proliferator activated receptor promoter demethylation,Aop:72,Event:228
+Aop:72_Event:1028,"Activation of specific nuclear receptors, PPAR-gamma activation",Aop:72,Event:1028
+Aop:73_Event:526,"Inhibition, Inhibition of Dopamine-beta-hydroxylase",Aop:73,Event:526
+Aop:73_Event:527,"Decreased, Decreased fecundity ",Aop:73,Event:527
+Aop:73_Event:528,"Decreased, Synthesis of NE",Aop:73,Event:528
+Aop:73_Event:529,"Decreased, GnRH cfos activity",Aop:73,Event:529
+Aop:73_Event:530,"Decreased, GnRH pulsatility/release",Aop:73,Event:530
+Aop:73_Event:531,"Decreased, LH Surge",Aop:73,Event:531
+Aop:73_Event:532,"Delayed, Ovulation",Aop:73,Event:532
+Aop:73_Event:533,"Decreased, Cortical granule release/distribution upon fertilization",Aop:73,Event:533
+Aop:73_Event:535,"Abnormal, Sperm penetration (polyspermy)",Aop:73,Event:535
+Aop:73_Event:536,"Altered, Chromosome number (polyploid) zygote",Aop:73,Event:536
+Aop:74_Event:662,"Decreased testosterone by the fetal Leydig cells, Hypermethylation in the fetal testis",Aop:74,Event:662
+Aop:74_Event:655,"Decreased testosterone by the fetal Leydig cells, Increased COUP-TFII in fetal Leydig cells",Aop:74,Event:655
+Aop:74_Event:540,"Decreased testosterone by the fetal Leydig cells, Dysgensis of fetal Leydig cells",Aop:74,Event:540
+Aop:74_Event:541,"Decreased testosterone by the fetal Leydig cells, Decreased COUP-TFII stem Leydig cells",Aop:74,Event:541
+Aop:94_Event:584,"Inhibition, sodium channel",Aop:94,Event:584
+Aop:94_Event:584,"Inhibition, sodium channel",Aop:94,Event:584
+Aop:94_Event:585,"Decreased, Sodium conductance 1",Aop:94,Event:585
+Aop:102_Event:692,"Reduced, Maturation inducing steroid receptor signalling, oocyte",Aop:102,Event:692
+Aop:102_Event:692,"Reduced, Maturation inducing steroid receptor signalling, oocyte",Aop:102,Event:692
+Aop:102_Event:694,"Reduced, Meiotic prophase I/metaphase I transition, oocyte",Aop:102,Event:694
+Aop:102_Event:675,"Reduced, Reproductive Success",Aop:102,Event:675
+Aop:102_Event:675,"Reduced, Reproductive Success",Aop:102,Event:675
+Aop:102_Event:79,"Inhibition, Cyclooxygenase activity",Aop:102,Event:79
+Aop:102_Event:360,"Decrease, Population trajectory",Aop:102,Event:360
+Aop:103_Event:79,"Inhibition, Cyclooxygenase activity",Aop:103,Event:79
+Aop:103_Event:692,"Reduced, Maturation inducing steroid receptor signalling, oocyte",Aop:103,Event:692
+Aop:103_Event:692,"Reduced, Maturation inducing steroid receptor signalling, oocyte",Aop:103,Event:692
+Aop:103_Event:695,"Upregulated, Spindle assembly checkpoint protein Mad2-oocyte",Aop:103,Event:695
+Aop:103_Event:696,"Increased, Chromosome misseggregation",Aop:103,Event:696
+Aop:103_Event:675,"Reduced, Reproductive Success",Aop:103,Event:675
+Aop:103_Event:675,"Reduced, Reproductive Success",Aop:103,Event:675
+Aop:103_Event:360,"Decrease, Population trajectory",Aop:103,Event:360
+Aop:104_Event:697,"impaired, ion channels",Aop:104,Event:697
+Aop:104_Event:351,Increased Mortality,Aop:104,Event:351
+Aop:104_Event:698,"Altered, Action Potential",Aop:104,Event:698
+Aop:104_Event:699,"Increased, cardiac arrthymia",Aop:104,Event:699
+Aop:105_Event:709,"Increase, Cytotoxicity (renal tubular cell)",Aop:105,Event:709
+Aop:105_Event:710,"Increase, Regenerative cell proliferation (tubular epithelial cells)",Aop:105,Event:710
+Aop:105_Event:713,"Increase, Adenomas/carcinomas (renal tubular)",Aop:105,Event:713
+Aop:105_Event:714,"Increased, Binding of chemicals to 2u (serum)",Aop:105,Event:714
+Aop:106_Event:718,"Binding, Tubulin",Aop:106,Event:718
+Aop:106_Event:720,"Disruption, Microtubule dynamics",Aop:106,Event:720
+Aop:106_Event:721,"Disorganization, Spindle",Aop:106,Event:721
+Aop:106_Event:728,"Increase, Aneuploid offspring",Aop:106,Event:728
+Aop:106_Event:723,"Altered, Chromosome number",Aop:106,Event:723
+Aop:107_Event:715,"Activation, Constitutive androstane receptor",Aop:107,Event:715
+Aop:107_Event:716,"Increase, Mitogenic cell proliferation (hepatocytes)",Aop:107,Event:716
+Aop:107_Event:716,"Increase, Mitogenic cell proliferation (hepatocytes)",Aop:107,Event:716
+Aop:107_Event:774,"Increase, Preneoplastic foci (hepatocytes)",Aop:107,Event:774
+Aop:107_Event:1214,"Altered gene expression specific to CAR activation, Hepatocytes",Aop:107,Event:1214
+Aop:108_Event:768,"Increase, Cytotoxicity",Aop:108,Event:768
+Aop:108_Event:768,"Increase, Cytotoxicity",Aop:108,Event:768
+Aop:108_Event:726,"Increased, Induction of pyruvate dehydrogenase (PDH)",Aop:108,Event:726
+Aop:108_Event:724,"Inhibition, Pyruvate dehydrogenase kinase (PDK) enzyme",Aop:108,Event:724
+Aop:108_Event:769,"Increase, Oxidative metabolism",Aop:108,Event:769
+Aop:109_Event:733,"Increase, Necrosis (terminal bronchiolar cells)",Aop:109,Event:733
+Aop:109_Event:734,"Increase, Regenerative cell proliferation (terminal bronchiolar epithelial cells)",Aop:109,Event:734
+Aop:109_Event:770,"Increase, Cytotoxicity (club cells)",Aop:109,Event:770
+Aop:110_Event:737,"Decreased, Uptake of inorganic iodide",Aop:110,Event:737
+Aop:110_Event:739,"Increase, Hypertrophy and proliferation (follicular cell)",Aop:110,Event:739
+Aop:111_Event:743,"Decreased, Testosterone binding to androgen receptor (hypothalamus)",Aop:111,Event:743
+Aop:112_Event:746,"Increase, Dopaminergic activity",Aop:112,Event:746
+Aop:112_Event:748,"Increased, Estrogen receptor (ER) activity",Aop:112,Event:748
+Aop:112_Event:749,"Decreased, Progesterone from corpus luteum",Aop:112,Event:749
+Aop:112_Event:772,"Increase, Hyperplasia (glandular epithelial cells of endometrium)",Aop:112,Event:772
+Aop:114_Event:766,"Inhibition, 4-hydroxyphenyl-pyruvate dioxygenase (HPPD) enzyme",Aop:114,Event:766
+Aop:114_Event:776,"Increase, Cytotoxicity (corneal cells)",Aop:114,Event:776
+Aop:114_Event:777,"Increase, Inflammation (corneal cells)",Aop:114,Event:777
+Aop:114_Event:778,"Increase, Regenerative cell proliferation (corneal cells)",Aop:114,Event:778
+Aop:115_Event:780,"Increase, Cytotoxicity (epithelial cells)",Aop:115,Event:780
+Aop:115_Event:149,"Increase, Inflammation",Aop:115,Event:149
+Aop:115_Event:781,"Increase, Regenerative cell proliferation (forestomach epithelial cells)",Aop:115,Event:781
+Aop:115_Event:782,"Increase, Hyperplasia (forestomach epithelial cells)",Aop:115,Event:782
+Aop:116_Event:783,"Increase, Cytotoxicity (tubular epithelial cells)",Aop:116,Event:783
+Aop:116_Event:710,"Increase, Regenerative cell proliferation (tubular epithelial cells)",Aop:116,Event:710
+Aop:116_Event:784,"Increase, Hyperplasia (tubular epithelial cells)",Aop:116,Event:784
+Aop:116_Event:713,"Increase, Adenomas/carcinomas (renal tubular)",Aop:116,Event:713
+Aop:117_Event:716,"Increase, Mitogenic cell proliferation (hepatocytes)",Aop:117,Event:716
+Aop:117_Event:716,"Increase, Mitogenic cell proliferation (hepatocytes)",Aop:117,Event:716
+Aop:117_Event:774,"Increase, Preneoplastic foci (hepatocytes)",Aop:117,Event:774
+Aop:118_Event:786,"Increase, Cytotoxicity (hepatocytes)",Aop:118,Event:786
+Aop:118_Event:787,"Increase, Regenerative cell proliferation (hepatocytes)",Aop:118,Event:787
+Aop:118_Event:774,"Increase, Preneoplastic foci (hepatocytes)",Aop:118,Event:774
+Aop:119_Event:279,"Thyroperoxidase, Inhibition",Aop:119,Event:279
+Aop:119_Event:788,"Decrease, Incorporation of active iodide into iodotyrosines",Aop:119,Event:788
+Aop:119_Event:739,"Increase, Hypertrophy and proliferation (follicular cell)",Aop:119,Event:739
+Aop:120_Event:790,"Inhibition, 5α-reductase activity",Aop:120,Event:790
+Aop:120_Event:792,"Decrease, Bioactivation of testosterone",Aop:120,Event:792
+Aop:121_Event:793,"Increase, Urinary bladder calculi",Aop:121,Event:793
+Aop:121_Event:794,"Increase, Cytotoxicity (urothelial cells)",Aop:121,Event:794
+Aop:121_Event:795,"Increase, Regenerative cell proliferation (urothelial cells)",Aop:121,Event:795
+Aop:124_Event:804,"Inhibition, HMG-CoA reductase",Aop:124,Event:804
+Aop:124_Event:807,"Decreased, cholesterol",Aop:124,Event:807
+Aop:124_Event:807,"Decreased, cholesterol",Aop:124,Event:807
+Aop:126_Event:848,"Decreased, Binding of NE to NE receptors on GnRH neurons",Aop:126,Event:848
+Aop:126_Event:849,"Inhibition, Antgonism of NE receptor",Aop:126,Event:849
+Aop:126_Event:529,"Decreased, GnRH cfos activity",Aop:126,Event:529
+Aop:126_Event:530,"Decreased, GnRH pulsatility/release",Aop:126,Event:530
+Aop:126_Event:531,"Decreased, LH Surge",Aop:126,Event:531
+Aop:126_Event:532,"Delayed, Ovulation",Aop:126,Event:532
+Aop:126_Event:533,"Decreased, Cortical granule release/distribution upon fertilization",Aop:126,Event:533
+Aop:126_Event:535,"Abnormal, Sperm penetration (polyspermy)",Aop:126,Event:535
+Aop:126_Event:536,"Altered, Chromosome number (polyploid) zygote",Aop:126,Event:536
+Aop:126_Event:527,"Decreased, Decreased fecundity ",Aop:126,Event:527
+Aop:128_Event:277,"Thyroid hormone synthesis, Decreased",Aop:128,Event:277
+Aop:128_Event:814,"Occurrence, Kidney toxicity",Aop:128,Event:814
+Aop:128_Event:819,"Decreased, Glomerular filtration",Aop:128,Event:819
+Aop:128_Event:820,"Decreased, Renal plasma flow",Aop:128,Event:820
+Aop:128_Event:821,"Decreased, Sodium reabsorption",Aop:128,Event:821
+Aop:128_Event:813,"Increased, Serum creatinine",Aop:128,Event:813
+Aop:128_Event:823,"Occurrence, Cystic dilatation (renal tubule)",Aop:128,Event:823
+Aop:128_Event:824,"Occurrence, Cytoplasmic vacuolization (podocyte)",Aop:128,Event:824
+Aop:128_Event:818,"Occurrence, Cytoplasmic vacuolization (Renal tubule)",Aop:128,Event:818
+Aop:128_Event:825,"Decreased, Renal ability to dilute urine",Aop:128,Event:825
+Aop:130_Event:828,"Inhibition, Phospholipase A",Aop:130,Event:828
+Aop:130_Event:833,"Occurrence, Cytoplasmic vacuolization (hepatocyte)",Aop:130,Event:833
+Aop:130_Event:835,"Occurrence, Ballooning degeneration (hepatocyte)",Aop:130,Event:835
+Aop:130_Event:837,"Occurrence, Cytoplasmic vacuolization (kupffer cell)",Aop:130,Event:837
+Aop:130_Event:839,"Formation, Mallory body",Aop:130,Event:839
+Aop:130_Event:840,"Formation, Liver fibrosis",Aop:130,Event:840
+Aop:130_Event:836,"Occurrence, Cytoplasmic vacuolization (Bile duct cell)",Aop:130,Event:836
+Aop:131_Event:18,"Activation, AhR",Aop:131,Event:18
+Aop:131_Event:845,"Inhibition, UROD",Aop:131,Event:845
+Aop:131_Event:850,"Induction, CYP1A2/CYP1A5",Aop:131,Event:850
+Aop:134_Event:424,"Inhibition, Na+/I- symporter (NIS)",Aop:134,Event:424
+Aop:134_Event:277,"Thyroid hormone synthesis, Decreased",Aop:134,Event:277
+Aop:134_Event:425,Decrease of Thyroidal iodide,Aop:134,Event:425
+Aop:134_Event:280,"Thyroxine (T4) in neuronal tissue, Decreased ",Aop:134,Event:280
+Aop:134_Event:756,"Hippocampal gene expression, Altered ",Aop:134,Event:756
+Aop:134_Event:757,"Hippocampal anatomy, Altered ",Aop:134,Event:757
+Aop:134_Event:758,"Hippocampal Physiology, Altered",Aop:134,Event:758
+Aop:134_Event:402,"Cognitive Function, Decreased ",Aop:134,Event:402
+Aop:134_Event:402,"Cognitive Function, Decreased ",Aop:134,Event:402
+Aop:136_Event:867,"Decrease, Intracellular pH",Aop:136,Event:867
+Aop:136_Event:868,"Increase, Tissue Degeneration, Necrosis & Atrophy ",Aop:136,Event:868
+Aop:136_Event:870,"Increase, Cell Proliferation",Aop:136,Event:870
+Aop:136_Event:768,"Increase, Cytotoxicity",Aop:136,Event:768
+Aop:136_Event:768,"Increase, Cytotoxicity",Aop:136,Event:768
+Aop:136_Event:876,"Increase, Mutations in Critical Genes",Aop:136,Event:876
+Aop:139_Event:97,"Alkylation, DNA",Aop:139,Event:97
+Aop:139_Event:155,"N/A, Inadequate DNA repair",Aop:139,Event:155
+Aop:139_Event:185,"Increase, Mutations",Aop:139,Event:185
+Aop:144_Event:55,Cell injury/death,Aop:144,Event:55
+Aop:144_Event:1539,Endocytotic lysosomal uptake,Aop:144,Event:1539
+Aop:144_Event:898,"Disruption, Lysosome",Aop:144,Event:898
+Aop:144_Event:1493,Increased Pro-inflammatory mediators,Aop:144,Event:1493
+Aop:144_Event:1494,Leukocyte recruitment/activation,Aop:144,Event:1494
+Aop:144_Event:265,"Activation, Stellate cells",Aop:144,Event:265
+Aop:144_Event:68,"Accumulation, Collagen",Aop:144,Event:68
+Aop:144_Event:344,"N/A, Liver fibrosis",Aop:144,Event:344
+Aop:148_Event:919,"Occurrence, Transdifferentiation of ciliated epithelial cells",Aop:148,Event:919
+Aop:148_Event:923,"Increase, Proliferation of goblet cells",Aop:148,Event:923
+Aop:148_Event:924,"Activation, Sp1",Aop:148,Event:924
+Aop:148_Event:914,"Decrease, Apoptosis of ciliated epithelial cells",Aop:148,Event:914
+Aop:148_Event:941,"Activation, EGFR",Aop:148,Event:941
+Aop:148_Event:962,"Increase, Mucin production",Aop:148,Event:962
+Aop:148_Event:962,"Increase, Mucin production",Aop:148,Event:962
+Aop:148_Event:1250,"Decrease, Lung function",Aop:148,Event:1250
+Aop:148_Event:1251,"Chronic, Mucus hypersecretion",Aop:148,Event:1251
+Aop:149_Event:927,"KE1 : S-Glutathionylation, eNOS",Aop:149,Event:927
+Aop:149_Event:935,"KE2 : Decrease, GTPCH-1",Aop:149,Event:935
+Aop:149_Event:934,"KE3 : Decrease, Tetrahydrobiopterin",Aop:149,Event:934
+Aop:149_Event:933,"KE6 : Depletion, Nitric Oxide",Aop:149,Event:933
+Aop:149_Event:937,"KE7 : Impaired, Vasodilation",Aop:149,Event:937
+Aop:149_Event:951,"KE8 : Increase, Vascular Resistance",Aop:149,Event:951
+Aop:149_Event:952,Hypertension,Aop:149,Event:952
+Aop:149_Event:973,"KE5 : Decrease, AKT/eNOS activity",Aop:149,Event:973
+Aop:150_Event:18,"Activation, AhR",Aop:150,Event:18
+Aop:150_Event:944,"dimerization, AHR/ARNT",Aop:150,Event:944
+Aop:150_Event:945,"reduced dimerization, ARNT/HIF1-alpha",Aop:150,Event:945
+Aop:150_Event:110,"Impairment, Endothelial network",Aop:150,Event:110
+Aop:150_Event:317,"Altered, Cardiovascular development/function",Aop:150,Event:317
+Aop:150_Event:317,"Altered, Cardiovascular development/function",Aop:150,Event:317
+Aop:150_Event:947,"Increase, Early Life Stage Mortality",Aop:150,Event:947
+Aop:150_Event:947,"Increase, Early Life Stage Mortality",Aop:150,Event:947
+Aop:150_Event:948,"reduced production, VEGF",Aop:150,Event:948
+Aop:152_Event:957,"Binding, Transthyretin in serum",Aop:152,Event:957
+Aop:152_Event:960,"Increased, Uptake of thyroxine into tissue",Aop:152,Event:960
+Aop:152_Event:961,"Increased, Clearance of thyroxine from tissues",Aop:152,Event:961
+Aop:152_Event:280,"Thyroxine (T4) in neuronal tissue, Decreased ",Aop:152,Event:280
+Aop:152_Event:756,"Hippocampal gene expression, Altered ",Aop:152,Event:756
+Aop:152_Event:757,"Hippocampal anatomy, Altered ",Aop:152,Event:757
+Aop:152_Event:758,"Hippocampal Physiology, Altered",Aop:152,Event:758
+Aop:152_Event:402,"Cognitive Function, Decreased ",Aop:152,Event:402
+Aop:152_Event:402,"Cognitive Function, Decreased ",Aop:152,Event:402
+Aop:153_Event:964,"Inhibition of Aromatase Enzyme, Chemical exposure during critical window of estrous cycle between diestrus 2 and proestrus inhibits aromatase conversion of testosterone to estradiol",Aop:153,Event:964
+Aop:153_Event:965,"reduction in ovarian granulosa cells synthesis of estradiol, Reduced steroidogenic production of estradiol in granulosa cells",Aop:153,Event:965
+Aop:153_Event:968,"Decreased Kisspeptin release from neurons in AVPV, Decreased hypothalamic estrogen reduces kisspeptinergic neuron response ",Aop:153,Event:968
+Aop:153_Event:969,"Decreased GnRH Release, Decreased Kisspeptin stimulation of GnRH neurons ",Aop:153,Event:969
+Aop:153_Event:970,"Decreased LH release from Anterior Pituitary, Decreased GnRH stimulation of Anterior Pituitary Gonadotrophs",Aop:153,Event:970
+Aop:153_Event:971,"Ovulation of oocytes Reduced, Delayed, or Blocked, Decrease or delay in LH surge required for ovulation ",Aop:153,Event:971
+Aop:153_Event:972,"Decreased fertility, Reduced number of oocytes ovulated ",Aop:153,Event:972
+Aop:154_Event:979,"Interference, nuclear localization of NFAT",Aop:154,Event:979
+Aop:154_Event:981,"Reduction, NFAT/AP-1 complex formation",Aop:154,Event:981
+Aop:154_Event:981,"Reduction, NFAT/AP-1 complex formation",Aop:154,Event:981
+Aop:154_Event:984,"Impairment, T-cell dependent antibody response",Aop:154,Event:984
+Aop:154_Event:1202,"Suppression, IL-2 and IL-4 production",Aop:154,Event:1202
+Aop:154_Event:1202,"Suppression, IL-2 and IL-4 production",Aop:154,Event:1202
+Aop:154_Event:980,"Inhibition, Calcineurin Activity",Aop:154,Event:980
+Aop:162_Event:1020,"Increased, induction of UDPGT's in liver",Aop:162,Event:1020
+Aop:162_Event:1021,"Increased, T4/T3 catabolism",Aop:162,Event:1021
+Aop:162_Event:1024,"Increased, Hypertrophy and proliferation (follicular cell)",Aop:162,Event:1024
+Aop:163_Event:1028,"Activation of specific nuclear receptors, PPAR-gamma activation",Aop:163,Event:1028
+Aop:163_Event:1029,"Increased, adipogenesis",Aop:163,Event:1029
+Aop:163_Event:1032,"Increased, secretion of local growth factors",Aop:163,Event:1032
+Aop:163_Event:1033,"Increased, proliferation of mesenchymal cells",Aop:163,Event:1033
+Aop:163_Event:1034,"Increased, IGF-1 (mouse)",Aop:163,Event:1034
+Aop:164_Event:1038,"Activation, beta-2 adrenergic receptor",Aop:164,Event:1038
+Aop:164_Event:1039,"Increased activity, beta-2 adrenergic receptor",Aop:164,Event:1039
+Aop:164_Event:1040,"relaxation, smooth muscle",Aop:164,Event:1040
+Aop:164_Event:1042,"Proliferation/Clonal Expansion, smooth muscle",Aop:164,Event:1042
+Aop:165_Event:1046,"Suppression, Estrogen receptor (ER) activity",Aop:165,Event:1046
+Aop:165_Event:1047,"Increased, secretion of GnRH from hypothalamus",Aop:165,Event:1047
+Aop:165_Event:1049,"Increased, secrection of FSH from anterior pituitary",Aop:165,Event:1049
+Aop:165_Event:1050,"Increased, secretion of LH from anterior pituitary",Aop:165,Event:1050
+Aop:166_Event:1057,"Increased, PPAR-alpha activation",Aop:166,Event:1057
+Aop:166_Event:1060,"Alteration, lipid metabolism",Aop:166,Event:1060
+Aop:166_Event:1062,"Increased, Cellular proliferation / hyperplasia of acinar cells",Aop:166,Event:1062
+Aop:167_Event:1064,"prepubertal increase, Estrogen receptor (ER) activity",Aop:167,Event:1064
+Aop:167_Event:1065,"Activation, estrogen receptor alpha",Aop:167,Event:1065
+Aop:167_Event:1066,"Promotion, SIX-1 postive basal-type progenitor cells",Aop:167,Event:1066
+Aop:167_Event:1067,"Proliferation/Clonal Expansion, aberrant basal cells",Aop:167,Event:1067
+Aop:168_Event:1071,"Decreased, GnRH pulsatility/release in hypothalamus",Aop:168,Event:1071
+Aop:168_Event:1072,"Decreased, LH Surge from anterior pituitary",Aop:168,Event:1072
+Aop:168_Event:1074,"interruption, Ovulation",Aop:168,Event:1074
+Aop:168_Event:1075,"prolonged, estrus",Aop:168,Event:1075
+Aop:168_Event:1078,"Hyperplasia, Mammary gland",Aop:168,Event:1078
+Aop:168_Event:1080,"Increased, latency period",Aop:168,Event:1080
+Aop:169_Event:1071,"Decreased, GnRH pulsatility/release in hypothalamus",Aop:169,Event:1071
+Aop:169_Event:1072,"Decreased, LH Surge from anterior pituitary",Aop:169,Event:1072
+Aop:169_Event:1075,"prolonged, estrus",Aop:169,Event:1075
+Aop:169_Event:1074,"interruption, Ovulation",Aop:169,Event:1074
+Aop:170_Event:1083,"Decreased, Dopaminergic activity",Aop:170,Event:1083
+Aop:170_Event:1084,"Increased, prolactin secretion",Aop:170,Event:1084
+Aop:170_Event:1080,"Increased, latency period",Aop:170,Event:1080
+Aop:171_Event:1086,"persistent, cytotoxicity (pleura or peritoneum)",Aop:171,Event:1086
+Aop:171_Event:1087,"Increased, inflammation",Aop:171,Event:1087
+Aop:171_Event:1032,"Increased, secretion of local growth factors",Aop:171,Event:1032
+Aop:171_Event:1089,"Increased, Cell Proliferation (mesothelium)",Aop:171,Event:1089
+Aop:187_Event:1122,"Under carboxylated clotting factors will not assemble on cell surfaces to form clot, Failure of secondary hemostasis  ",Aop:187,Event:1122
+Aop:187_Event:1130,"Failure in vascular repair mechanisms, Unresolved blood loss (hemorrhage)",Aop:187,Event:1130
+Aop:187_Event:1131,"Failure in gamma-glutamyl carboxylation of  clotting factors II, VII, IX and X, Under carboxylation of clotting factors (e.g., des-gamma-carboxy prothrombin) ",Aop:187,Event:1131
+Aop:187_Event:1132,"Blood loss and development of anemia, Impaired oxygen delivery and nutrient delivery to tissue, impaired carbon dioxide and waste product removal",Aop:187,Event:1132
+Aop:187_Event:1132,"Blood loss and development of anemia, Impaired oxygen delivery and nutrient delivery to tissue, impaired carbon dioxide and waste product removal",Aop:187,Event:1132
+Aop:187_Event:1133,"Hemostasis, Depletion from blood of fully functional carboxylated clotting factors",Aop:187,Event:1133
+Aop:187_Event:1134,"Irreversible inhibition of hepatic VKOR by binding of AR at tyrosine 139, Failure to cycle vitamin K epoxide to vitamin K to form vitamin K hydroquinone",Aop:187,Event:1134
+Aop:187_Event:1134,"Irreversible inhibition of hepatic VKOR by binding of AR at tyrosine 139, Failure to cycle vitamin K epoxide to vitamin K to form vitamin K hydroquinone",Aop:187,Event:1134
+Aop:187_Event:1134,"Irreversible inhibition of hepatic VKOR by binding of AR at tyrosine 139, Failure to cycle vitamin K epoxide to vitamin K to form vitamin K hydroquinone",Aop:187,Event:1134
+Aop:187_Event:1135,"Reduced fitness or even mortality, Acidosis, hypovolemic shock and organ dysfunction",Aop:187,Event:1135
+Aop:187_Event:1136,"Impaired recruitment , Population trajectory",Aop:187,Event:1136
+Aop:187_Event:1138,"Uncoupling of oxidative phosphorylation, Reduced ability to generate ATP",Aop:187,Event:1138
+Aop:187_Event:1138,"Uncoupling of oxidative phosphorylation, Reduced ability to generate ATP",Aop:187,Event:1138
+Aop:187_Event:1169,"Anticoagulant rodenticide interferes with carboxylation of Gla proteins in bone, Impairment of post-translational modification (carboxylation) of osteocalcin",Aop:187,Event:1169
+Aop:196_Event:1215,"TRPA1 activation, TRPA1 Receptor",Aop:196,Event:1215
+Aop:196_Event:1218,"Opening of calcium channel, Calcium influx",Aop:196,Event:1218
+Aop:196_Event:1220,Trigeminal nerve activation,Aop:196,Event:1220
+Aop:196_Event:1222,"SP (Substance P) release, Local increase of SP",Aop:196,Event:1222
+Aop:196_Event:1223,"Trigeminal and/or vagal nerve excitation causes Airway Hyper-responsiveness,Cough, Dyspnea",Aop:196,Event:1223
+Aop:196_Event:1226,"Increased Respiratory irritability and Chronic Cough, ",Aop:196,Event:1226
+Aop:196_Event:1433,"Increased CGRP, neuronal release of CGRP",Aop:196,Event:1433
+Aop:196_Event:1434,Irritation of nasal mucosa inducing sneeze reflex,Aop:196,Event:1434
+Aop:196_Event:1435,Increased neurokinin A (NKA) by neuronal cells,Aop:196,Event:1435
+Aop:200_Event:1181,"Activation, Estrogen receptor",Aop:200,Event:1181
+Aop:200_Event:1182,"Increase, Cell Proliferation (Epithelial Cells)",Aop:200,Event:1182
+Aop:200_Event:1183,"Decreased, Apoptosis (Epithelial Cells)",Aop:200,Event:1183
+Aop:200_Event:1187,"Increased, ER binding to DNA (classical pathway) ",Aop:200,Event:1187
+Aop:200_Event:1188,"Increased, ER binding to T.F. to DNA (non-classical pathway)",Aop:200,Event:1188
+Aop:200_Event:1189,"Increased, Proliferation (Endothelial cells) ",Aop:200,Event:1189
+Aop:200_Event:1190,"Increased, Migration (Endothelial Cells)",Aop:200,Event:1190
+Aop:200_Event:1191,"Increased, Non-genomic signaling",Aop:200,Event:1191
+Aop:200_Event:1197,"Activation, Fibroblasts",Aop:200,Event:1197
+Aop:200_Event:1198,"Activation, Macrophages",Aop:200,Event:1198
+Aop:200_Event:1213,"Increased, Angiogenesis",Aop:200,Event:1213
+Aop:200_Event:1239,"Altered, Gene Expression",Aop:200,Event:1239
+Aop:200_Event:1240,"Altered, Protein Production",Aop:200,Event:1240
+Aop:200_Event:1241,"Increased, Motility",Aop:200,Event:1241
+Aop:200_Event:1242,"Increased, Second Messenger Production",Aop:200,Event:1242
+Aop:202_Event:1253, MLL chromosomal translocation,Aop:202,Event:1253
+Aop:205_Event:1258,Decompartmentalization,Aop:205,Event:1258
+Aop:205_Event:1260,Direct mitochondrial inhibition,Aop:205,Event:1260
+Aop:205_Event:1259,narcosis,Aop:205,Event:1259
+Aop:205_Event:1262,Apoptosis,Aop:205,Event:1262
+Aop:205_Event:1263,Necrosis,Aop:205,Event:1263
+Aop:206_Event:149,"Increase, Inflammation",Aop:206,Event:149
+Aop:209_Event:1284,"Up Regulation, SREBF2",Aop:209,Event:1284
+Aop:209_Event:1285,"Up Regulation, Unsaturated fatty acid",Aop:209,Event:1285
+Aop:209_Event:1286,"Down Regulation, GSS and GSTs gene",Aop:209,Event:1286
+Aop:209_Event:1286,"Down Regulation, GSS and GSTs gene",Aop:209,Event:1286
+Aop:209_Event:1287,Glutathione synthesis,Aop:209,Event:1287
+Aop:209_Event:1288,"Activation, 3-hydroxy-3-methylglutaryl-CoA reductase gene",Aop:209,Event:1288
+Aop:212_Event:1502,Histone deacetylase inhibition,Aop:212,Event:1502
+Aop:212_Event:1503,"Histone acetylation, increase",Aop:212,Event:1503
+Aop:212_Event:1505,"Cell cycle, disrupted",Aop:212,Event:1505
+Aop:212_Event:1262,Apoptosis,Aop:212,Event:1262
+Aop:214_Event:122,"Activation, Glucocorticoid Receptor",Aop:214,Event:122
+Aop:220_Event:1394,"Induction, persistent proliferation/sustained proliferation",Aop:220,Event:1394
+Aop:220_Event:1394,"Induction, persistent proliferation/sustained proliferation",Aop:220,Event:1394
+Aop:233_Event:763,"hyperpolarisation, neuron",Aop:233,Event:763
+Aop:235_Event:763,"hyperpolarisation, neuron",Aop:235,Event:763
+Aop:238_Event:40,"Decrease, Mitochondrial ATP production",Aop:238,Event:40
+Aop:238_Event:488,"Decrease, Ovulation",Aop:238,Event:488
+Aop:238_Event:257,"Increase, Reactive oxygen species production",Aop:238,Event:257
+Aop:241_Event:68,"Accumulation, Collagen",Aop:241,Event:68
+Aop:256_Event:709,"Increase, Cytotoxicity (renal tubular cell)",Aop:256,Event:709
+Aop:256_Event:814,"Occurrence, Kidney toxicity",Aop:256,Event:814
+Aop:257_Event:898,"Disruption, Lysosome",Aop:257,Event:898
+Aop:257_Event:709,"Increase, Cytotoxicity (renal tubular cell)",Aop:257,Event:709
+Aop:257_Event:814,"Occurrence, Kidney toxicity",Aop:257,Event:814
+Aop:258_Event:244,"Alkylation, Protein",Aop:258,Event:244
+Aop:258_Event:40,"Decrease, Mitochondrial ATP production",Aop:258,Event:40
+Aop:258_Event:709,"Increase, Cytotoxicity (renal tubular cell)",Aop:258,Event:709
+Aop:258_Event:814,"Occurrence, Kidney toxicity",Aop:258,Event:814
+Aop:263_Event:1446,"Increase, Uncoupling of oxidative phosphorylation",Aop:263,Event:1446
+Aop:263_Event:1521,"Decrease, Growth",Aop:263,Event:1521
+Aop:263_Event:1771,"Increase, Adenosine triphosphate depletion",Aop:263,Event:1771
+Aop:263_Event:1821,"Decrease, Cell proliferation",Aop:263,Event:1821
+Aop:272_Event:155,"N/A, Inadequate DNA repair",Aop:272,Event:155
+Aop:272_Event:185,"Increase, Mutations",Aop:272,Event:185
+Aop:272_Event:870,"Increase, Cell Proliferation",Aop:272,Event:870
+Aop:273_Event:888,"Binding of inhibitor, NADH-ubiquinone oxidoreductase (complex I)",Aop:273,Event:888
+Aop:273_Event:887,"Inhibition, NADH-ubiquinone oxidoreductase  (complex I)",Aop:273,Event:887
+Aop:273_Event:55,Cell injury/death,Aop:273,Event:55
+Aop:274_Event:1502,Histone deacetylase inhibition,Aop:274,Event:1502
+Aop:275_Event:1502,Histone deacetylase inhibition,Aop:275,Event:1502
+Aop:275_Event:1503,"Histone acetylation, increase",Aop:275,Event:1503
+Aop:275_Event:1239,"Altered, Gene Expression",Aop:275,Event:1239
+Aop:276_Event:888,"Binding of inhibitor, NADH-ubiquinone oxidoreductase (complex I)",Aop:276,Event:888
+Aop:276_Event:887,"Inhibition, NADH-ubiquinone oxidoreductase  (complex I)",Aop:276,Event:887
+Aop:277_Event:202,"Inhibition, Nuclear factor kappa B (NF-kB)",Aop:277,Event:202
+Aop:278_Event:202,"Inhibition, Nuclear factor kappa B (NF-kB)",Aop:278,Event:202
+Aop:278_Event:55,Cell injury/death,Aop:278,Event:55
+Aop:280_Event:149,"Increase, Inflammation",Aop:280,Event:149
+Aop:281_Event:12,Acetylcholinesterase (AchE) Inhibition,Aop:281,Event:12
+Aop:281_Event:1602,"Activation, Muscarinic Acetylcholine Receptors",Aop:281,Event:1602
+Aop:281_Event:388,"Overactivation, NMDARs",Aop:281,Event:388
+Aop:281_Event:389,"Increased, Intracellular Calcium overload",Aop:281,Event:389
+Aop:281_Event:55,Cell injury/death,Aop:281,Event:55
+Aop:281_Event:1788,Status epilepticus,Aop:281,Event:1788
+Aop:284_Event:926,"Oxidation, Glutathione (To be considered with MIE)",Aop:284,Event:926
+Aop:284_Event:768,"Increase, Cytotoxicity",Aop:284,Event:768
+Aop:284_Event:768,"Increase, Cytotoxicity",Aop:284,Event:768
+Aop:285_Event:1262,Apoptosis,Aop:285,Event:1262
+Aop:293_Event:1492,Tissue resident cell activation,Aop:293,Event:1492
+Aop:293_Event:1493,Increased Pro-inflammatory mediators,Aop:293,Event:1493
+Aop:293_Event:1494,Leukocyte recruitment/activation,Aop:293,Event:1494
+Aop:293_Event:1182,"Increase, Cell Proliferation (Epithelial Cells)",Aop:293,Event:1182
+Aop:293_Event:185,"Increase, Mutations",Aop:293,Event:185
+Aop:294_Event:185,"Increase, Mutations",Aop:294,Event:185
+Aop:294_Event:1182,"Increase, Cell Proliferation (Epithelial Cells)",Aop:294,Event:1182
+Aop:294_Event:1492,Tissue resident cell activation,Aop:294,Event:1492
+Aop:294_Event:1493,Increased Pro-inflammatory mediators,Aop:294,Event:1493
+Aop:294_Event:1494,Leukocyte recruitment/activation,Aop:294,Event:1494
+Aop:296_Event:1634,"Increase, Oxidative damage to DNA",Aop:296,Event:1634
+Aop:296_Event:155,"N/A, Inadequate DNA repair",Aop:296,Event:155
+Aop:296_Event:185,"Increase, Mutations",Aop:296,Event:185
+Aop:298_Event:1753,Chronic reactive oxygen species,Aop:298,Event:1753
+Aop:298_Event:1754,Sustained tissue damage / macrophage activation/ porcupine-induced Wnt secretion,Aop:298,Event:1754
+Aop:300_Event:756,"Hippocampal gene expression, Altered ",Aop:300,Event:756
+Aop:300_Event:757,"Hippocampal anatomy, Altered ",Aop:300,Event:757
+Aop:300_Event:758,"Hippocampal Physiology, Altered",Aop:300,Event:758
+Aop:300_Event:402,"Cognitive Function, Decreased ",Aop:300,Event:402
+Aop:300_Event:402,"Cognitive Function, Decreased ",Aop:300,Event:402
+Aop:303_Event:1668,Frustrated phagoytosis,Aop:303,Event:1668
+Aop:303_Event:87,"Release, Cytokine",Aop:303,Event:87
+Aop:303_Event:870,"Increase, Cell Proliferation",Aop:303,Event:870
+Aop:305_Event:1688,"decrease, male anogenital distance",Aop:305,Event:1688
+Aop:305_Event:286,"Altered, Transcription of genes by AR",Aop:305,Event:286
+Aop:306_Event:1688,"decrease, male anogenital distance",Aop:306,Event:1688
+Aop:307_Event:413,"Reduction, Testosterone synthesis in Leydig cells",Aop:307,Event:413
+Aop:307_Event:286,"Altered, Transcription of genes by AR",Aop:307,Event:286
+Aop:307_Event:1688,"decrease, male anogenital distance",Aop:307,Event:1688
+Aop:315_Event:1715,Inhibition of JAK3,Aop:315,Event:1715
+Aop:315_Event:1716,Blockade of STAT5 phosphorylation,Aop:315,Event:1716
+Aop:315_Event:1717,Suppression of STAT5 binding to cytokine gene promoters,Aop:315,Event:1717
+Aop:315_Event:1718,Suppression of IL-4 production,Aop:315,Event:1718
+Aop:315_Event:1719,Impairment of T-cell dependent antibody response,Aop:315,Event:1719
+Aop:318_Event:122,"Activation, Glucocorticoid Receptor",Aop:318,Event:122
+Aop:318_Event:860,"Decreased, Mitochondrial Fatty Acid Beta Oxidation",Aop:318,Event:860
+Aop:318_Event:231,"Decreased, PPAR-alpha activation",Aop:318,Event:231
+Aop:319_Event:68,"Accumulation, Collagen",Aop:319,Event:68
+Aop:320_Event:1738,Enhanced viral entry and gene expression,Aop:320,Event:1738
+Aop:320_Event:1738,Enhanced viral entry and gene expression,Aop:320,Event:1738
+Aop:320_Event:351,Increased Mortality,Aop:320,Event:351
+Aop:322_Event:97,"Alkylation, DNA",Aop:322,Event:97
+Aop:322_Event:155,"N/A, Inadequate DNA repair",Aop:322,Event:155
+Aop:335_Event:795,"Increase, Regenerative cell proliferation (urothelial cells)",Aop:335,Event:795
+Aop:344_Event:286,"Altered, Transcription of genes by AR",Aop:344,Event:286
+Aop:345_Event:286,"Altered, Transcription of genes by AR",Aop:345,Event:286
+Aop:345_Event:972,"Decreased fertility, Reduced number of oocytes ovulated ",Aop:345,Event:972
+Aop:347_Event:1292,"Activation, JNK",Aop:347,Event:1292
+Aop:347_Event:1283,"Activation, TGF-beta pathway",Aop:347,Event:1283
+Aop:320_Event:1847,Increased coronavirus production,Aop:320,Event:1847
+Aop:320_Event:1847,Increased coronavirus production,Aop:320,Event:1847
+Aop:320_Event:1847,Increased coronavirus production,Aop:320,Event:1847
+Aop:320_Event:1847,Increased coronavirus production,Aop:320,Event:1847
+Aop:377_Event:351,Increased Mortality,Aop:377,Event:351
+Aop:379_Event:1847,Increased coronavirus production,Aop:379,Event:1847
+Aop:379_Event:1847,Increased coronavirus production,Aop:379,Event:1847
+Aop:379_Event:1847,Increased coronavirus production,Aop:379,Event:1847
+Aop:379_Event:1847,Increased coronavirus production,Aop:379,Event:1847
+Aop:379_Event:1738,Enhanced viral entry and gene expression,Aop:379,Event:1738
+Aop:379_Event:1738,Enhanced viral entry and gene expression,Aop:379,Event:1738
+Aop:379_Event:1869,Oxidative stress response (NRF2-mediated),Aop:379,Event:1869
+Aop:379_Event:1869,Oxidative stress response (NRF2-mediated),Aop:379,Event:1869
+Aop:382_Event:68,"Accumulation, Collagen",Aop:382,Event:68
+Aop:382_Event:1172,"Increase activation, Nuclear factor kappa B (NF-kB)",Aop:382,Event:1172
+Aop:385_Event:1854,"Dysregulation, ACE2 expression and activity",Aop:385,Event:1854
+Aop:394_Event:1738,Enhanced viral entry and gene expression,Aop:394,Event:1738
+Aop:394_Event:1738,Enhanced viral entry and gene expression,Aop:394,Event:1738
+Aop:395_Event:1738,Enhanced viral entry and gene expression,Aop:395,Event:1738
+Aop:395_Event:1738,Enhanced viral entry and gene expression,Aop:395,Event:1738
+Aop:3_Event:177,"N/A, Mitochondrial dysfunction 1",Aop:3,Event:177
+Aop:3_Event:889,"Impaired, Proteostasis",Aop:3,Event:889
+Aop:3_Event:896,Parkinsonian motor deficits,Aop:3,Event:896
+Aop:6_Event:861,"Decreased, Ketogenesis (production of ketone bodies)",Aop:6,Event:861
+Aop:6_Event:864,"Decreased, Body Weight",Aop:6,Event:864
+Aop:7_Event:219,"Reduction, Plasma 17beta-estradiol concentrations",Aop:7,Event:219
+Aop:8_Event:319,"Loss, Cochlear function",Aop:8,Event:319
+Aop:8_Event:281," Thyroxine (T4) in serum, Decreased",Aop:8,Event:281
+Aop:10_Event:613,"Occurrence, Epileptic seizure",Aop:10,Event:613
+Aop:12_Event:352,"N/A, Neurodegeneration",Aop:12,Event:352
+Aop:12_Event:201,"Binding of antagonist, NMDA receptors",Aop:12,Event:201
+Aop:13_Event:201,"Binding of antagonist, NMDA receptors",Aop:13,Event:201
+Aop:14_Event:168,"Decreased, Lymphocytes",Aop:14,Event:168
+Aop:16_Event:10,Acetylcholine accumulation in synapses,Aop:16,Event:10
+Aop:16_Event:445,Respiratory distress/arrest,Aop:16,Event:445
+Aop:16_Event:39,Increased Cholinergic Signaling,Aop:16,Event:39
+Aop:16_Event:1703,Dysregulation of heart rate and vascular tone,Aop:16,Event:1703
+Aop:17_Event:1487,"Binding, Thiol/seleno-proteins involved in protection against oxidative stress",Aop:17,Event:1487
+Aop:17_Event:1392,Oxidative Stress ,Aop:17,Event:1392
+Aop:17_Event:1488,Glutamate dyshomeostasis,Aop:17,Event:1488
+Aop:17_Event:1538,Decreased protection against oxidative stress,Aop:17,Event:1538
+Aop:18_Event:446,"Reduction, testosterone level",Aop:18,Event:446
+Aop:18_Event:348,"Malformation, Male reproductive tract",Aop:18,Event:348
+Aop:19_Event:27,"N/A, Androgen receptor, Antagonism",Aop:19,Event:27
+Aop:19_Event:337,"N/A, Impairment of reproductive capacity",Aop:19,Event:337
+Aop:27_Event:214,"Bile accumulation, Pathological condition",Aop:27,Event:214
+Aop:27_Event:209,Peptide Oxidation,Aop:27,Event:209
+Aop:27_Event:357,"Cholestasis, Pathology",Aop:27,Event:357
+Aop:31_Event:211,"Propagation, Oxidative stress",Aop:31,Event:211
+Aop:31_Event:250,"Damaging, Red blood cells; hemolysis",Aop:31,Event:250
+Aop:31_Event:161,"Increase, Liver and splenic hemosiderosis",Aop:31,Event:161
+Aop:31_Event:173,"N/A, Methemoglobinemia, decreased hemoglobin, hematocrit, red blood cell number",Aop:31,Event:173
+Aop:31_Event:321,"N/A, Cyanosis occurs",Aop:31,Event:321
+Aop:32_Event:164,"Induction, Liver “Dysfunctional” Changes by CGA 330050",Aop:32,Event:164
+Aop:32_Event:347,"Formation, Liver tumor",Aop:32,Event:347
+Aop:33_Event:294,"N/A, Unknown",Aop:33,Event:294
+Aop:34_Event:291,"Accumulation, Triglyceride",Aop:34,Event:291
+Aop:34_Event:345,"N/A, Liver Steatosis",Aop:34,Event:345
+Aop:35_Event:46,"Accumulation, Biological membranes",Aop:35,Event:46
+Aop:35_Event:169,"Disruption, Membrane integrity",Aop:35,Event:169
+Aop:36_Event:327,"Accumulation, Fatty acid",Aop:36,Event:327
+Aop:36_Event:459,"Increased, Liver Steatosis",Aop:36,Event:459
+Aop:37_Event:1170,"modulation, Genes/proteins that regulate hepatocyte fate",Aop:37,Event:1170
+Aop:37_Event:1171,"Increase, Clonal Expansion / Cell Proliferatin to form Pre-Neoplastic Altered Hepatic Foci",Aop:37,Event:1171
+Aop:37_Event:719,"Increase, Adenomas/carcinomas (hepatocellular)",Aop:37,Event:719
+Aop:39_Event:313,"Increase, Allergic Respiratory Hypersensitivity Response",Aop:39,Event:313
+Aop:40_Event:827,"sensitisation, skin",Aop:40,Event:827
+Aop:41_Event:139,"N/A, Hepatotoxicity, Hepatopathy, including a constellation of observable effects",Aop:41,Event:139
+Aop:41_Event:856,"Formation, Hepatocellular and Bile duct tumors",Aop:41,Event:856
+Aop:42_Event:281," Thyroxine (T4) in serum, Decreased",Aop:42,Event:281
+Aop:46_Event:378,"Tumorigenesis, Hepatocellular carcinoma",Aop:46,Event:378
+Aop:48_Event:177,"N/A, Mitochondrial dysfunction 1",Aop:48,Event:177
+Aop:48_Event:352,"N/A, Neurodegeneration",Aop:48,Event:352
+Aop:51_Event:415,"Hyperplasia, Leydig cell",Aop:51,Event:415
+Aop:51_Event:446,"Reduction, testosterone level",Aop:51,Event:446
+Aop:54_Event:281," Thyroxine (T4) in serum, Decreased",Aop:54,Event:281
+Aop:54_Event:851,Decrease of GABAergic interneurons,Aop:54,Event:851
+Aop:57_Event:327,"Accumulation, Fatty acid",Aop:57,Event:327
+Aop:57_Event:291,"Accumulation, Triglyceride",Aop:57,Event:291
+Aop:57_Event:455,"Accumulation, Liver lipid",Aop:57,Event:455
+Aop:58_Event:459,"Increased, Liver Steatosis",Aop:58,Event:459
+Aop:58_Event:327,"Accumulation, Fatty acid",Aop:58,Event:327
+Aop:60_Event:459,"Increased, Liver Steatosis",Aop:60,Event:459
+Aop:60_Event:477,"Decreased, Ketogenesis",Aop:60,Event:477
+Aop:60_Event:327,"Accumulation, Fatty acid",Aop:60,Event:327
+Aop:61_Event:459,"Increased, Liver Steatosis",Aop:61,Event:459
+Aop:62_Event:459,"Increased, Liver Steatosis",Aop:62,Event:459
+Aop:63_Event:685,"Reduced, Prostaglandins, ovary",Aop:63,Event:685
+Aop:64_Event:446,"Reduction, testosterone level",Aop:64,Event:446
+Aop:66_Event:505,"Decreased sperm quantity / quality in the adult, Decreased fertility ",Aop:66,Event:505
+Aop:66_Event:653,"Decreased testosterone by the fetal Leydig cells, Increased corticosterone",Aop:66,Event:653
+Aop:67_Event:505,"Decreased sperm quantity / quality in the adult, Decreased fertility ",Aop:67,Event:505
+Aop:67_Event:658,"Decreased testosterone by the fetal Leydig cells, Increased estradiol",Aop:67,Event:658
+Aop:68_Event:505,"Decreased sperm quantity / quality in the adult, Decreased fertility ",Aop:68,Event:505
+Aop:68_Event:661,"Decreased testosterone by the fetal Leydig cells, Alterations in the fetal testis proteome",Aop:68,Event:661
+Aop:69_Event:646,"Decreased Cholesterol, Decreased sperm quantity and/or quality in the adult testis",Aop:69,Event:646
+Aop:72_Event:1447,obesity,Aop:72,Event:1447
+Aop:72_Event:1448,activation of CCAAT/enhancer-binding protein alpha,Aop:72,Event:1448
+Aop:72_Event:1449,increased adipogenesis,Aop:72,Event:1449
+Aop:72_Event:1450,decreased dopamine,Aop:72,Event:1450
+Aop:72_Event:1451,decreased reward,Aop:72,Event:1451
+Aop:72_Event:1452,decreased DNA methylation of tyrosine hydroxylase,Aop:72,Event:1452
+Aop:72_Event:1453,decreased methylation of dopamine transporter promoter,Aop:72,Event:1453
+Aop:72_Event:1454,chronic high fat diet,Aop:72,Event:1454
+Aop:73_Event:534,"Altered, Formation of cortical envelope",Aop:73,Event:534
+Aop:74_Event:543,"Decreased fertility in the adult, Decreased sperm quantity and/or quality in the adult testis",Aop:74,Event:543
+Aop:94_Event:444,"Increased, Atrioventricular block and bradycardia",Aop:94,Event:444
+Aop:94_Event:445,Respiratory distress/arrest,Aop:94,Event:445
+Aop:94_Event:590,"N/A, hypoxia",Aop:94,Event:590
+Aop:94_Event:591,"Increased, amputations",Aop:94,Event:591
+Aop:102_Event:687,"Reduced, Prostaglandin E2 concentration, hypothalamus",Aop:102,Event:687
+Aop:102_Event:689,"Reduced, Gonadotropin releasing hormone, hypothalamus",Aop:102,Event:689
+Aop:102_Event:690,"Reduced, Luteinizing hormone (LH), plasma ",Aop:102,Event:690
+Aop:102_Event:691,"Reduced, Maturation inducing steroid, plasma",Aop:102,Event:691
+Aop:102_Event:693,"Increased, cyclic adenosine monophosphate",Aop:102,Event:693
+Aop:103_Event:687,"Reduced, Prostaglandin E2 concentration, hypothalamus",Aop:103,Event:687
+Aop:103_Event:689,"Reduced, Gonadotropin releasing hormone, hypothalamus",Aop:103,Event:689
+Aop:103_Event:690,"Reduced, Luteinizing hormone (LH), plasma ",Aop:103,Event:690
+Aop:103_Event:691,"Reduced, Maturation inducing steroid, plasma",Aop:103,Event:691
+Aop:105_Event:708,"Increased, Accumulation of alpha2u microglobulin (proximal tubular epithelium)",Aop:105,Event:708
+Aop:105_Event:767,"Increase, Hyperplasia (renal tubular cells)",Aop:105,Event:767
+Aop:106_Event:752,"Altered, Meiotic chromosome dynamics",Aop:106,Event:752
+Aop:107_Event:719,"Increase, Adenomas/carcinomas (hepatocellular)",Aop:107,Event:719
+Aop:108_Event:719,"Increase, Adenomas/carcinomas (hepatocellular)",Aop:108,Event:719
+Aop:108_Event:209,Peptide Oxidation,Aop:108,Event:209
+Aop:109_Event:735,"Increase, Hyperplasia (terminal bronchiolar cells)",Aop:109,Event:735
+Aop:109_Event:736,"Increase, Adenomas/carcinomas (bronchioloalveolar)",Aop:109,Event:736
+Aop:110_Event:740,"Increase, Hyperplasia (follicular cells)",Aop:110,Event:740
+Aop:110_Event:741,"Increase, Adenomas/carcinomas (follicular cell)",Aop:110,Event:741
+Aop:110_Event:753,"Increase, Thyroid-stimulating hormone (TSH)",Aop:110,Event:753
+Aop:110_Event:771,"Decrease, Serum thyroid hormone (T4/T3)",Aop:110,Event:771
+Aop:111_Event:742,"Decreased, Androgen receptor activity",Aop:111,Event:742
+Aop:111_Event:744,"Increase, Hyperplasia (Leydig cells)",Aop:111,Event:744
+Aop:111_Event:745,"Increase, Leydig cell tumors",Aop:111,Event:745
+Aop:111_Event:754,"Increased, Luteinizing hormone (LH) ",Aop:111,Event:754
+Aop:112_Event:747,"Decreased, Prolactin",Aop:112,Event:747
+Aop:112_Event:773,"Increase, Endometrial adenocarcinomas",Aop:112,Event:773
+Aop:114_Event:775,"Increased, Plasma tyrosine",Aop:114,Event:775
+Aop:114_Event:779,"Increase, Papillomas/carcinomas (squamous cells)",Aop:114,Event:779
+Aop:115_Event:779,"Increase, Papillomas/carcinomas (squamous cells)",Aop:115,Event:779
+Aop:117_Event:785,"Activation, Androgen receptor",Aop:117,Event:785
+Aop:117_Event:719,"Increase, Adenomas/carcinomas (hepatocellular)",Aop:117,Event:719
+Aop:118_Event:719,"Increase, Adenomas/carcinomas (hepatocellular)",Aop:118,Event:719
+Aop:119_Event:740,"Increase, Hyperplasia (follicular cells)",Aop:119,Event:740
+Aop:119_Event:753,"Increase, Thyroid-stimulating hormone (TSH)",Aop:119,Event:753
+Aop:119_Event:741,"Increase, Adenomas/carcinomas (follicular cell)",Aop:119,Event:741
+Aop:119_Event:771,"Decrease, Serum thyroid hormone (T4/T3)",Aop:119,Event:771
+Aop:120_Event:791,"Increased, Leutinizing hormone (LH)",Aop:120,Event:791
+Aop:120_Event:744,"Increase, Hyperplasia (Leydig cells)",Aop:120,Event:744
+Aop:120_Event:745,"Increase, Leydig cell tumors",Aop:120,Event:745
+Aop:121_Event:796,"Increase, Hyperplasia (urothelial)",Aop:121,Event:796
+Aop:121_Event:797,"Increase, Adenomas/carcinomas (urothelial)",Aop:121,Event:797
+Aop:124_Event:805,"Decreased, mevalonate",Aop:124,Event:805
+Aop:124_Event:808,"Decreased, Testosterone",Aop:124,Event:808
+Aop:124_Event:809,"malformed, Male reproductive tract",Aop:124,Event:809
+Aop:124_Event:330,"Decrease, Fertility",Aop:124,Event:330
+Aop:126_Event:534,"Altered, Formation of cortical envelope",Aop:126,Event:534
+Aop:128_Event:426,"Decreased, Thyroxine (T4) in serum",Aop:128,Event:426
+Aop:130_Event:829,"Damage, Lipid bilayer",Aop:130,Event:829
+Aop:130_Event:831,"Disturbance, Lysosomal function",Aop:130,Event:831
+Aop:130_Event:832,"Injury, Mitochondria",Aop:130,Event:832
+Aop:130_Event:838,"Induction, Microvesicular fat",Aop:130,Event:838
+Aop:131_Event:844,"Oxidation, Uroporphyrinogen",Aop:131,Event:844
+Aop:131_Event:846,"Accumulation, Highly carboxylated porphyrins",Aop:131,Event:846
+Aop:131_Event:369,Uroporphyria,Aop:131,Event:369
+Aop:134_Event:281," Thyroxine (T4) in serum, Decreased",Aop:134,Event:281
+Aop:134_Event:426,"Decreased, Thyroxine (T4) in serum",Aop:134,Event:426
+Aop:136_Event:869,"Increase, Respiratory or Squamous Metaplasia",Aop:136,Event:869
+Aop:136_Event:872,"Increase, Site of Contact Nasal Tumors",Aop:136,Event:872
+Aop:139_Event:885,"Increase, Cancer",Aop:139,Event:885
+Aop:144_Event:177,"N/A, Mitochondrial dysfunction 1",Aop:144,Event:177
+Aop:148_Event:920,"Occurrence, Metaplasia of goblet cells",Aop:148,Event:920
+Aop:148_Event:921,"Occurrence, Hyperplasia of goblet cells",Aop:148,Event:921
+Aop:149_Event:209,Peptide Oxidation,Aop:149,Event:209
+Aop:149_Event:932,"KE4 : Uncoupling, eNOS",Aop:149,Event:932
+Aop:152_Event:958,"Displacement, Serum thyroxine (T4) from transthyretin",Aop:152,Event:958
+Aop:152_Event:959,"Increased, Free serum thyroxine (T4)",Aop:152,Event:959
+Aop:152_Event:281," Thyroxine (T4) in serum, Decreased",Aop:152,Event:281
+Aop:153_Event:966,"Reduced Estradiol in Circulation, Reduced steroidogenic production of estradiol in granulosa cells leading to decreased estradiol in circulation",Aop:153,Event:966
+Aop:153_Event:967,"Decreased positive estrogenic feedback on hypothalamus, Reduced estradiol in circulation decreases estrogen concentration at hypothalamus",Aop:153,Event:967
+Aop:162_Event:1022,"Decreased, serum T4/T3",Aop:162,Event:1022
+Aop:162_Event:1023,"Increased, Thyroid-stimulating hormone (TSH)",Aop:162,Event:1023
+Aop:162_Event:1025,"Increased, Hyperplasia (follicular cells)",Aop:162,Event:1025
+Aop:162_Event:1026,"Increased Apoptosis, Adenomas/carcinomas (follicular cell)",Aop:162,Event:1026
+Aop:163_Event:1035,"Increased, Firbrosarcoma",Aop:163,Event:1035
+Aop:163_Event:1036,"Increased, liposarcoma",Aop:163,Event:1036
+Aop:163_Event:1037,"Increased, hemagiosarcoma",Aop:163,Event:1037
+Aop:164_Event:1043,"Hypertrophy/hyperplasia, smooth muscle",Aop:164,Event:1043
+Aop:164_Event:1044,"Promotion, mesovarian leiomyomas",Aop:164,Event:1044
+Aop:165_Event:1045,"Decreased, Ovarian E2",Aop:165,Event:1045
+Aop:165_Event:1051,"Hyperplasia, ovarian stromal cells",Aop:165,Event:1051
+Aop:165_Event:1052,"Hyperplasia, ovarian epithelium",Aop:165,Event:1052
+Aop:165_Event:1053,"Promotion, ovarian adenomas",Aop:165,Event:1053
+Aop:165_Event:1054,"Promotion, ovarian granular cell tumors",Aop:165,Event:1054
+Aop:165_Event:1056,"Decrease, E2 blood concentrations at hypothalamus",Aop:165,Event:1056
+Aop:166_Event:1058,"Decreased, bile flow",Aop:166,Event:1058
+Aop:166_Event:1059,"Increased, cholestasis",Aop:166,Event:1059
+Aop:166_Event:1061,"prolonged, elevation of serun CCK",Aop:166,Event:1061
+Aop:166_Event:1063,"Increased, Pancreatic acinar tumors",Aop:166,Event:1063
+Aop:167_Event:1068,"squamous metaplasia, aberrant basal cells",Aop:167,Event:1068
+Aop:167_Event:1069,"Increased, Hyperplasia (glandular epithelial cells of endometrium)",Aop:167,Event:1069
+Aop:167_Event:1070,"Increased, adenosquamous carcinomas of endometrium",Aop:167,Event:1070
+Aop:168_Event:1076,"Increased, circulating estrogen levels",Aop:168,Event:1076
+Aop:168_Event:1077,"Increased, prolactin exposure",Aop:168,Event:1077
+Aop:168_Event:1079,"Increased, Adenomas/carcinomas (mammary)",Aop:168,Event:1079
+Aop:169_Event:1076,"Increased, circulating estrogen levels",Aop:169,Event:1076
+Aop:169_Event:1081,"Increased, lactotroph hyperplasia and hypertrophy",Aop:169,Event:1081
+Aop:169_Event:1082,"Increased, adenomas (pituitary)",Aop:169,Event:1082
+Aop:170_Event:1085,"Increased, hyperplasia (mammary gland)",Aop:170,Event:1085
+Aop:170_Event:1079,"Increased, Adenomas/carcinomas (mammary)",Aop:170,Event:1079
+Aop:171_Event:1088,"Increased, Oxidative Stress",Aop:171,Event:1088
+Aop:171_Event:1090,"Increased, mesotheliomas",Aop:171,Event:1090
+Aop:173_Event:1495,Interaction with the lung resident cell membrane components,Aop:173,Event:1495
+Aop:173_Event:1496,"Increased, secretion of proinflammatory and profibrotic mediators",Aop:173,Event:1496
+Aop:173_Event:1497,"Increased, recruitment of inflammatory cells",Aop:173,Event:1497
+Aop:173_Event:1498,Loss of alveolar capillary membrane integrity,Aop:173,Event:1498
+Aop:173_Event:1499,"Increased, activation of T (T) helper (h) type 2 cells",Aop:173,Event:1499
+Aop:173_Event:1500,"Increased, fibroblast proliferation and myofibroblast differentiation",Aop:173,Event:1500
+Aop:173_Event:1501,"Increased, extracellular matrix deposition",Aop:173,Event:1501
+Aop:173_Event:1458,Pulmonary fibrosis,Aop:173,Event:1458
+Aop:187_Event:1151,"Osteoporosis and vascular calcification, Bone deterioration",Aop:187,Event:1151
+Aop:200_Event:177,"N/A, Mitochondrial dysfunction 1",Aop:200,Event:177
+Aop:200_Event:1088,"Increased, Oxidative Stress",Aop:200,Event:1088
+Aop:200_Event:1192,"Increased, Ductal Hyperplasia ",Aop:200,Event:1192
+Aop:200_Event:1193,"N/A, Breast Cancer",Aop:200,Event:1193
+Aop:200_Event:1194,"Increase, DNA damage",Aop:200,Event:1194
+Aop:200_Event:1195,"modulation, Extracellular Matrix Composition ",Aop:200,Event:1195
+Aop:200_Event:1196,"Increased, Invasion",Aop:200,Event:1196
+Aop:202_Event:1252,Binding to (interferes with) topoisomerase II enzyme,Aop:202,Event:1252
+Aop:202_Event:1254,Infant leukaemia,Aop:202,Event:1254
+Aop:202_Event:1461,DNA double-strand break ,Aop:202,Event:1461
+Aop:205_Event:1261,Mitochondrial impairment,Aop:205,Event:1261
+Aop:206_Event:1270,Inactivation of PPARγ,Aop:206,Event:1270
+Aop:206_Event:1271,Activation of TGF-β signaling,Aop:206,Event:1271
+Aop:206_Event:1275,Collagen Deposition,Aop:206,Event:1275
+Aop:206_Event:1276,Lung fibrosis,Aop:206,Event:1276
+Aop:206_Event:1457,"Induction, Epithelial Mesenchymal Transition",Aop:206,Event:1457
+Aop:209_Event:1289,Perturbation of cholesterol,Aop:209,Event:1289
+Aop:209_Event:1290,Glutathione homeostasis,Aop:209,Event:1290
+Aop:209_Event:1291,Hepatotoxicity,Aop:209,Event:1291
+Aop:212_Event:1506,Testicular atrophy,Aop:212,Event:1506
+Aop:212_Event:1515,Spermatocyte depletion,Aop:212,Event:1515
+Aop:213_Event:1305,"Increase, cytosolic fatty acid",Aop:213,Event:1305
+Aop:213_Event:1489,"N/A, Steatohepatisis",Aop:213,Event:1489
+Aop:213_Event:1490,"Inhibition, Fatty Acid Beta Oxidation",Aop:213,Event:1490
+Aop:213_Event:459,"Increased, Liver Steatosis",Aop:213,Event:459
+Aop:213_Event:1115,"Increased, Reactive oxygen species",Aop:213,Event:1115
+Aop:213_Event:1491,"Increased, Oncotic Necrosis",Aop:213,Event:1491
+Aop:214_Event:1316,"Inhibit, serotonin transporter activity",Aop:214,Event:1316
+Aop:214_Event:1317,"Decreased, serotonin transporter activity",Aop:214,Event:1317
+Aop:214_Event:1318,"Decreased, extracellular sodium (Na+) ",Aop:214,Event:1318
+Aop:214_Event:1319,"Decreased, extracellular chloride (Cl-)",Aop:214,Event:1319
+Aop:214_Event:1320,"Increased, extracellular serotonin",Aop:214,Event:1320
+Aop:214_Event:1321,"Increased, intracellular sodium (Na+)",Aop:214,Event:1321
+Aop:214_Event:1322,"Increased, intracellular chloride (Cl-)",Aop:214,Event:1322
+Aop:214_Event:1323,"Decreased, intracellular serotonin",Aop:214,Event:1323
+Aop:214_Event:1324,"Decreased, packaged serotonin",Aop:214,Event:1324
+Aop:214_Event:1325,"Decreased, synaptic release",Aop:214,Event:1325
+Aop:214_Event:1326,"Increased, 5-HT3 (5-hydroxytryptamine)",Aop:214,Event:1326
+Aop:214_Event:1328,"Inactivated, 5-HTR (serotonin receptors)",Aop:214,Event:1328
+Aop:214_Event:1329,"Reduce expression, BDNF (Brain-derived neurotrophic factor)",Aop:214,Event:1329
+Aop:214_Event:1330,"Decreased, neuroplasticity",Aop:214,Event:1330
+Aop:214_Event:1334,"Increase, cortisone",Aop:214,Event:1334
+Aop:214_Event:1335,"Reduced, BDNF (Brain-derived neurotrophic factor)",Aop:214,Event:1335
+Aop:214_Event:1336,"Activation, 5-HT2A (Serotonin 2A)",Aop:214,Event:1336
+Aop:214_Event:1337,"Activate, PLC (Phospholipase C)",Aop:214,Event:1337
+Aop:214_Event:1338,"Increase, inositol triphosphate",Aop:214,Event:1338
+Aop:214_Event:1339,"Increase, intracellular calcium",Aop:214,Event:1339
+Aop:214_Event:1340,"Activate, calmodulin",Aop:214,Event:1340
+Aop:214_Event:1341,"Increase, myosin light chain phosphorylation",Aop:214,Event:1341
+Aop:214_Event:1342,"Increase, vascular smooth muscle contraction",Aop:214,Event:1342
+Aop:214_Event:1344,"Increased, seizure",Aop:214,Event:1344
+Aop:214_Event:1345,"Increased, agitation",Aop:214,Event:1345
+Aop:214_Event:1346,"Increased, depression",Aop:214,Event:1346
+Aop:214_Event:1343,"Increase, hypertension",Aop:214,Event:1343
+Aop:214_Event:1347,"Decreased, extracellular serotonin",Aop:214,Event:1347
+Aop:215_Event:1348,"Increase, seizure",Aop:215,Event:1348
+Aop:215_Event:1349,"Activated, presynaptic neuron 1",Aop:215,Event:1349
+Aop:215_Event:1350,"Increased, glutamate",Aop:215,Event:1350
+Aop:215_Event:1351,"Activated, NMDA receptor",Aop:215,Event:1351
+Aop:215_Event:1321,"Increased, intracellular sodium (Na+)",Aop:215,Event:1321
+Aop:215_Event:1352,"Activated, voltage-gated sodium channel",Aop:215,Event:1352
+Aop:215_Event:1353,"Inhibit, voltage-gated sodium channel",Aop:215,Event:1353
+Aop:215_Event:1354,"Treat, carbamazepine",Aop:215,Event:1354
+Aop:215_Event:1355,"Activated, membrane depolarization",Aop:215,Event:1355
+Aop:215_Event:1356,"Inactive, membrane depolarization",Aop:215,Event:1356
+Aop:215_Event:1357,"Increased, RDX dose",Aop:215,Event:1357
+Aop:215_Event:1358,"Repress, GABA-A receptor",Aop:215,Event:1358
+Aop:215_Event:1359,"Activate, GABA-A receptor",Aop:215,Event:1359
+Aop:215_Event:1360,"Activate, presynaptic neuron 2",Aop:215,Event:1360
+Aop:215_Event:1361,"Increase, GABA",Aop:215,Event:1361
+Aop:215_Event:1322,"Increased, intracellular chloride (Cl-)",Aop:215,Event:1322
+Aop:215_Event:1362,"Increased, hippocampal hyperdepolarization",Aop:215,Event:1362
+Aop:215_Event:1363,"Increased, epilepsy",Aop:215,Event:1363
+Aop:217_Event:1367,"Inhibit, gastric ulcer formation",Aop:217,Event:1367
+Aop:217_Event:1368,"Inhibition, PTGS-1 (Prostaglandin-endoperoxide synthase 1)",Aop:217,Event:1368
+Aop:217_Event:1369,"Activation, PTGS-1 (Prostaglandin-endoperoxide synthase 1)",Aop:217,Event:1369
+Aop:217_Event:1370,"Activation, PTGS-2 (Prostaglandin-endoperoxide synthase 2)",Aop:217,Event:1370
+Aop:217_Event:1371,"Inhibition, PTGS-2 (Prostaglandin-endoperoxide synthase 2)",Aop:217,Event:1371
+Aop:217_Event:1372,"Increase, bicarbonate ",Aop:217,Event:1372
+Aop:217_Event:1373,"Increase, mucous",Aop:217,Event:1373
+Aop:217_Event:1374,"Increase, mucosal blood flow",Aop:217,Event:1374
+Aop:217_Event:1375,"Increase, platelet aggregation",Aop:217,Event:1375
+Aop:217_Event:1376,"Increase, angiogenesis",Aop:217,Event:1376
+Aop:217_Event:1377,"Decrease, leukocyte adherence",Aop:217,Event:1377
+Aop:217_Event:1378,"Increase, leukocyte adherence",Aop:217,Event:1378
+Aop:217_Event:1379,"Activate, leukocyte ",Aop:217,Event:1379
+Aop:217_Event:1380,"Activate, mucosal defense",Aop:217,Event:1380
+Aop:217_Event:1381,"Increase, surfactant",Aop:217,Event:1381
+Aop:217_Event:1382,"Decrease, surfactant",Aop:217,Event:1382
+Aop:217_Event:1383,"Activate, phospholipase",Aop:217,Event:1383
+Aop:217_Event:1384,"Increase, ammonium (NH4+)",Aop:217,Event:1384
+Aop:217_Event:1385,"Activated, gastric ulcer formation",Aop:217,Event:1385
+Aop:220_Event:1391,Activation of Cyp2E1,Aop:220,Event:1391
+Aop:220_Event:1392,Oxidative Stress ,Aop:220,Event:1392
+Aop:220_Event:1393,Hepatocytotoxicity,Aop:220,Event:1393
+Aop:220_Event:1395,Liver Cancer,Aop:220,Event:1395
+Aop:221_Event:1335,"Reduced, BDNF (Brain-derived neurotrophic factor)",Aop:221,Event:1335
+Aop:221_Event:1330,"Decreased, neuroplasticity",Aop:221,Event:1330
+Aop:221_Event:1328,"Inactivated, 5-HTR (serotonin receptors)",Aop:221,Event:1328
+Aop:221_Event:1347,"Decreased, extracellular serotonin",Aop:221,Event:1347
+Aop:221_Event:1325,"Decreased, synaptic release",Aop:221,Event:1325
+Aop:221_Event:1324,"Decreased, packaged serotonin",Aop:221,Event:1324
+Aop:221_Event:1323,"Decreased, intracellular serotonin",Aop:221,Event:1323
+Aop:221_Event:1317,"Decreased, serotonin transporter activity",Aop:221,Event:1317
+Aop:221_Event:1320,"Increased, extracellular serotonin",Aop:221,Event:1320
+Aop:221_Event:1346,"Increased, depression",Aop:221,Event:1346
+Aop:221_Event:1329,"Reduce expression, BDNF (Brain-derived neurotrophic factor)",Aop:221,Event:1329
+Aop:221_Event:1396,"Increased, glucocorticoid receptor activity",Aop:221,Event:1396
+Aop:222_Event:1345,"Increased, agitation",Aop:222,Event:1345
+Aop:222_Event:1335,"Reduced, BDNF (Brain-derived neurotrophic factor)",Aop:222,Event:1335
+Aop:222_Event:1329,"Reduce expression, BDNF (Brain-derived neurotrophic factor)",Aop:222,Event:1329
+Aop:222_Event:1328,"Inactivated, 5-HTR (serotonin receptors)",Aop:222,Event:1328
+Aop:222_Event:1330,"Decreased, neuroplasticity",Aop:222,Event:1330
+Aop:222_Event:1347,"Decreased, extracellular serotonin",Aop:222,Event:1347
+Aop:222_Event:1317,"Decreased, serotonin transporter activity",Aop:222,Event:1317
+Aop:222_Event:1320,"Increased, extracellular serotonin",Aop:222,Event:1320
+Aop:222_Event:1325,"Decreased, synaptic release",Aop:222,Event:1325
+Aop:222_Event:1324,"Decreased, packaged serotonin",Aop:222,Event:1324
+Aop:222_Event:1323,"Decreased, intracellular serotonin",Aop:222,Event:1323
+Aop:222_Event:1396,"Increased, glucocorticoid receptor activity",Aop:222,Event:1396
+Aop:223_Event:1320,"Increased, extracellular serotonin",Aop:223,Event:1320
+Aop:223_Event:1347,"Decreased, extracellular serotonin",Aop:223,Event:1347
+Aop:223_Event:1344,"Increased, seizure",Aop:223,Event:1344
+Aop:223_Event:1397,"Increased, serotonin transporter activity",Aop:223,Event:1397
+Aop:223_Event:1398,"Increased, intracellular serotonin",Aop:223,Event:1398
+Aop:223_Event:1399,"Increased, packaged serotonin",Aop:223,Event:1399
+Aop:223_Event:1400,"Increased, synaptic release",Aop:223,Event:1400
+Aop:223_Event:1401,"Decreased, 5-HT3",Aop:223,Event:1401
+Aop:224_Event:1346,"Increased, depression",Aop:224,Event:1346
+Aop:224_Event:1320,"Increased, extracellular serotonin",Aop:224,Event:1320
+Aop:224_Event:1347,"Decreased, extracellular serotonin",Aop:224,Event:1347
+Aop:224_Event:1397,"Increased, serotonin transporter activity",Aop:224,Event:1397
+Aop:224_Event:1398,"Increased, intracellular serotonin",Aop:224,Event:1398
+Aop:224_Event:1399,"Increased, packaged serotonin",Aop:224,Event:1399
+Aop:224_Event:1400,"Increased, synaptic release",Aop:224,Event:1400
+Aop:224_Event:1328,"Inactivated, 5-HTR (serotonin receptors)",Aop:224,Event:1328
+Aop:224_Event:1329,"Reduce expression, BDNF (Brain-derived neurotrophic factor)",Aop:224,Event:1329
+Aop:224_Event:1330,"Decreased, neuroplasticity",Aop:224,Event:1330
+Aop:225_Event:1320,"Increased, extracellular serotonin",Aop:225,Event:1320
+Aop:225_Event:1347,"Decreased, extracellular serotonin",Aop:225,Event:1347
+Aop:225_Event:1328,"Inactivated, 5-HTR (serotonin receptors)",Aop:225,Event:1328
+Aop:225_Event:1329,"Reduce expression, BDNF (Brain-derived neurotrophic factor)",Aop:225,Event:1329
+Aop:225_Event:1330,"Decreased, neuroplasticity",Aop:225,Event:1330
+Aop:225_Event:1345,"Increased, agitation",Aop:225,Event:1345
+Aop:225_Event:1397,"Increased, serotonin transporter activity",Aop:225,Event:1397
+Aop:225_Event:1398,"Increased, intracellular serotonin",Aop:225,Event:1398
+Aop:225_Event:1399,"Increased, packaged serotonin",Aop:225,Event:1399
+Aop:225_Event:1400,"Increased, synaptic release",Aop:225,Event:1400
+Aop:226_Event:1323,"Decreased, intracellular serotonin",Aop:226,Event:1323
+Aop:226_Event:1324,"Decreased, packaged serotonin",Aop:226,Event:1324
+Aop:226_Event:1325,"Decreased, synaptic release",Aop:226,Event:1325
+Aop:226_Event:1320,"Increased, extracellular serotonin",Aop:226,Event:1320
+Aop:226_Event:1347,"Decreased, extracellular serotonin",Aop:226,Event:1347
+Aop:226_Event:1336,"Activation, 5-HT2A (Serotonin 2A)",Aop:226,Event:1336
+Aop:226_Event:1337,"Activate, PLC (Phospholipase C)",Aop:226,Event:1337
+Aop:226_Event:1338,"Increase, inositol triphosphate",Aop:226,Event:1338
+Aop:226_Event:1339,"Increase, intracellular calcium",Aop:226,Event:1339
+Aop:226_Event:1340,"Activate, calmodulin",Aop:226,Event:1340
+Aop:226_Event:1341,"Increase, myosin light chain phosphorylation",Aop:226,Event:1341
+Aop:226_Event:1342,"Increase, vascular smooth muscle contraction",Aop:226,Event:1342
+Aop:226_Event:1343,"Increase, hypertension",Aop:226,Event:1343
+Aop:226_Event:1317,"Decreased, serotonin transporter activity",Aop:226,Event:1317
+Aop:227_Event:1402,"Reduced, PTGS1 function",Aop:227,Event:1402
+Aop:227_Event:1385,"Activated, gastric ulcer formation",Aop:227,Event:1385
+Aop:227_Event:1403,"Reduced, platelet aggregation",Aop:227,Event:1403
+Aop:227_Event:1404,"Decreased, mucosal blood flow",Aop:227,Event:1404
+Aop:227_Event:1405,"Reduced, mucosal defense",Aop:227,Event:1405
+Aop:227_Event:1406,"Decreased, mucous",Aop:227,Event:1406
+Aop:227_Event:1407,"Decreased, bicarbonate",Aop:227,Event:1407
+Aop:228_Event:1408,"Reduced, PTGS2 function",Aop:228,Event:1408
+Aop:228_Event:1385,"Activated, gastric ulcer formation",Aop:228,Event:1385
+Aop:228_Event:1409,"Decreased, angiogenesis",Aop:228,Event:1409
+Aop:228_Event:1410,"Increased, leukocyte adherence",Aop:228,Event:1410
+Aop:228_Event:1411,"Increased, leukocyte activation",Aop:228,Event:1411
+Aop:229_Event:1412,Helicobacter pylori infection,Aop:229,Event:1412
+Aop:229_Event:1384,"Increase, ammonium (NH4+)",Aop:229,Event:1384
+Aop:229_Event:1383,"Activate, phospholipase",Aop:229,Event:1383
+Aop:229_Event:1382,"Decrease, surfactant",Aop:229,Event:1382
+Aop:229_Event:1405,"Reduced, mucosal defense",Aop:229,Event:1405
+Aop:229_Event:1385,"Activated, gastric ulcer formation",Aop:229,Event:1385
+Aop:230_Event:1349,"Activated, presynaptic neuron 1",Aop:230,Event:1349
+Aop:230_Event:1350,"Increased, glutamate",Aop:230,Event:1350
+Aop:230_Event:1351,"Activated, NMDA receptor",Aop:230,Event:1351
+Aop:230_Event:1321,"Increased, intracellular sodium (Na+)",Aop:230,Event:1321
+Aop:230_Event:1352,"Activated, voltage-gated sodium channel",Aop:230,Event:1352
+Aop:230_Event:1355,"Activated, membrane depolarization",Aop:230,Event:1355
+Aop:230_Event:1362,"Increased, hippocampal hyperdepolarization",Aop:230,Event:1362
+Aop:230_Event:1344,"Increased, seizure",Aop:230,Event:1344
+Aop:230_Event:1363,"Increased, epilepsy",Aop:230,Event:1363
+Aop:230_Event:1354,"Treat, carbamazepine",Aop:230,Event:1354
+Aop:230_Event:1353,"Inhibit, voltage-gated sodium channel",Aop:230,Event:1353
+Aop:231_Event:1413,"Reduced, presynaptic neuron 2 activity",Aop:231,Event:1413
+Aop:231_Event:1363,"Increased, epilepsy",Aop:231,Event:1363
+Aop:231_Event:1414,"Decreased, GABA",Aop:231,Event:1414
+Aop:231_Event:1415,"Reduced, GABA-A receptor activation",Aop:231,Event:1415
+Aop:231_Event:1416,"Decreased, intracellular chloride",Aop:231,Event:1416
+Aop:231_Event:1355,"Activated, membrane depolarization",Aop:231,Event:1355
+Aop:231_Event:1362,"Increased, hippocampal hyperdepolarization",Aop:231,Event:1362
+Aop:231_Event:1344,"Increased, seizure",Aop:231,Event:1344
+Aop:231_Event:1357,"Increased, RDX dose",Aop:231,Event:1357
+Aop:232_Event:1417,NFE2/Nrf2 repression,Aop:232,Event:1417
+Aop:232_Event:1418,"Increased, steatosis",Aop:232,Event:1418
+Aop:232_Event:1419,"Reduced, FXR activity",Aop:232,Event:1419
+Aop:232_Event:1420,"Reduced, SHP activity",Aop:232,Event:1420
+Aop:232_Event:1421,"Activated, LXR",Aop:232,Event:1421
+Aop:232_Event:1422,"Reduced, PPARalpha",Aop:232,Event:1422
+Aop:232_Event:1423,"Reduced, HSD17B4 activity",Aop:232,Event:1423
+Aop:232_Event:1424,"Reduced, fatty acid beta oxidation",Aop:232,Event:1424
+Aop:233_Event:1425,Mu Opioid Receptor Agonism,Aop:233,Event:1425
+Aop:233_Event:1426,Release of G Proteins,Aop:233,Event:1426
+Aop:233_Event:1427,Opening of G protein gated inward rectifying K channels,Aop:233,Event:1427
+Aop:233_Event:1428,Analgesia,Aop:233,Event:1428
+Aop:234_Event:1425,Mu Opioid Receptor Agonism,Aop:234,Event:1425
+Aop:234_Event:1426,Release of G Proteins,Aop:234,Event:1426
+Aop:234_Event:1429,Inhibition of N-type Ca ion channels,Aop:234,Event:1429
+Aop:234_Event:1430,Inhibition of neurotransmitter vesicle release,Aop:234,Event:1430
+Aop:234_Event:1428,Analgesia,Aop:234,Event:1428
+Aop:235_Event:1431,Serotonin 1A Receptor Agonism,Aop:235,Event:1431
+Aop:235_Event:1426,Release of G Proteins,Aop:235,Event:1426
+Aop:235_Event:1432,Anti-depressant Activity,Aop:235,Event:1432
+Aop:235_Event:1427,Opening of G protein gated inward rectifying K channels,Aop:235,Event:1427
+Aop:236_Event:1431,Serotonin 1A Receptor Agonism,Aop:236,Event:1431
+Aop:236_Event:1426,Release of G Proteins,Aop:236,Event:1426
+Aop:236_Event:1429,Inhibition of N-type Ca ion channels,Aop:236,Event:1429
+Aop:236_Event:1430,Inhibition of neurotransmitter vesicle release,Aop:236,Event:1430
+Aop:236_Event:1432,Anti-depressant Activity,Aop:236,Event:1432
+Aop:237_Event:1437,Sensing of the stressor by pulmonary cells,Aop:237,Event:1437
+Aop:237_Event:1438,"Increased production of pulmonary, pro-inflammatory cytokines",Aop:237,Event:1438
+Aop:237_Event:1439,Increased production of pulmonary SAA,Aop:237,Event:1439
+Aop:237_Event:1440,Formation of HDL-SAA,Aop:237,Event:1440
+Aop:237_Event:1441,Increased systemic total cholesterol pool,Aop:237,Event:1441
+Aop:237_Event:1442,Foam cell formation,Aop:237,Event:1442
+Aop:237_Event:1443,Plaque progression in arteries,Aop:237,Event:1443
+Aop:238_Event:1366,"Decrease, Oogenesis",Aop:238,Event:1366
+Aop:238_Event:328,"Decrease, Fecundity",Aop:238,Event:328
+Aop:241_Event:1456,"Increase, Differentiation of fibroblasts",Aop:241,Event:1456
+Aop:241_Event:1457,"Induction, Epithelial Mesenchymal Transition",Aop:241,Event:1457
+Aop:241_Event:1458,Pulmonary fibrosis,Aop:241,Event:1458
+Aop:241_Event:1468,"Activation, Latent Transforming Growth Factor Beta 1",Aop:241,Event:1468
+Aop:241_Event:1469,"Activation, Transforming Growth Factor beta pathway",Aop:241,Event:1469
+Aop:256_Event:1481,Inhibition of mitochondrial DNA polymerase gamma (Pol gamma),Aop:256,Event:1481
+Aop:256_Event:1482,"Depletion, mtDNA ",Aop:256,Event:1482
+Aop:256_Event:1483,"Dysfunction, Mitochondria ",Aop:256,Event:1483
+Aop:257_Event:1486,"Binding of substrate, endocytic receptor",Aop:257,Event:1486
+Aop:257_Event:831,"Disturbance, Lysosomal function",Aop:257,Event:831
+Aop:258_Event:1483,"Dysfunction, Mitochondria ",Aop:258,Event:1483
+Aop:260_Event:1508,CYP2E1 Activation,Aop:260,Event:1508
+Aop:260_Event:1509,Protein Adduct Formation,Aop:260,Event:1509
+Aop:260_Event:1510,Oxidative Stress in Brain,Aop:260,Event:1510
+Aop:260_Event:1511,Lipid Peroxidation,Aop:260,Event:1511
+Aop:260_Event:1512,Unfolded Protein Response,Aop:260,Event:1512
+Aop:260_Event:1513,General Apoptosis,Aop:260,Event:1513
+Aop:260_Event:1514,Neurodegeneration,Aop:260,Event:1514
+Aop:261_Event:1529,"Blockade, L-Type Calcium Channels ",Aop:261,Event:1529
+Aop:261_Event:1530,"Decrease, Calcium currents",Aop:261,Event:1530
+Aop:261_Event:1531,"Decrease, Calcium binding to Troponin C",Aop:261,Event:1531
+Aop:261_Event:1532,"Decrease, Cardiac contractility ",Aop:261,Event:1532
+Aop:261_Event:1533,"Decrease, Cardiac ejection fraction ",Aop:261,Event:1533
+Aop:261_Event:1535,Heart failure ,Aop:261,Event:1535
+Aop:261_Event:1536,"Disruption, Intracellular calcium mobilization",Aop:261,Event:1536
+Aop:261_Event:1537,"Disruption, Sarcomere assembly",Aop:261,Event:1537
+Aop:272_Event:1686,Direct Deposition of Energy,Aop:272,Event:1686
+Aop:272_Event:1635,"Increase, DNA strand breaks",Aop:272,Event:1635
+Aop:272_Event:1636,"Increase, Chromosomal aberrations",Aop:272,Event:1636
+Aop:272_Event:1556,"Increase, lung cancer",Aop:272,Event:1556
+Aop:273_Event:1542,Mitochondrial Complex III inhibition,Aop:273,Event:1542
+Aop:273_Event:1543,Mitochondrial Complex IV inhibition,Aop:273,Event:1543
+Aop:273_Event:1544,Mitochondrial Complex V inhibition,Aop:273,Event:1544
+Aop:273_Event:1545,Decrease in mitochondrial oxidative phosphorylation,Aop:273,Event:1545
+Aop:273_Event:1546,Increased reactive oxygen species (in the mitochondria),Aop:273,Event:1546
+Aop:273_Event:1547,Mitochondrial Injury,Aop:273,Event:1547
+Aop:273_Event:1548,Necrotic Tissue,Aop:273,Event:1548
+Aop:273_Event:1549,Liver Injury,Aop:273,Event:1549
+Aop:273_Event:889,"Impaired, Proteostasis",Aop:273,Event:889
+Aop:273_Event:1653,Binding of inhibitor to mitochondrial complex III,Aop:273,Event:1653
+Aop:273_Event:1654,Binding of inhibitor to mitochondrial complex IV,Aop:273,Event:1654
+Aop:273_Event:1655,Binding of inhibitor to mitochondrial complex V,Aop:273,Event:1655
+Aop:273_Event:177,"N/A, Mitochondrial dysfunction 1",Aop:273,Event:177
+Aop:274_Event:1557,"Neural crest cell migration, reduced",Aop:274,Event:1557
+Aop:274_Event:1558,"Collagen production, reduced",Aop:274,Event:1558
+Aop:274_Event:1559,Facial cartilage structures are reduced in size and morphologically distorted,Aop:274,Event:1559
+Aop:275_Event:1560,Altered differentiation,Aop:275,Event:1560
+Aop:275_Event:1561,Neural tube defects,Aop:275,Event:1561
+Aop:276_Event:1477,"Decrease, Oxidative phosphorylation",Aop:276,Event:1477
+Aop:276_Event:1562,Decreased Na/K ATPase activity,Aop:276,Event:1562
+Aop:276_Event:1563,Decreased proximal tubular vectorial transport,Aop:276,Event:1563
+Aop:276_Event:1564,Chemical induced Fanconi syndrome,Aop:276,Event:1564
+Aop:277_Event:1700,Inhibition of IL-1 binding to IL-1 receptor,Aop:277,Event:1700
+Aop:277_Event:1702,Suppression of  T cell activation,Aop:277,Event:1702
+Aop:277_Event:986,"Increase, Increased susceptibility to infection",Aop:277,Event:986
+Aop:278_Event:1574,"Inhibition, IKK complex",Aop:278,Event:1574
+Aop:278_Event:1575,"Activation, Caspase 8 pathway",Aop:278,Event:1575
+Aop:278_Event:1576,"Activation, Tissue resident cells (Kuppfer cells)",Aop:278,Event:1576
+Aop:278_Event:1548,Necrotic Tissue,Aop:278,Event:1548
+Aop:278_Event:1549,Liver Injury,Aop:278,Event:1549
+Aop:278_Event:1579,"Increase, proinflammatory mediators (TNFalpha)",Aop:278,Event:1579
+Aop:279_Event:1580,Binding of microtubule stabilizing agents (MSA) to microtubules,Aop:279,Event:1580
+Aop:279_Event:1581,Disturbance in microtubule dynamic instability,Aop:279,Event:1581
+Aop:279_Event:1582,Impaired axonial transport,Aop:279,Event:1582
+Aop:279_Event:1583,Sensory axonal peripheral neuropathy,Aop:279,Event:1583
+Aop:280_Event:1584,Interaction of α-diketones with arginine residues,Aop:280,Event:1584
+Aop:280_Event:1585,Proteasomal dysfunction,Aop:280,Event:1585
+Aop:280_Event:1586,Airway epithelial injury,Aop:280,Event:1586
+Aop:280_Event:1457,"Induction, Epithelial Mesenchymal Transition",Aop:280,Event:1457
+Aop:280_Event:1587,Fibroproliferative airway lesions,Aop:280,Event:1587
+Aop:280_Event:1588,Bronchiolitis obliterans,Aop:280,Event:1588
+Aop:281_Event:10,Acetylcholine accumulation in synapses,Aop:281,Event:10
+Aop:281_Event:1623,"Occurrence, Focal Seizure",Aop:281,Event:1623
+Aop:281_Event:352,"N/A, Neurodegeneration",Aop:281,Event:352
+Aop:282_Event:1592,ROS generation from photoactivated chemicals,Aop:282,Event:1592
+Aop:282_Event:1594,Oxidation of membrane lipids,Aop:282,Event:1594
+Aop:282_Event:1595,Oxidation/denatuation of membrane proteins,Aop:282,Event:1595
+Aop:282_Event:1599,Inflamatory events in light-exposed tissues,Aop:282,Event:1599
+Aop:284_Event:1487,"Binding, Thiol/seleno-proteins involved in protection against oxidative stress",Aop:284,Event:1487
+Aop:284_Event:1538,Decreased protection against oxidative stress,Aop:284,Event:1538
+Aop:284_Event:1392,Oxidative Stress ,Aop:284,Event:1392
+Aop:284_Event:178,"Disruption, Mitochondrial electron transport chain",Aop:284,Event:178
+Aop:284_Event:1603,Chronic kidney disease,Aop:284,Event:1603
+Aop:285_Event:1604,Inhibition of N-linked glycosylation,Aop:285,Event:1604
+Aop:285_Event:1605,Accumulation of misfolded proteins,Aop:285,Event:1605
+Aop:285_Event:1512,Unfolded Protein Response,Aop:285,Event:1512
+Aop:285_Event:1606,Activation of hepatic stellate cells,Aop:285,Event:1606
+Aop:285_Event:459,"Increased, Liver Steatosis",Aop:285,Event:459
+Aop:285_Event:1549,Liver Injury,Aop:285,Event:1549
+Aop:288_Event:1609,"Inhibition, Cytochrome P450 enzyme (CYP17A1) activity",Aop:288,Event:1609
+Aop:288_Event:1610,"Reduction, 17-OH-pregnenolone conversion in DHEA",Aop:288,Event:1610
+Aop:288_Event:1611,"Reduction, 17-OH-progesterone conversion in androstenedione",Aop:288,Event:1611
+Aop:288_Event:1612,"Decrease, testosterone synthesis/level",Aop:288,Event:1612
+Aop:288_Event:1613,"Decrease, dihydrotestosterone (DHT) level",Aop:288,Event:1613
+Aop:288_Event:1614,"Decrease, androgen receptors (AR) activation",Aop:288,Event:1614
+Aop:288_Event:1615,Impaired inguinoscrotal testicular descent phase,Aop:288,Event:1615
+Aop:288_Event:1616,"Malformation, cryptorchidism - maldescended testis",Aop:288,Event:1616
+Aop:293_Event:1194,"Increase, DNA damage",Aop:293,Event:1194
+Aop:293_Event:1193,"N/A, Breast Cancer",Aop:293,Event:1193
+Aop:293_Event:1632,Increase in reactive oxygen and nitrogen species (RONS),Aop:293,Event:1632
+Aop:293_Event:1192,"Increased, Ductal Hyperplasia ",Aop:293,Event:1192
+Aop:294_Event:1632,Increase in reactive oxygen and nitrogen species (RONS),Aop:294,Event:1632
+Aop:294_Event:1194,"Increase, DNA damage",Aop:294,Event:1194
+Aop:294_Event:1193,"N/A, Breast Cancer",Aop:294,Event:1193
+Aop:294_Event:1192,"Increased, Ductal Hyperplasia ",Aop:294,Event:1192
+Aop:296_Event:1635,"Increase, DNA strand breaks",Aop:296,Event:1635
+Aop:296_Event:1636,"Increase, Chromosomal aberrations",Aop:296,Event:1636
+Aop:298_Event:1650,Epithelial-mesenchymal transition,Aop:298,Event:1650
+Aop:298_Event:1651,Treatment-resistant gastric cancer,Aop:298,Event:1651
+Aop:298_Event:1755,Proliferation/ beta-catenin activation,Aop:298,Event:1755
+Aop:300_Event:1656,"Antagonism, Thyroid Receptor ",Aop:300,Event:1656
+Aop:302_Event:1671,Substance - lung surfactant interaction,Aop:302,Event:1671
+Aop:302_Event:1672,Disruption of lung surfactant function,Aop:302,Event:1672
+Aop:302_Event:1673,Alveolar collapse,Aop:302,Event:1673
+Aop:302_Event:1674,Alveolar reopening,Aop:302,Event:1674
+Aop:302_Event:1676,Blood extravasation into the lungs,Aop:302,Event:1676
+Aop:302_Event:1677,Reduced lung volume ,Aop:302,Event:1677
+Aop:302_Event:1678,Impaired oxygenation of the blood,Aop:302,Event:1678
+Aop:302_Event:1679,Acute inhalation toxicity,Aop:302,Event:1679
+Aop:302_Event:1498,Loss of alveolar capillary membrane integrity,Aop:302,Event:1498
+Aop:303_Event:1497,"Increased, recruitment of inflammatory cells",Aop:303,Event:1497
+Aop:303_Event:1115,"Increased, Reactive oxygen species",Aop:303,Event:1115
+Aop:303_Event:1669,"Increased, DNA damage and mutation",Aop:303,Event:1669
+Aop:303_Event:1670,Lung cancer,Aop:303,Event:1670
+Aop:305_Event:1617,"5α-reductase, inhibition",Aop:305,Event:1617
+Aop:305_Event:1613,"Decrease, dihydrotestosterone (DHT) level",Aop:305,Event:1613
+Aop:305_Event:1614,"Decrease, androgen receptors (AR) activation",Aop:305,Event:1614
+Aop:306_Event:26,"Antagonism, Androgen receptor",Aop:306,Event:26
+Aop:306_Event:1614,"Decrease, androgen receptors (AR) activation",Aop:306,Event:1614
+Aop:306_Event:1687,"decrease, transcription of genes by AR ",Aop:306,Event:1687
+Aop:307_Event:1690,"reduction, testosterone levels ",Aop:307,Event:1690
+Aop:307_Event:1613,"Decrease, dihydrotestosterone (DHT) level",Aop:307,Event:1613
+Aop:307_Event:1614,"Decrease, androgen receptors (AR) activation",Aop:307,Event:1614
+Aop:313_Event:1706,"Stimulation, TLR7/8 in dendritic cells",Aop:313,Event:1706
+Aop:313_Event:1707,"Overproduction of IL-23, matured dendritic cells",Aop:313,Event:1707
+Aop:313_Event:1708,Overproduction of IL-17 from Th17 cells,Aop:313,Event:1708
+Aop:313_Event:1709,Psoriatic skin disease,Aop:313,Event:1709
+Aop:314_Event:1710,Binding to estrogen receptor (ER)-α in immune cells,Aop:314,Event:1710
+Aop:314_Event:1711,Induction of GATA3 expression,Aop:314,Event:1711
+Aop:314_Event:1712,Increase of Th2 cells producing IL-4,Aop:314,Event:1712
+Aop:314_Event:1713,Increase of anti-DNA antibody from autoreactive B cell,Aop:314,Event:1713
+Aop:314_Event:1714,Exacerbation of systemic lupus erythematosus (SLE),Aop:314,Event:1714
+Aop:316_Event:1720,Trypsin inhibition,Aop:316,Event:1720
+Aop:316_Event:1721,Increased intestinal monitor peptide level,Aop:316,Event:1721
+Aop:316_Event:1722,Increased blood CCK level,Aop:316,Event:1722
+Aop:316_Event:1723,Increased exocrine secretion from pancreatic acinar cells,Aop:316,Event:1723
+Aop:316_Event:1724,Acinar cell proliferation,Aop:316,Event:1724
+Aop:316_Event:1725,Pancreatic acinar cell tumors,Aop:316,Event:1725
+Aop:318_Event:459,"Increased, Liver Steatosis",Aop:318,Event:459
+Aop:319_Event:1743,Increase plasma Ang II,Aop:319,Event:1743
+Aop:319_Event:1752,Increases AngII,Aop:319,Event:1752
+Aop:319_Event:1740,ACE2 inhibition,Aop:319,Event:1740
+Aop:319_Event:1276,Lung fibrosis,Aop:319,Event:1276
+Aop:320_Event:1496,"Increased, secretion of proinflammatory and profibrotic mediators",Aop:320,Event:1496
+Aop:320_Event:1739,Binding of S protein to ACE receptor,Aop:320,Event:1739
+Aop:320_Event:1748,"Increase, the risk of acute respiratory failure",Aop:320,Event:1748
+Aop:320_Event:1750,Increase inflammatory immune responses,Aop:320,Event:1750
+Aop:322_Event:1635,"Increase, DNA strand breaks",Aop:322,Event:1635
+Aop:322_Event:1365,"Increase, Apoptosis",Aop:322,Event:1365
+Aop:322_Event:1757,"Reduce, Sperm count",Aop:322,Event:1757
+Aop:335_Event:1261,Mitochondrial impairment,Aop:335,Event:1261
+Aop:335_Event:1762,Urothelial cell injury/death,Aop:335,Event:1762
+Aop:335_Event:796,"Increase, Hyperplasia (urothelial)",Aop:335,Event:796
+Aop:335_Event:1763,Urothelial Tumor,Aop:335,Event:1763
+Aop:344_Event:1614,"Decrease, androgen receptors (AR) activation",Aop:344,Event:1614
+Aop:344_Event:26,"Antagonism, Androgen receptor",Aop:344,Event:26
+Aop:344_Event:1786,"increase, retained nipples in males",Aop:344,Event:1786
+Aop:345_Event:26,"Antagonism, Androgen receptor",Aop:345,Event:26
+Aop:345_Event:1800,"Granulosa cell proliferation of gonadotropin-independent follicles, Reduced",Aop:345,Event:1800
+Aop:347_Event:1792,Toll-like receptor 4 activation,Aop:347,Event:1792
+Aop:347_Event:1270,Inactivation of PPARγ,Aop:347,Event:1270
+Aop:347_Event:1793,Activator protein 1 activation,Aop:347,Event:1793
+Aop:347_Event:1794,Pin-1 activation,Aop:347,Event:1794
+Aop:347_Event:1795,Latent Transforming growth Factor beta expression,Aop:347,Event:1795
+Aop:347_Event:1457,"Induction, Epithelial Mesenchymal Transition",Aop:347,Event:1457
+Aop:347_Event:1458,Pulmonary fibrosis,Aop:347,Event:1458
+Aop:362_Event:1814,benzoquinone imine and acylglucuronide metabolites,Aop:362,Event:1814
+Aop:362_Event:1816,Mitochondrial dysfunction,Aop:362,Event:1816
+Aop:362_Event:1817,Apoptotic cell death,Aop:362,Event:1817
+Aop:362_Event:1818,Immune cell activation,Aop:362,Event:1818
+Aop:362_Event:1819,IFNγ signaling,Aop:362,Event:1819
+Aop:362_Event:1633,Increase in inflammation,Aop:362,Event:1633
+Aop:362_Event:1820,Immune mediated hepatitis,Aop:362,Event:1820
+Aop:362_Event:1815,Activation of ER stress,Aop:362,Event:1815
