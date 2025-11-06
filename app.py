@@ -8,14 +8,17 @@ from scipy.stats import fisher_exact  # statistical tests
 from statsmodels.stats.multitest import multipletests 
 import importlib.metadata  # package version information
 import streamlit as st
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+from enrichment import perform_functional_enrichment, filter_enrichment_results, create_enrichment_barplot
 
 st.set_page_config(layout="wide")
-st.title("Key Event Enrichment")
+st.title("Key Event and Functional Enrichment of DEGs")
 
 # Description in a box
 st.markdown("""
 <div style="border: 2px solid white; padding: 20px; border-radius: 10px;">
-    <h3 style="margin-top: 0;">Perform KE enrichment analysis with your DEGs</h3>
+    <h3 style="margin-top: 0;">Perform enrichment analyses on your DEGs against Key Events and Functional Pathways</h3>
     <p><strong>Key Events</strong> are measurable biological events within Adverse Outcome Pathways (AOPs)—multi-scale models that connect molecular initiating events to adverse health outcomes.</p>
     <p>By mapping your DEGs to the AOP Key Event database, KEs that are statistically overrepresented in your dataset using Fisher's exact test and corrected for false discovery with Benjamini-Hochberg correction.</p>
 </div>
@@ -177,6 +180,63 @@ if uploaded_file is not None:
     
     # Display filtered dataframe
     st.dataframe(preview_df, use_container_width=True, height=400)
+    
+    # ENRICHMENT #1: Functional enrichment on all filtered DEGs
+    st.markdown("---")
+    st.subheader("Optional: Functional Enrichment on your DEGs")
+    
+    if st.button("Run Enrichment", key="enrich_all_degs"):
+        with st.spinner("Running functional enrichment analysis..."):
+            # Check if gene names are available
+            if "gene" in filtered_df.columns or "gene_name" in filtered_df.columns or "symbol" in filtered_df.columns:
+                gene_col = "gene" if "gene" in filtered_df.columns else ("gene_name" if "gene_name" in filtered_df.columns else "symbol")
+                gene_list = filtered_df[gene_col].dropna().unique().tolist()
+            else:
+                st.warning("⚠️ Gene names not found in data. Enrichment analysis requires gene symbols.")
+                gene_list = []
+            
+            if gene_list:
+                # Run GO:BP enrichment
+                gobp_results = perform_functional_enrichment(gene_list, sources=['GO:BP'])
+                gobp_filtered = filter_enrichment_results(gobp_results, 'GO')
+                
+                # Run KEGG enrichment
+                kegg_results = perform_functional_enrichment(gene_list, sources=['KEGG'])
+                kegg_filtered = filter_enrichment_results(kegg_results, 'KEGG')
+                
+                # Display results with plots
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.markdown("**GO Biological Processes**")
+                    if not gobp_filtered.empty:
+                        st.write(f"Found {len(gobp_filtered)} significant terms")
+                        # Create and display plot
+                        fig_gobp = create_enrichment_barplot(gobp_filtered, "GO:BP Enrichment", color='skyblue', max_terms=15)
+                        if fig_gobp:
+                            st.pyplot(fig_gobp)
+                        # Display table
+                        display_df = gobp_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
+                        display_df['p_value'] = display_df['p_value'].apply(lambda x: f"{x:.2e}")
+                        st.dataframe(display_df, use_container_width=True)
+                    else:
+                        st.info("No significant GO:BP terms found")
+                
+                with col2:
+                    st.markdown("**KEGG Pathways**")
+                    if not kegg_filtered.empty:
+                        st.write(f"Found {len(kegg_filtered)} significant pathways")
+                        # Create and display plot
+                        fig_kegg = create_enrichment_barplot(kegg_filtered, "KEGG Enrichment", color='lightcoral', max_terms=15)
+                        if fig_kegg:
+                            st.pyplot(fig_kegg)
+                        # Display table
+                        display_df = kegg_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
+                        display_df['p_value'] = display_df['p_value'].apply(lambda x: f"{x:.2e}")
+                        st.dataframe(display_df, use_container_width=True)
+                    else:
+                        st.info("No significant KEGG pathways found")
+
 else:
     st.info("ℹ️ Upload a file to get started.")
     deg_file_data = None
@@ -194,17 +254,18 @@ background_genes = set(ke_map["Gene"].unique())
 # Run enrichment analysis only if file is uploaded
 if deg_file_data is not None:
     # Use uploaded file
-    st.subheader(f"Run Enrichment Analysis: {experiment_name}")
+    st.markdown("---")
+    st.subheader(f"KE-Enrichment Analysis: {experiment_name}")
     
     # Second set of filtering parameters for easy access
-    st.markdown("**Adjust filtering parameters for enrichment analysis:**")
+    st.markdown("**Adjust filtering parameters**")
     
     # Use a narrower column for the inputs
     col_narrow, col_spacer = st.columns([1, 2])
     
     with col_narrow:
         padj_cutoff = st.number_input(
-            "Adjusted p-value cutoff (KE results)",
+            "Adjusted p-value (KE results)",
             min_value=0.0,
             max_value=1.0,
             value=padj_cutoff,
@@ -224,7 +285,7 @@ if deg_file_data is not None:
             help="Minimum absolute log2 fold change (default: 0.1)",
             key="log2fc_cutoff_2"
         )
-    
+        
     all_results = {}
     
     try:
@@ -241,6 +302,7 @@ if deg_file_data is not None:
         
         # Get unique human ENSGs for enrichment
         degs = set(df["human_ensembl_id"].dropna())
+        
         results = []
         
         # Perform Fisher's exact test for each KE
@@ -320,7 +382,10 @@ if deg_file_data is not None:
                     ke_id = row["KE"]
                     overlapping_ensembl = row["Overlapping DEGs List"]
                     
-                    with st.expander(f"**{ke_name}** (KE {ke_id}) - {len(overlapping_ensembl)} genes"):
+                    with st.expander(f"{ke_id} {ke_name} - {len(overlapping_ensembl)} genes"):
+                        # Heading with KE name
+                        st.markdown(f"### {ke_name}")
+                        
                         # Get gene details from the original DEG data
                         gene_details = []
                         for ensembl_id in overlapping_ensembl:
@@ -360,10 +425,175 @@ if deg_file_data is not None:
                             gene_df = gene_df.sort_values("log2FC_numeric", key=abs, ascending=False)
                             gene_df = gene_df.drop(columns=["log2FC_numeric"])
                             
-                            # Display in narrower columns
-                            col_narrow_genes, col_spacer_genes = st.columns([2, 3])
-                            with col_narrow_genes:
-                                st.dataframe(gene_df, hide_index=True)
+                            # Display table
+                            st.dataframe(gene_df, hide_index=True)
+                            
+                            # Prepare data for heatmap - sorted by log2FC (not absolute)
+                            heatmap_data = pd.DataFrame(gene_details)
+                            heatmap_data = heatmap_data.sort_values("log2FoldChange", ascending=False)
+                            
+                            # Get gene labels (use Gene Name if available, else Ensembl ID)
+                            if "Gene Name" in heatmap_data.columns:
+                                gene_labels = heatmap_data["Gene Name"].tolist()
+                            else:
+                                gene_labels = heatmap_data["Ensembl ID"].tolist()
+                            
+                            # Get log2FC values
+                            log2fc_values = heatmap_data["log2FoldChange"].values
+                            
+                            # Create horizontal Plotly heatmap (genes on x-axis)
+                            max_abs = max(abs(log2fc_values.min()), abs(log2fc_values.max()))
+                            
+                            fig = go.Figure(data=go.Heatmap(
+                                z=log2fc_values.reshape(1, -1),  # Reshape for horizontal layout
+                                x=gene_labels,  # Genes on x-axis
+                                y=["log2FC"],  # Single row
+                                colorscale="RdBu_r",  # Red for high, Blue for low
+                                zmid=0,
+                                zmin=-max_abs,
+                                zmax=max_abs,
+                                text=[[f"{val:.2f}" for val in log2fc_values]],
+                                texttemplate="%{text}",
+                                textfont={"size": 14},  # Cell values size 14
+                                hovertemplate="Gene: %{x}<br>log2FC: %{z:.2f}<extra></extra>",
+                                showscale=False
+                            ))
+                            
+                            # Update layout for horizontal display with squared cells
+                            n_genes = len(gene_labels)
+                            cell_size = 60  # Squared cells (60px x 60px)
+                            fig.update_layout(
+                                height=cell_size + 100,  # Cell height + margin for labels
+                                width=max(n_genes * cell_size, 300),  # 60px per gene
+                                margin=dict(l=5, r=5, t=5, b=100),
+                                xaxis=dict(side="bottom", tickfont=dict(size=14), tickangle=-45),  # Bigger x-axis labels
+                                yaxis=dict(tickfont=dict(size=14)),
+                                font=dict(size=11)
+                            )
+                            
+                            # Display the heatmap in Streamlit with unique key
+                            st.plotly_chart(fig, use_container_width=True, key=f"heatmap_{ke_id}")
+                            
+                            # ENRICHMENT #2: Functional enrichment on this KE's genes
+                            st.markdown("---")
+                            
+                            if st.button(f"Run Functional Enrichment ({ke_name})", key=f"enrich_ke_{ke_id}"):
+                                with st.spinner("Running functional enrichment..."):
+                                    # Get gene names for this KE
+                                    ke_gene_list = []
+                                    if "Gene Name" in heatmap_data.columns:
+                                        ke_gene_list = heatmap_data["Gene Name"].dropna().tolist()
+                                    
+                                    if ke_gene_list:
+                                        # Run enrichment
+                                        gobp_ke = perform_functional_enrichment(ke_gene_list, sources=['GO:BP'])
+                                        kegg_ke = perform_functional_enrichment(ke_gene_list, sources=['KEGG'])
+                                        
+                                        gobp_ke_filtered = filter_enrichment_results(gobp_ke, 'GO')
+                                        kegg_ke_filtered = filter_enrichment_results(kegg_ke, 'KEGG')
+                                        
+                                        # Display in columns with plots
+                                        col_gobp, col_kegg = st.columns(2)
+                                        
+                                        with col_gobp:
+                                            st.markdown("**GO:BP**")
+                                            if not gobp_ke_filtered.empty:
+                                                # Create and display plot
+                                                fig_gobp_ke = create_enrichment_barplot(gobp_ke_filtered, f"GO:BP - {ke_name}", color='skyblue', max_terms=10)
+                                                if fig_gobp_ke:
+                                                    st.pyplot(fig_gobp_ke)
+                                                # Display table
+                                                display_gobp = gobp_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
+                                                display_gobp['p_value'] = display_gobp['p_value'].apply(lambda x: f"{x:.2e}")
+                                                st.dataframe(display_gobp, use_container_width=True, hide_index=True)
+                                            else:
+                                                st.info("No significant terms")
+                                        
+                                        with col_kegg:
+                                            st.markdown("**KEGG**")
+                                            if not kegg_ke_filtered.empty:
+                                                # Create and display plot
+                                                fig_kegg_ke = create_enrichment_barplot(kegg_ke_filtered, f"KEGG - {ke_name}", color='lightcoral', max_terms=10)
+                                                if fig_kegg_ke:
+                                                    st.pyplot(fig_kegg_ke)
+                                                # Display table
+                                                display_kegg = kegg_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
+                                                display_kegg['p_value'] = display_kegg['p_value'].apply(lambda x: f"{x:.2e}")
+                                                st.dataframe(display_kegg, use_container_width=True, hide_index=True)
+                                            else:
+                                                st.info("No significant pathways")
+                                    else:
+                                        st.warning("⚠️ Gene names not available for enrichment")
+                # ENRICHMENT #3: Functional enrichment on union of all KE genes
+                st.markdown("---")
+                st.subheader("Run Functional Enrichment on KE-associated DEGs")
+                st.write(f"Analyzing the union of all genes from {len(significant_df)} significant KEs")
+                
+                if st.button("Run Enrichment on All KE Genes", key="enrich_all_ke_genes"):
+                    with st.spinner("Running functional enrichment on combined KE genes..."):
+                        # Collect all unique genes from all significant KEs
+                        all_ke_genes = set()
+                        for idx, row in significant_df.iterrows():
+                            overlapping_ensembl = row["Overlapping DEGs List"]
+                            for ensembl_id in overlapping_ensembl:
+                                gene_row = df[df["human_ensembl_id"] == ensembl_id]
+                                if not gene_row.empty:
+                                    if "gene" in gene_row.columns:
+                                        gene_name = gene_row.iloc[0]["gene"]
+                                    elif "gene_name" in gene_row.columns:
+                                        gene_name = gene_row.iloc[0]["gene_name"]
+                                    elif "symbol" in gene_row.columns:
+                                        gene_name = gene_row.iloc[0]["symbol"]
+                                    else:
+                                        continue
+                                    if pd.notna(gene_name):
+                                        all_ke_genes.add(gene_name)
+                        
+                        all_ke_gene_list = list(all_ke_genes)
+                        st.write(f"Analyzing {len(all_ke_gene_list)} unique genes")
+                        
+                        if all_ke_gene_list:
+                            # Run enrichment
+                            gobp_all = perform_functional_enrichment(all_ke_gene_list, sources=['GO:BP'])
+                            kegg_all = perform_functional_enrichment(all_ke_gene_list, sources=['KEGG'])
+                            
+                            gobp_all_filtered = filter_enrichment_results(gobp_all, 'GO')
+                            kegg_all_filtered = filter_enrichment_results(kegg_all, 'KEGG')
+                            
+                            # Display results with plots
+                            col1_all, col2_all = st.columns(2)
+                            
+                            with col1_all:
+                                st.markdown("**GO Biological Processes**")
+                                if not gobp_all_filtered.empty:
+                                    st.write(f"Found {len(gobp_all_filtered)} significant terms")
+                                    # Create and display plot
+                                    fig_gobp_all = create_enrichment_barplot(gobp_all_filtered, "GO:BP - All KE Genes", color='skyblue', max_terms=15)
+                                    if fig_gobp_all:
+                                        st.pyplot(fig_gobp_all)
+                                    # Display table
+                                    display_df = gobp_all_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
+                                    display_df['p_value'] = display_df['p_value'].apply(lambda x: f"{x:.2e}")
+                                    st.dataframe(display_df, use_container_width=True)
+                                else:
+                                    st.info("No significant GO:BP terms found")
+                            
+                            with col2_all:
+                                st.markdown("**KEGG Pathways**")
+                                if not kegg_all_filtered.empty:
+                                    st.write(f"Found {len(kegg_all_filtered)} significant pathways")
+                                    # Create and display plot
+                                    fig_kegg_all = create_enrichment_barplot(kegg_all_filtered, "KEGG - All KE Genes", color='lightcoral', max_terms=15)
+                                    if fig_kegg_all:
+                                        st.pyplot(fig_kegg_all)
+                                    # Display table
+                                    display_df = kegg_all_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
+                                    display_df['p_value'] = display_df['p_value'].apply(lambda x: f"{x:.2e}")
+                                    st.dataframe(display_df, use_container_width=True)
+                                else:
+                                    st.info("No significant KEGG pathways found")
+                        else:
+                            st.warning("⚠️ Gene names not available for enrichment")
             else:
                 st.info(f"ℹ️ No significant enrichment found (FDR < 0.05)")
         else:
