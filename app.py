@@ -10,15 +10,16 @@ import importlib.metadata  # package version information
 import streamlit as st
 
 st.set_page_config(layout="wide")
-st.title("📊 Key Event Enrichment")
+st.title("Key Event Enrichment")
 
+# Description in a box
 st.markdown("""
-This tool performs enrichment analysis on your differentially expressed genes (DEGs) against genes associated with Key Events (KEs). 
-
-**Key Events** are measurable biological events within Adverse Outcome Pathways (AOPs)—multi-scale models that connect molecular initiating events to adverse health outcomes. By mapping your DEGs to the AOP Key Event database, this analysis identifies which KEs are statistically overrepresented in your dataset using Fisher's exact test with Benjamini-Hochberg correction (FDR < 0.05).
-
-This approach embeds the AOP framework into molecular data interpretation, enabling novel AOP-based approaches in biomedical research and supporting the development of new approach methodologies (NAMs) that reduce reliance on animal experimentation.
-""")
+<div style="border: 2px solid white; padding: 20px; border-radius: 10px;">
+    <h3 style="margin-top: 0;">Perform KE enrichment analysis with your DEGs</h3>
+    <p><strong>Key Events</strong> are measurable biological events within Adverse Outcome Pathways (AOPs)—multi-scale models that connect molecular initiating events to adverse health outcomes.</p>
+    <p>By mapping your DEGs to the AOP Key Event database, KEs that are statistically overrepresented in your dataset using Fisher's exact test and corrected for false discovery with Benjamini-Hochberg correction.</p>
+</div>
+""", unsafe_allow_html=True)
 
 # File paths - using relative paths for easier deployment
 # Create a 'data' folder in your project directory and place your files there
@@ -52,16 +53,16 @@ if not os.path.exists(deg_file):
 # apply Multiple testing correction using the Benjamini-Hochberg FDR method, with FDR < 0.05. 
 
 st.markdown("---")
-st.subheader("📁 Upload Your Data")
+st.subheader("Upload Your Data")
 
 uploaded_file = st.file_uploader(
-    "Upload your differential expression results (CSV or Excel format)",
-    type=["csv", "xlsx", "xls"],
+    "Upload your differential expression results (CSV, tsv or excel). Required columns: padj, log2FoldChange, human_ensembl_id",
+    type=["csv", "tsv", "xlsx", "xls"],
     help="File should contain columns: padj, log2FoldChange, human_ensembl_id"
 )
 
 if uploaded_file is not None:
-    st.success("✅ File uploaded successfully!")
+    st.success("File upload successful")
     
     try:
         # Load the uploaded file
@@ -75,12 +76,73 @@ if uploaded_file is not None:
         st.info("Make sure your file has the correct format with columns: padj, log2FoldChange, human_ensembl_id")
         deg_file_data = None
     
-    st.write(f"Loaded file shape: {deg_file_data.shape[0]} rows, {deg_file_data.shape[1]} columns")
-    st.write("First few rows of your data:")
-    st.dataframe(deg_file_data.head(), use_container_width=True)
+    # Analysis parameters
+    st.markdown("---")
+    st.subheader("DEG Filtering Parameters for KE Enrichment")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        experiment_name = st.text_input(
+            "Experiment Name",
+            value="My Experiment",
+            help="Name your analysis"
+        )
+    
+    with col2:
+        padj_cutoff = st.number_input(
+            "Adjusted p-value cutoff (DEGs)",
+            min_value=0.0,
+            max_value=1.0,
+            value=0.05,
+            step=0.01,
+            format="%.3f",
+            help="Threshold for statistical significance (default: 0.05)"
+        )
+    
+    with col3:
+        log2fc_cutoff = st.number_input(
+            "Log2 Fold Change cutoff",
+            min_value=0.0,
+            max_value=10.0,
+            value=0.1,
+            step=0.1,
+            format="%.2f",
+            help="Minimum absolute log2 fold change (default: 0.1)"
+        )
+    
+    # Apply filtering to preview dataframe
+    st.markdown("---")
+    st.write(f"**Loaded file:** {deg_file_data.shape[0]} total rows, {deg_file_data.shape[1]} columns")
+    
+    # Filter the data based on user parameters
+    filtered_df = deg_file_data.copy()
+    
+    # Apply filters if the required columns exist
+    if 'padj' in filtered_df.columns and 'log2FoldChange' in filtered_df.columns:
+        filtered_df = filtered_df[
+            (filtered_df["padj"] < padj_cutoff) & 
+            (filtered_df["log2FoldChange"].abs() > log2fc_cutoff)
+        ]
+        st.write(f"**Filtered DEGs:** {filtered_df.shape[0]} genes (padj < {padj_cutoff:.3g}, |log2FC| > {log2fc_cutoff:.3g})")
+    
+    # Format preview dataframe
+    preview_df = filtered_df.copy()
+    
+    # Format p-value columns in scientific notation if they exist
+    if 'padj' in preview_df.columns:
+        preview_df['padj'] = preview_df['padj'].apply(lambda x: f"{x:.2e}" if pd.notna(x) else x)
+    if 'pvalue' in preview_df.columns:
+        preview_df['pvalue'] = preview_df['pvalue'].apply(lambda x: f"{x:.2e}" if pd.notna(x) else x)
+    
+    # Display filtered dataframe
+    st.dataframe(preview_df, use_container_width=True, height=400)
 else:
-    st.info("ℹ️ Upload a file to get started, or use the default data below.")
+    st.info("ℹ️ Upload a file to get started, or view the example results below.")
     deg_file_data = None
+    experiment_name = "Default Data"
+    padj_cutoff = 0.05
+    log2fc_cutoff = 0.1
 
 st.markdown("---")
 st.write("Loading reference data...")
@@ -94,9 +156,47 @@ background_genes = set(ke_map["Gene"].unique())
 # Determine which data to use
 if deg_file_data is not None:
     # Use uploaded file
-    st.subheader("🔍 Running Enrichment Analysis on Your Data")
+    st.subheader(f"🔍 Running Enrichment Analysis: {experiment_name}")
+    
+    # Second set of filtering parameters for easy access
+    st.markdown("**Adjust filtering parameters for enrichment analysis:**")
+    col1b, col2b, col3b = st.columns(3)
+    
+    with col1b:
+        experiment_name = st.text_input(
+            "Experiment Name",
+            value=experiment_name,
+            help="Name your analysis",
+            key="experiment_name_2"
+        )
+    
+    with col2b:
+        padj_cutoff = st.number_input(
+            "Adjusted p-value cutoff (KE results)",
+            min_value=0.0,
+            max_value=1.0,
+            value=padj_cutoff,
+            step=0.01,
+            format="%.3f",
+            help="Threshold for statistical significance (default: 0.05)",
+            key="padj_cutoff_2"
+        )
+    
+    with col3b:
+        log2fc_cutoff = st.number_input(
+            "Log2 Fold Change cutoff of DEGs",
+            min_value=0.0,
+            max_value=10.0,
+            value=log2fc_cutoff,
+            step=0.1,
+            format="%.2f",
+            help="Minimum absolute log2 fold change (default: 0.1)",
+            key="log2fc_cutoff_2"
+        )
+    
+    st.markdown("---")
     df = deg_file_data.copy()
-    sheet_names = ["Uploaded Data"]
+    sheet_names = [experiment_name]
 else:
     # Use default file
     st.subheader("🔍 Running Enrichment Analysis on Default Data")
@@ -114,14 +214,15 @@ for sheet in sheet_names:
         
         # Filter for significant DEGs with valid human Ensembl IDs that start with "ENS"
         df = df[
-            (df["padj"] < 0.05) & 
-            (df["log2FoldChange"].abs() > 0.1) & 
+            (df["padj"] < padj_cutoff) & 
+            (df["log2FoldChange"].abs() > log2fc_cutoff) & 
             (df["human_ensembl_id"].notna()) & 
             (df["human_ensembl_id"].astype(str).str.startswith("ENS"))
         ].copy()
         
         # Get unique human ENSGs for enrichment
         degs = set(df["human_ensembl_id"].dropna())
+        st.info(f"📊 Filtered DEGs: {len(degs)} genes (padj < {padj_cutoff:.3g}, |log2FC| > {log2fc_cutoff:.3g})")
         results = []
         
         # Perform Fisher's exact test for each KE
@@ -184,6 +285,18 @@ if all_results:
     st.subheader("Results")
     for sheet, df in all_results.items():
         st.write(f"**{sheet}**")
-        st.dataframe(df, use_container_width=True)
+        
+        # Format the dataframe for display
+        df_display = df.copy()
+        
+        # Format p-values in scientific notation
+        df_display["p-value"] = df_display["p-value"].apply(lambda x: f"{x:.2e}")
+        df_display["adjusted p-value"] = df_display["adjusted p-value"].apply(lambda x: f"{x:.2e}")
+        
+        # Format other numeric columns
+        df_display["Percent of KE covered"] = df_display["Percent of KE covered"].apply(lambda x: f"{x:.1f}%")
+        df_display["Odds ratio"] = df_display["Odds ratio"].apply(lambda x: f"{x:.2f}")
+        
+        st.dataframe(df_display, use_container_width=True)
 else:
     st.warning("No results to display. Please check your data files.")
