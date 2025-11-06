@@ -274,6 +274,7 @@ if deg_file_data is not None:
                     "KE size": len(ke_genes),
                     "Percent of KE covered": (a/len(ke_genes)*100),
                     "Overlapping DEGs": ", ".join(sorted(overlap)),
+                    "Overlapping DEGs List": list(sorted(overlap)),  # Keep as list for later use
                     "Odds ratio": odds_ratio,
                     "p-value": p
                 })
@@ -305,7 +306,64 @@ if deg_file_data is not None:
                 df_display["Percent of KE covered"] = df_display["Percent of KE covered"].apply(lambda x: f"{x:.1f}%")
                 df_display["Odds ratio"] = df_display["Odds ratio"].apply(lambda x: f"{x:.2f}")
                 
-                st.dataframe(df_display, use_container_width=True)
+                # Remove the internal list column from display
+                df_display_clean = df_display.drop(columns=["Overlapping DEGs List"])
+                
+                st.dataframe(df_display_clean, use_container_width=True)
+                
+                # Add expandable sections for each KE showing gene details
+                st.markdown("---")
+                st.subheader("Detailed Gene Information for Each KE")
+                
+                for idx, row in significant_df.iterrows():
+                    ke_name = row["KE name"]
+                    ke_id = row["KE"]
+                    overlapping_ensembl = row["Overlapping DEGs List"]
+                    
+                    with st.expander(f"**{ke_name}** (KE {ke_id}) - {len(overlapping_ensembl)} genes"):
+                        # Get gene details from the original DEG data
+                        gene_details = []
+                        for ensembl_id in overlapping_ensembl:
+                            # Find this gene in the original filtered DEG data
+                            gene_row = df[df["human_ensembl_id"] == ensembl_id]
+                            if not gene_row.empty:
+                                gene_info = {
+                                    "Ensembl ID": ensembl_id,
+                                    "log2FoldChange": gene_row.iloc[0]["log2FoldChange"],
+                                    "padj": gene_row.iloc[0]["padj"]
+                                }
+                                # Check if there's a gene name column
+                                if "gene" in gene_row.columns:
+                                    gene_info["Gene Name"] = gene_row.iloc[0]["gene"]
+                                elif "gene_name" in gene_row.columns:
+                                    gene_info["Gene Name"] = gene_row.iloc[0]["gene_name"]
+                                elif "symbol" in gene_row.columns:
+                                    gene_info["Gene Name"] = gene_row.iloc[0]["symbol"]
+                                
+                                gene_details.append(gene_info)
+                        
+                        if gene_details:
+                            gene_df = pd.DataFrame(gene_details)
+                            # Rename for display
+                            gene_df = gene_df.rename(columns={"log2FoldChange": "log2FC"})
+                            # Format log2FC to 2 decimal places
+                            gene_df["log2FC"] = gene_df["log2FC"].apply(lambda x: f"{x:.2f}" if pd.notna(x) else x)
+                            # Format padj in scientific notation
+                            gene_df["padj"] = gene_df["padj"].apply(lambda x: f"{x:.2e}" if pd.notna(x) else x)
+                            # Reorder columns: Ensembl ID, Gene Name, log2FC, padj
+                            if "Gene Name" in gene_df.columns:
+                                gene_df = gene_df[["Ensembl ID", "Gene Name", "log2FC", "padj"]]
+                            else:
+                                gene_df = gene_df[["Ensembl ID", "log2FC", "padj"]]
+                            # Sort by absolute log2FC (convert back to float for sorting)
+                            gene_df["log2FC_numeric"] = gene_df["log2FC"].astype(float)
+                            gene_df = gene_df.sort_values("log2FC_numeric", key=abs, ascending=False)
+                            gene_df = gene_df.drop(columns=["log2FC_numeric"])
+                            
+                            # Display in narrower columns
+                            col_narrow_genes, col_spacer_genes = st.columns([2, 3])
+                            with col_narrow_genes:
+                                st.dataframe(gene_df, hide_index=True)
             else:
                 st.info(f"ℹ️ No significant enrichment found (FDR < 0.05)")
         else:
