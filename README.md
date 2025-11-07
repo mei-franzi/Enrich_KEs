@@ -114,8 +114,4 @@ For each significant KE:
 - Bar plots showing -log10(p-value)
 - Tables with term names, p-values, and gene counts
 
-## Citation
-
-If you use this tool in your research, please cite the relevant AOP and g:Profiler resources.
-
 
