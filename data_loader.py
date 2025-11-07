@@ -63,6 +63,54 @@ def load_deg_file(uploaded_file) -> Optional[pd.DataFrame]:
         return None
 
 
+def load_deg_from_path(filepath: str) -> Optional[pd.DataFrame]:
+    """
+    Load a DEG file from a file path (for example data).
+    
+    Parameters
+    ----------
+    filepath : str
+        Path to the DEG file
+    
+    Returns
+    -------
+    Optional[pd.DataFrame]
+        Loaded DataFrame, or None if loading fails
+    """
+    if not os.path.exists(filepath):
+        return None
+    
+    try:
+        file_extension = get_file_extension(filepath)
+        
+        if file_extension == 'csv':
+            # Try different separators (semicolon first for European CSVs)
+            try:
+                df = pd.read_csv(filepath, sep=';')
+                # Check if it parsed correctly (more than 1 column)
+                if len(df.columns) == 1:
+                    raise ValueError("Only 1 column detected, trying different separator")
+            except:
+                try:
+                    df = pd.read_csv(filepath, sep=',')
+                except:
+                    df = pd.read_csv(filepath, sep='\t')
+        
+        elif file_extension == 'tsv':
+            df = pd.read_csv(filepath, sep='\t')
+        
+        elif file_extension in ['xlsx', 'xls']:
+            df = pd.read_excel(filepath)
+        
+        else:
+            return None
+        
+        return df
+    
+    except Exception as e:
+        return None
+
+
 def load_ke_mapping(filepath: str) -> Optional[pd.DataFrame]:
     """
     Load KE-to-gene mapping file.
