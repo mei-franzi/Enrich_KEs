@@ -20,7 +20,6 @@ st.markdown("""
 <div style="border: 2px solid white; padding: 20px; border-radius: 10px;">
     <h3 style="margin-top: 0;">Perform enrichment analyses on your DEGs against Key Events and Functional Pathways</h3>
     <p><strong>Key Events</strong> are measurable biological events within Adverse Outcome Pathways (AOPs)—multi-scale models that connect molecular initiating events to adverse health outcomes.</p>
-    <p>By mapping your DEGs to the AOP Key Event database, KEs that are statistically overrepresented in your dataset using Fisher's exact test and corrected for false discovery with Benjamini-Hochberg correction.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -258,14 +257,14 @@ if deg_file_data is not None:
     st.subheader(f"KE-Enrichment Analysis: {experiment_name}")
     
     # Second set of filtering parameters for easy access
-    st.markdown("**Adjust filtering parameters**")
+    st.markdown("**Adjust input parameters for the set of DEGs**")
     
     # Use a narrower column for the inputs
     col_narrow, col_spacer = st.columns([1, 2])
     
     with col_narrow:
         padj_cutoff = st.number_input(
-            "Adjusted p-value (KE results)",
+            "Adjusted p-value",
             min_value=0.0,
             max_value=1.0,
             value=padj_cutoff,
@@ -276,7 +275,7 @@ if deg_file_data is not None:
         )
         
         log2fc_cutoff = st.number_input(
-            "Log2 Fold Change cutoff of DEGs",
+            "Log2 Fold Change",
             min_value=0.0,
             max_value=10.0,
             value=log2fc_cutoff,
@@ -477,7 +476,7 @@ if deg_file_data is not None:
                             # ENRICHMENT #2: Functional enrichment on this KE's genes
                             st.markdown("---")
                             
-                            if st.button(f"Run Functional Enrichment ({ke_name})", key=f"enrich_ke_{ke_id}"):
+                            if st.button(f"Run Functional Enrichment", key=f"enrich_ke_{ke_id}"):
                                 with st.spinner("Running functional enrichment..."):
                                     # Get gene names for this KE
                                     ke_gene_list = []
@@ -492,36 +491,38 @@ if deg_file_data is not None:
                                         gobp_ke_filtered = filter_enrichment_results(gobp_ke, 'GO')
                                         kegg_ke_filtered = filter_enrichment_results(kegg_ke, 'KEGG')
                                         
-                                        # Display in columns with plots
-                                        col_gobp, col_kegg = st.columns(2)
-                                        
-                                        with col_gobp:
-                                            st.markdown("**GO:BP**")
-                                            if not gobp_ke_filtered.empty:
-                                                # Create and display plot
-                                                fig_gobp_ke = create_enrichment_barplot(gobp_ke_filtered, f"GO:BP - {ke_name}", color='skyblue', max_terms=10)
-                                                if fig_gobp_ke:
-                                                    st.pyplot(fig_gobp_ke)
-                                                # Display table
-                                                display_gobp = gobp_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
-                                                display_gobp['p_value'] = display_gobp['p_value'].apply(lambda x: f"{x:.2e}")
-                                                st.dataframe(display_gobp, use_container_width=True, hide_index=True)
-                                            else:
-                                                st.info("No significant terms")
-                                        
-                                        with col_kegg:
-                                            st.markdown("**KEGG**")
-                                            if not kegg_ke_filtered.empty:
-                                                # Create and display plot
-                                                fig_kegg_ke = create_enrichment_barplot(kegg_ke_filtered, f"KEGG - {ke_name}", color='lightcoral', max_terms=10)
-                                                if fig_kegg_ke:
-                                                    st.pyplot(fig_kegg_ke)
-                                                # Display table
-                                                display_kegg = kegg_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
-                                                display_kegg['p_value'] = display_kegg['p_value'].apply(lambda x: f"{x:.2e}")
-                                                st.dataframe(display_kegg, use_container_width=True, hide_index=True)
-                                            else:
-                                                st.info("No significant pathways")
+                                        # Display in expandable section
+                                        with st.expander("Enrichment Results", expanded=True):
+                                            # Display in columns with plots
+                                            col_gobp, col_kegg = st.columns(2)
+                                            
+                                            with col_gobp:
+                                                st.markdown("**GO:BP**")
+                                                if not gobp_ke_filtered.empty:
+                                                    # Create and display plot
+                                                    fig_gobp_ke = create_enrichment_barplot(gobp_ke_filtered, f"GO:BP - {ke_name}", color='skyblue', max_terms=10)
+                                                    if fig_gobp_ke:
+                                                        st.pyplot(fig_gobp_ke)
+                                                    # Display table
+                                                    display_gobp = gobp_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
+                                                    display_gobp['p_value'] = display_gobp['p_value'].apply(lambda x: f"{x:.2e}")
+                                                    st.dataframe(display_gobp, use_container_width=True, hide_index=True)
+                                                else:
+                                                    st.info("No significant terms")
+                                            
+                                            with col_kegg:
+                                                st.markdown("**KEGG**")
+                                                if not kegg_ke_filtered.empty:
+                                                    # Create and display plot
+                                                    fig_kegg_ke = create_enrichment_barplot(kegg_ke_filtered, f"KEGG - {ke_name}", color='lightcoral', max_terms=10)
+                                                    if fig_kegg_ke:
+                                                        st.pyplot(fig_kegg_ke)
+                                                    # Display table
+                                                    display_kegg = kegg_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
+                                                    display_kegg['p_value'] = display_kegg['p_value'].apply(lambda x: f"{x:.2e}")
+                                                    st.dataframe(display_kegg, use_container_width=True, hide_index=True)
+                                                else:
+                                                    st.info("No significant pathways")
                                     else:
                                         st.warning("⚠️ Gene names not available for enrichment")
                 # ENRICHMENT #3: Functional enrichment on union of all KE genes
