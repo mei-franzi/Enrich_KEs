@@ -22,14 +22,14 @@ st.set_page_config(layout="wide", page_title="KE & Functional Enrichment")
 # SIDEBAR
 # =============================================================================
 with st.sidebar:
-    st.title("🧬 KE Enrichment App")
+    st.title("")
 
-    
+
     # Global experiment name
     experiment_name = st.text_input(
         "Experiment Name",
         value="My Experiment",
-        help="Name your analysis"
+      #  help="Name your analysis"
     )
     
     # DEG Filtering Parameters (Global)
@@ -41,7 +41,7 @@ with st.sidebar:
         value=0.05,
         step=0.01,
         format="%.3f",
-        help="Threshold for statistical significance"
+        help="can be p-value, padj, FDR, q-value, ..."
     )
     
     log2fc_cutoff = st.number_input(
@@ -51,7 +51,7 @@ with st.sidebar:
         value=0.1,
         step=0.1,
         format="%.2f",
-        help="Minimum absolute log2 fold change"
+      #  help="Minimum absolute log2 fold change"
     )
     
     st.markdown("---")
@@ -61,22 +61,23 @@ with st.sidebar:
 # MAIN CONTENT
 # =============================================================================
 
-st.title("Key Event and Functional Enrichment of DEGs")
+st.title("DEGs Analyzer")
 
-# File paths
+# 1: KE Enrichment
+# File paths 
 data_dir = "data"
 ke_map_path = os.path.join(data_dir, "Genes_to_KEs.txt")
 ke_desc_path = os.path.join(data_dir, "ke_descriptions.csv")
 
 # Check if reference files exist
 if not os.path.exists(ke_map_path):
-    st.error(f"⚠️ Missing file: {ke_map_path}")
+    st.error(f"Missing file: {ke_map_path}")
     st.info("Please create a 'data' folder in your project directory and add the required reference files:")
     st.write("- Genes_to_KEs.txt")
     st.write("- ke_descriptions.csv")
     st.stop()
 if not os.path.exists(ke_desc_path):
-    st.error(f"⚠️ Missing file: {ke_desc_path}")
+    st.error(f"Missing file: {ke_desc_path}")
     st.stop()
 
 # Load KE mapping and descriptions
@@ -95,19 +96,19 @@ if 'filtered_df' not in st.session_state:
 # TABS
 # =============================================================================
 
-tab1, tab2, tab3 = st.tabs(["📤 Data Upload & Mapping", "🧪 Functional Enrichment", "🔑 KE Enrichment"])
+tab1, tab2, tab3 = st.tabs(["Data Upload & Mapping", "Functional Enrichment", "KE Enrichment"])
 
 # =============================================================================
 # TAB 1: Data Upload & Column Mapping
 # =============================================================================
 with tab1:
-    st.header("Upload and Configure Your Data")
+    st.subheader("Upload DEGs")
     
     # File upload section
-    st.subheader("1. Upload Your Data")
+   # st.subheader("")
 
     uploaded_file = st.file_uploader(
-        "Upload your differential expression results (csv, tsv or excel)",
+        "Upload differential expression results",
         type=["csv", "tsv", "xlsx", "xls"],
         help="File should contain: adjusted p-values, log2 fold change, and human Ensembl IDs. You can map your column names after upload."
     )
@@ -155,8 +156,7 @@ with tab1:
     # Sheet selection for Excel files
     selected_sheet = None
     if file_source and is_excel:
-        st.markdown("---")
-        st.subheader("1b. Select Excel Sheet")
+        st.subheader("Select Excel Sheet")
         
         # Get sheet names
         sheet_names = get_excel_sheet_names(file_source)
@@ -391,7 +391,7 @@ with tab3:
             df = filter_degs(df, ke_padj_cutoff, ke_log2fc_cutoff)
             
             # Show DEG table used for input in an expander
-            with st.expander(f"📊 View DEG Table Used for KE Enrichment ({len(df)} genes)", expanded=False):
+            with st.expander(f"View DEGs for KE Enrichment ({len(df)} genes)", expanded=False):
                 st.write(f"**Filtered with:** padj < {ke_padj_cutoff:.3g}, |log2FC| > {ke_log2fc_cutoff:.3g}")
                 
                 # Format for display
@@ -496,27 +496,31 @@ with tab3:
                             n_genes = len(gene_names)
                             if n_genes > 35:
                                 # For large gene sets, use more compact spacing
-                                fig_height = max(n_genes * 0.15, 6)  # ~0.15 inches per gene
+                                fig_height = max(n_genes * 0.15, 10)  # ~0.15 inches per gene
                             else:
                                 # For smaller gene sets, use comfortable spacing (18 genes = 4 inches)
                                 fig_height = max(n_genes * (4/18), 3)
                             
-                            fig, ax = plt.subplots(figsize=(12, fig_height))
+                            # Use columns to position plot on the left half
+                            col_left, col_right = st.columns([1, 1])
                             
-                            # Create bar colors based on up/down regulation
-                            colors = ['red' if x > 0 else 'blue' for x in log2fc_values]
-                            
-                            # Create horizontal bar chart
-                            ax.barh(gene_names, log2fc_values, color=colors, alpha=0.7)
-                            ax.set_xlabel('log2 Fold Change', fontsize=12)
-                            ax.set_title(f'{ke_name}', fontsize=14, fontweight='bold')
-                            ax.axvline(x=0, color='black', linestyle='-', linewidth=0.5)
-                            ax.grid(axis='x', alpha=0.3)
-                            
-                            # Adjust layout
-                            plt.tight_layout()
-                            st.pyplot(fig)
-                            plt.close()
+                            with col_left:
+                                fig, ax = plt.subplots(figsize=(9, fig_height))
+                                
+                                # Create bar colors based on up/down regulation
+                                colors = ['red' if x > 0 else 'blue' for x in log2fc_values]
+                                
+                                # Create horizontal bar chart
+                                ax.barh(gene_names, log2fc_values, color=colors, alpha=0.7)
+                                ax.set_xlabel('log2 Fold Change', fontsize=12)
+                                ax.set_title(f'{ke_name}', fontsize=12, fontweight='bold')
+                                ax.axvline(x=0, color='black', linestyle='-', linewidth=0.5)
+                                ax.grid(axis='x', alpha=0.3)
+                                
+                                # Adjust layout
+                                plt.tight_layout()
+                                st.pyplot(fig)
+                                plt.close()
                         
                         # NOW display gene detail tables in expanders
                         st.markdown("---")
