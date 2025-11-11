@@ -1,6 +1,6 @@
 # Key Event and Functional Enrichment Analysis
 
-A comprehensive Streamlit application for performing enrichment analysis on differentially expressed genes (DEGs) against Key Events (KEs) in Adverse Outcome Pathways (AOPs) and functional pathways (GO:BP, KEGG).
+Streamlit application for performing enrichment analysis on differentially expressed genes (DEGs) against Key Events (KEs) in Adverse Outcome Pathways (AOPs) and functional pathways (GO:BP, KEGG).
 
 ## Overview
 
