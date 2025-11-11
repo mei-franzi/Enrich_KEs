@@ -507,11 +507,11 @@ with tab3:
                             with col_left:
                                 fig, ax = plt.subplots(figsize=(9, fig_height))
                                 
-                                # Create bar colors based on up/down regulation
-                                colors = ['red' if x > 0 else 'blue' for x in log2fc_values]
+                                # Create bar colors based on up/down regulation (vibrant theme colors)
+                                colors = ['#FF6B6B' if x > 0 else '#4ECDC4' for x in log2fc_values]  # coral red and turquoise
                                 
                                 # Create horizontal bar chart
-                                ax.barh(gene_names, log2fc_values, color=colors, alpha=0.7)
+                                ax.barh(gene_names, log2fc_values, color=colors, alpha=1)
                                 ax.set_xlabel('log2 Fold Change', fontsize=12)
                                 ax.set_title(f'{ke_name}', fontsize=12, fontweight='bold')
                                 ax.axvline(x=0, color='black', linestyle='-', linewidth=0.5)
