@@ -9,12 +9,58 @@ Author: Enrich_KEs Team
 
 import pandas as pd
 import os
-from typing import Optional, Tuple, Dict
+from typing import Optional, Tuple, Dict, List
 import streamlit as st
 from utils import get_file_extension, validate_ensembl_ids
 
 
-def load_deg_file(uploaded_file) -> Optional[pd.DataFrame]:
+def get_excel_sheet_names(file_source) -> Optional[List[str]]:
+    """
+    Get list of sheet names from an Excel file.
+    
+    Parameters
+    ----------
+    file_source : UploadedFile or str
+        Either a Streamlit uploaded file object or a file path
+    
+    Returns
+    -------
+    Optional[List[str]]
+        List of sheet names, or None if reading fails
+    """
+    try:
+        excel_file = pd.ExcelFile(file_source)
+        return excel_file.sheet_names
+    except Exception as e:
+        st.error(f"Error reading Excel sheets: {str(e)}")
+        return None
+
+
+def load_excel_sheet(file_source, sheet_name: str = 0) -> Optional[pd.DataFrame]:
+    """
+    Load a specific sheet from an Excel file.
+    
+    Parameters
+    ----------
+    file_source : UploadedFile or str
+        Either a Streamlit uploaded file object or a file path
+    sheet_name : str or int, optional
+        Name or index of the sheet to load (default: 0 for first sheet)
+    
+    Returns
+    -------
+    Optional[pd.DataFrame]
+        Loaded DataFrame, or None if loading fails
+    """
+    try:
+        df = pd.read_excel(file_source, sheet_name=sheet_name)
+        return df
+    except Exception as e:
+        st.error(f"Error loading Excel sheet '{sheet_name}': {str(e)}")
+        return None
+
+
+def load_deg_file(uploaded_file, sheet_name: Optional[str] = None) -> Optional[pd.DataFrame]:
     """
     Load a DEG file from various formats (CSV, TSV, Excel).
     
@@ -22,6 +68,8 @@ def load_deg_file(uploaded_file) -> Optional[pd.DataFrame]:
     ----------
     uploaded_file : UploadedFile
         Streamlit uploaded file object
+    sheet_name : Optional[str], optional
+        For Excel files, name of the sheet to load (default: None, loads first sheet)
     
     Returns
     -------
@@ -50,7 +98,11 @@ def load_deg_file(uploaded_file) -> Optional[pd.DataFrame]:
             df = pd.read_csv(uploaded_file, sep='\t')
         
         elif file_extension in ['xlsx', 'xls']:
-            df = pd.read_excel(uploaded_file)
+            # Use sheet_name if provided, otherwise load first sheet (0)
+            sheet = sheet_name if sheet_name is not None else 0
+            df = load_excel_sheet(uploaded_file, sheet_name=sheet)
+            if df is None:
+                return None
         
         else:
             st.error(f"Unsupported file format: {file_extension}")
@@ -63,7 +115,7 @@ def load_deg_file(uploaded_file) -> Optional[pd.DataFrame]:
         return None
 
 
-def load_deg_from_path(filepath: str) -> Optional[pd.DataFrame]:
+def load_deg_from_path(filepath: str, sheet_name: Optional[str] = None) -> Optional[pd.DataFrame]:
     """
     Load a DEG file from a file path (for example data).
     
@@ -71,6 +123,8 @@ def load_deg_from_path(filepath: str) -> Optional[pd.DataFrame]:
     ----------
     filepath : str
         Path to the DEG file
+    sheet_name : Optional[str], optional
+        For Excel files, name of the sheet to load (default: None, loads first sheet)
     
     Returns
     -------
@@ -100,7 +154,11 @@ def load_deg_from_path(filepath: str) -> Optional[pd.DataFrame]:
             df = pd.read_csv(filepath, sep='\t')
         
         elif file_extension in ['xlsx', 'xls']:
-            df = pd.read_excel(filepath)
+            # Use sheet_name if provided, otherwise load first sheet (0)
+            sheet = sheet_name if sheet_name is not None else 0
+            df = load_excel_sheet(filepath, sheet_name=sheet)
+            if df is None:
+                return None
         
         else:
             return None
