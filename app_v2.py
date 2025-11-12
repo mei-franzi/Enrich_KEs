@@ -80,7 +80,7 @@ if ke_map is None:
     st.error("Failed to load KE data. Please check the data files.")
     st.stop()
 
-st.markdown("---")
+#st.markdown("---")
 
 # Create tabs with custom names
 tab_names = []
@@ -119,7 +119,7 @@ for tab_idx in range(st.session_state.num_analyses):
             st.session_state[f"{key_prefix}_name"] = analysis_name
             st.rerun()
 
-        st.markdown("---")
+        #st.markdown("---")
         
         # =============================================================================
         # 1. UPLOAD DEGs
@@ -317,7 +317,7 @@ for tab_idx in range(st.session_state.num_analyses):
                     # =============================================================================
                     # 4. FUNCTIONAL ENRICHMENT
                     # =============================================================================
-                    st.markdown("---")
+                    #st.markdown("---")
                     
                     # Simple button (not primary/red)
                     run_functional = st.button("Run Functional Enrichment Analysis", key=f"{key_prefix}_enrich_btn")
@@ -341,38 +341,39 @@ for tab_idx in range(st.session_state.num_analyses):
                                 kegg_results = perform_functional_enrichment(gene_list, sources=['KEGG'])
                                 kegg_filtered = filter_enrichment_results(kegg_results, 'KEGG')
                     
-                                # Display results with plots
-                                col1, col2 = st.columns(2)
-                    
-                                with col1:
-                                    st.markdown("### GO Biological Processes")
-                                    if not gobp_filtered.empty:
-                                        st.write(f"Found {len(gobp_filtered)} significant terms")
-                                        # Create and display plot
-                                        fig_gobp = create_enrichment_barplot(gobp_filtered, "GO:BP Enrichment", color='skyblue', max_terms=15)
-                                        if fig_gobp:
-                                            st.pyplot(fig_gobp)
-                                        # Display table
-                                        display_df = gobp_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
-                                        display_df['p_value'] = display_df['p_value'].apply(format_scientific_notation)
-                                        st.dataframe(display_df, use_container_width=True)
-                                    else:
-                                        st.info("No significant GO:BP terms found")
-                    
-                                with col2:
-                                    st.markdown("### KEGG Pathways")
-                                    if not kegg_filtered.empty:
-                                        st.write(f"Found {len(kegg_filtered)} significant pathways")
-                                        # Create and display plot
-                                        fig_kegg = create_enrichment_barplot(kegg_filtered, "KEGG Enrichment", color='lightcoral', max_terms=15)
-                                        if fig_kegg:
-                                            st.pyplot(fig_kegg)
-                                        # Display table
-                                        display_df = kegg_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
-                                        display_df['p_value'] = display_df['p_value'].apply(format_scientific_notation)
-                                        st.dataframe(display_df, use_container_width=True)
-                                    else:
-                                        st.info("No significant KEGG pathways found")
+                                # Display results in an expander
+                                with st.expander("Functional Enrichment Results", expanded=True):
+                                    col1, col2 = st.columns(2)
+                        
+                                    with col1:
+                                        st.markdown("### GO Biological Processes")
+                                        if not gobp_filtered.empty:
+                                            st.write(f"Found {len(gobp_filtered)} significant terms")
+                                            # Create and display plot
+                                            fig_gobp = create_enrichment_barplot(gobp_filtered, "GO:BP Enrichment", color='skyblue', max_terms=15)
+                                            if fig_gobp:
+                                                st.pyplot(fig_gobp)
+                                            # Display table
+                                            display_df = gobp_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
+                                            display_df['p_value'] = display_df['p_value'].apply(format_scientific_notation)
+                                            st.dataframe(display_df, use_container_width=True)
+                                        else:
+                                            st.info("No significant GO:BP terms found")
+                        
+                                    with col2:
+                                        st.markdown("### KEGG Pathways")
+                                        if not kegg_filtered.empty:
+                                            st.write(f"Found {len(kegg_filtered)} significant pathways")
+                                            # Create and display plot
+                                            fig_kegg = create_enrichment_barplot(kegg_filtered, "KEGG Enrichment", color='lightcoral', max_terms=15)
+                                            if fig_kegg:
+                                                st.pyplot(fig_kegg)
+                                            # Display table
+                                            display_df = kegg_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
+                                            display_df['p_value'] = display_df['p_value'].apply(format_scientific_notation)
+                                            st.dataframe(display_df, use_container_width=True)
+                                        else:
+                                            st.info("No significant KEGG pathways found")
         
                     # =============================================================================
                     # 4. RUN KE ENRICHMENT
@@ -386,8 +387,6 @@ for tab_idx in range(st.session_state.num_analyses):
                     if len(degs) == 0:
                         st.warning("⚠️ No DEGs found with the current filters. Try relaxing the cutoff values.")
                     else:
-                        st.info(f"Ready to run KE enrichment on {len(degs)} unique human Ensembl IDs")
-            
                         if st.button("Run KE Enrichment", key="run_ke_enrichment", type="primary"):
                             with st.spinner("Running KE enrichment analysis..."):
                                 # Perform KE enrichment
