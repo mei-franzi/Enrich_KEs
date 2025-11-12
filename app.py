@@ -481,13 +481,17 @@ with tab3:
                             ke_name = data['ke_name']
                             gene_details = data['gene_details']
                             
+                            # Get KE info from significant_df
+                            ke_row = significant_df[significant_df['KE'] == ke_id].iloc[0]
+                            
                             # Prepare data for visualization
                             viz_data = pd.DataFrame(gene_details)
                             viz_data = viz_data.sort_values("log2FoldChange", ascending=False)
                             
                             # Create matplotlib bar chart (more reliable than plotly in tabs)
-                            st.markdown(f"**{ke_name}** ({ke_id})")
-                            
+                            st.markdown("---")
+                            st.markdown(f"#### {ke_name} ({ke_id})")
+
                             # Get gene names and log2FC values
                             gene_names = viz_data['Gene Name'].tolist() if 'Gene Name' in viz_data.columns else [f"Gene {i}" for i in range(len(viz_data))]
                             log2fc_values = viz_data['log2FoldChange'].tolist()
@@ -505,6 +509,9 @@ with tab3:
                             col_left, col_right = st.columns([1, 1])
                             
                             with col_left:
+                                # Add spacing to align with info card
+                                st.markdown("<br>", unsafe_allow_html=True)
+                                
                                 fig, ax = plt.subplots(figsize=(9, fig_height))
                                 
                                 # Create bar colors based on up/down regulation (vibrant theme colors)
@@ -513,7 +520,7 @@ with tab3:
                                 # Create horizontal bar chart
                                 ax.barh(gene_names, log2fc_values, color=colors, alpha=1)
                                 ax.set_xlabel('log2 Fold Change', fontsize=12)
-                                ax.set_title(f'{ke_name}', fontsize=12, fontweight='bold')
+                                ax.set_title(f'{ke_name} ({ke_id})', fontsize=13) 
                                 ax.axvline(x=0, color='black', linestyle='-', linewidth=0.5)
                                 ax.grid(axis='x', alpha=0.3)
                                 
@@ -521,9 +528,28 @@ with tab3:
                                 plt.tight_layout()
                                 st.pyplot(fig)
                                 plt.close()
+                            
+                            with col_right:
+                                # Display KE information
+                                st.markdown("##### Key Event Information")
+                                
+                                # Create info box
+                                info_html = f"""
+                                <div style="background-color: #f0f2f6; padding: 20px; border-radius: 10px; border-left: 5px solid #4ECDC4;">
+                                    <p style="margin: 5px 0;"><strong>KE ID:</strong> {ke_id}</p>
+                                    <p style="margin: 5px 0;"><strong>KE Name:</strong> {ke_name}</p>
+                                    <p style="margin: 5px 0;"><strong>AOP:</strong> {ke_row['AOP']}</p>
+                                    <p style="margin: 5px 0;"><strong>DEGs in KE:</strong> {ke_row['DEGs in KE']}</p>
+                                    <p style="margin: 5px 0;"><strong>KE Size:</strong> {ke_row['KE size']}</p>
+                                    <p style="margin: 5px 0;"><strong>Percent Covered:</strong> {ke_row['Percent of KE covered']:.1f}%</p>
+                                    <p style="margin: 5px 0;"><strong>Adjusted p-value:</strong> {ke_row['adjusted p-value']:.2e}</p>
+                                    <p style="margin: 5px 0;"><strong>Odds Ratio:</strong> {ke_row['Odds ratio']:.2f}</p>
+                                </div>
+                                """
+                                st.markdown(info_html, unsafe_allow_html=True)
                         
                         # NOW display gene detail tables in expanders
-                        st.markdown("---")
+                        #st.markdown("---")
                         st.subheader("Detailed Gene Information for Each KE")
                         
                         for idx, row in significant_df.iterrows():
