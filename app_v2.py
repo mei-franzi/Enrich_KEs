@@ -55,7 +55,7 @@ with st.sidebar:
 # MAIN CONTENT
 # =============================================================================
 
-st.title("🧬 DEG Analyzer")
+st.title("🧬 Key Event Enrichment Analysis")
 st.markdown("Differential Expression Gene Analysis with KE Enrichment")
 
 # File paths 
@@ -80,7 +80,6 @@ if ke_map is None:
     st.error("Failed to load KE data. Please check the data files.")
     st.stop()
 
-#st.markdown("---")
 
 # Create tabs with custom names
 tab_names = []
@@ -124,17 +123,17 @@ for tab_idx in range(st.session_state.num_analyses):
         # =============================================================================
         # 1. UPLOAD DEGs
         # =============================================================================
-        st.subheader("1. Input DEGs")
+        #st.markdown("#### Upload DEGs")
 
         uploaded_file = st.file_uploader(
-            "Upload differential expression results",
+            "**Upload differential expression results**",
             type=["csv", "tsv", "xlsx", "xls"],
             help="File should contain: adjusted p-values, log2 fold change, and human Ensembl IDs. You can map your column names after upload.",
             key=f"{key_prefix}_uploader"
         )
 
         # Example data buttons
-        st.write("**Or use example data:**")
+        st.write("Or use example data:")
 
         example_data_path = os.path.join(data_dir, "GSE255602_DEGs.csv")
         browder_data_path = os.path.join(data_dir, "Browder_DEGs.xlsx")
@@ -203,7 +202,7 @@ for tab_idx in range(st.session_state.num_analyses):
                     # =============================================================================
                     # 2. COLUMN MAPPING
                     # =============================================================================
-                    st.markdown("---")
+                    #st.markdown("---")
                     with st.expander("Specify which columns in your file correspond to the required data", expanded=True):
                         col_map1, col_map2 = st.columns(2)
         
@@ -212,7 +211,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                 "Adjusted p-value column",
                                 options=deg_file_data.columns.tolist(),
                                 index=deg_file_data.columns.tolist().index('padj') if 'padj' in deg_file_data.columns else 0,
-                                help="Column containing adjusted p-values"
+                                help="Column containing adjusted p-values",
+                                key=f"{key_prefix}_padj_col"
                             )
         
                         with col_map2:
@@ -220,7 +220,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                 "Log2 Fold Change column",
                                 options=deg_file_data.columns.tolist(),
                                 index=deg_file_data.columns.tolist().index('log2FoldChange') if 'log2FoldChange' in deg_file_data.columns else 0,
-                                help="Column containing log2 fold change values"
+                                help="Column containing log2 fold change values",
+                                key=f"{key_prefix}_log2fc_col"
                             )
         
                         col_map3, col_map4 = st.columns(2)
@@ -230,7 +231,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                 "Human Ensembl ID column",
                                 options=deg_file_data.columns.tolist(),
                                 index=deg_file_data.columns.tolist().index('human_ensembl_id') if 'human_ensembl_id' in deg_file_data.columns else 0,
-                                help="Column containing human Ensembl gene IDs"
+                                help="Column containing human Ensembl gene IDs",
+                                key=f"{key_prefix}_ensembl_col"
                             )
         
                         with col_map4:
@@ -245,7 +247,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                 "Gene name/symbol column",
                                 options=deg_file_data.columns.tolist(),
                                 index=gene_col_idx,
-                                help="Column containing gene names or symbols (required for functional enrichment)"
+                                help="Column containing gene names or symbols (required for functional enrichment)",
+                                key=f"{key_prefix}_gene_col"
                             )
         
                         # Rename columns to standard names
@@ -379,7 +382,7 @@ for tab_idx in range(st.session_state.num_analyses):
                     # 4. RUN KE ENRICHMENT
                     # =============================================================================
                     st.markdown("---")
-                    st.subheader("4. Run KE Enrichment")
+                    st.subheader("Enrich for Key Events")
         
                     # Get unique human ENSGs for enrichment
                     degs = set(filtered_df["human_ensembl_id"].dropna())
@@ -387,7 +390,7 @@ for tab_idx in range(st.session_state.num_analyses):
                     if len(degs) == 0:
                         st.warning("⚠️ No DEGs found with the current filters. Try relaxing the cutoff values.")
                     else:
-                        if st.button("Run KE Enrichment", key="run_ke_enrichment", type="primary"):
+                        if st.button("Run KE Enrichment", key=f"{key_prefix}_run_ke_enrichment", type="primary"):
                             with st.spinner("Running KE enrichment analysis..."):
                                 # Perform KE enrichment
                                 res_df = perform_ke_enrichment(degs, ke_map, background_genes)
@@ -411,7 +414,7 @@ for tab_idx in range(st.session_state.num_analyses):
                             significant_df = st.session_state.significant_kes
                             filtered_df = st.session_state.filtered_degs
                 
-                            st.markdown("---")
+                            #st.markdown("---")
                             st.subheader("Results")
                             st.success(f"Found {len(significant_df)} significant KEs (FDR < 0.05)")
                 
@@ -450,8 +453,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                     }
                 
                             # Display visualizations
-                            st.markdown("---")
-                            st.subheader("Gene Expression Visualizations for Significant KEs")
+                            #st.markdown("---")
+                            #st.subheader("View Detailed Results")
                 
                             for ke_id, data in all_ke_gene_data.items():
                                 ke_name = data['ke_name']
@@ -521,7 +524,7 @@ for tab_idx in range(st.session_state.num_analyses):
                                     st.dataframe(gene_display_df, use_container_width=True, hide_index=True)
                     
                                 # Functional enrichment button
-                                if st.button(f"Run Functional Enrichment", key=f"enrich_ke_{ke_id}"):
+                                if st.button(f"Run Functional Enrichment", key=f"{key_prefix}_enrich_ke_{ke_id}"):
                                     with st.spinner("Running functional enrichment..."):
                                         ke_genes_df = pd.DataFrame(gene_details)
                                         gene_col = get_gene_name_column(ke_genes_df)

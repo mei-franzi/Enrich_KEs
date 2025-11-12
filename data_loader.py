@@ -169,6 +169,7 @@ def load_deg_from_path(filepath: str, sheet_name: Optional[str] = None) -> Optio
         return None
 
 
+@st.cache_data
 def load_ke_mapping(filepath: str) -> Optional[pd.DataFrame]:
     """
     Load KE-to-gene mapping file.
@@ -207,6 +208,7 @@ def load_ke_mapping(filepath: str) -> Optional[pd.DataFrame]:
         return None
 
 
+@st.cache_data
 def load_ke_descriptions(filepath: str) -> Optional[pd.DataFrame]:
     """
     Load KE descriptions file.
@@ -239,6 +241,7 @@ def load_ke_descriptions(filepath: str) -> Optional[pd.DataFrame]:
         return None
 
 
+@st.cache_data(show_spinner="Loading KE data...")
 def prepare_ke_data(ke_map_path: str, ke_desc_path: str) -> Tuple[Optional[pd.DataFrame], Optional[set]]:
     """
     Load and prepare KE mapping and description data.
