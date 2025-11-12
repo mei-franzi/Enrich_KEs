@@ -402,17 +402,17 @@ for tab_idx in range(st.session_state.num_analyses):
                                     # Filter for significant results
                                     significant_df = filter_significant_kes(res_df, fdr_threshold=0.05)
                         
-                                    # Store results in session state
-                                    st.session_state.ke_results = res_df
-                                    st.session_state.significant_kes = significant_df
-                                    st.session_state.filtered_degs = filtered_df
+                                    # Store results in TAB-SPECIFIC session state
+                                    st.session_state[f"{key_prefix}_ke_results"] = res_df
+                                    st.session_state[f"{key_prefix}_significant_kes"] = significant_df
+                                    st.session_state[f"{key_prefix}_filtered_degs"] = filtered_df
                                 else:
                                     st.warning("No KE enrichment results found.")
             
-                        # Display results if they exist
-                        if 'significant_kes' in st.session_state and st.session_state.significant_kes is not None and not st.session_state.significant_kes.empty:
-                            significant_df = st.session_state.significant_kes
-                            filtered_df = st.session_state.filtered_degs
+                        # Display results if they exist (check TAB-SPECIFIC session state)
+                        if f"{key_prefix}_significant_kes" in st.session_state and st.session_state[f"{key_prefix}_significant_kes"] is not None and not st.session_state[f"{key_prefix}_significant_kes"].empty:
+                            significant_df = st.session_state[f"{key_prefix}_significant_kes"]
+                            filtered_df = st.session_state[f"{key_prefix}_filtered_degs"]
                 
                             #st.markdown("---")
                             st.subheader("Results")
