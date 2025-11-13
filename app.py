@@ -55,7 +55,7 @@ with st.sidebar:
 # MAIN CONTENT
 # =============================================================================
 
-st.title("🧬 Enrich DEGs for toxicologcal Key Events")
+st.title("🧬 Enrich DEGs for toxicological Key Events")
 st.markdown("Differential Expression Gene Analysis with KE Enrichment")
 
 # File paths 
