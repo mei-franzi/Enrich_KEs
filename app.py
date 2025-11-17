@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import streamlit as st
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 # Project modules
 from enrichment import perform_functional_enrichment, filter_enrichment_results, create_enrichment_barplot
@@ -13,7 +14,7 @@ from ke_enrichment import (
     format_ke_results_for_display
 )
 from data_loader import load_deg_file, load_deg_from_path, prepare_ke_data, apply_column_mapping, filter_degs, get_excel_sheet_names
-from utils import format_scientific_notation, get_gene_name_column
+from utils import format_scientific_notation, get_gene_name_column, generate_ke_pdf
 
 st.set_page_config(layout="wide", page_title="KE & Functional Enrichment")
 
@@ -421,6 +422,9 @@ for tab_idx in range(st.session_state.num_analyses):
                             # Format and display results table
                             df_display_clean = format_ke_results_for_display(significant_df)
                             st.dataframe(df_display_clean, use_container_width=True)
+                            
+                            # Collect data for PDF generation
+                            pdf_ke_data_list = []
                 
                             # Collect gene data for visualizations
                             all_ke_gene_data = {}
@@ -451,6 +455,58 @@ for tab_idx in range(st.session_state.num_analyses):
                                         'ke_name': ke_name,
                                         'gene_details': gene_details
                                     }
+                                    
+                                    # Prepare data for PDF
+                                    viz_data = pd.DataFrame(gene_details)
+                                    viz_data = viz_data.sort_values("log2FoldChange", ascending=False)
+                                    gene_names = viz_data['Gene Name'].tolist() if 'Gene Name' in viz_data.columns else [f"Gene {i}" for i in range(len(viz_data))]
+                                    log2fc_values = viz_data['log2FoldChange'].tolist()
+                                    
+                                    pdf_ke_data_list.append({
+                                        'ke_id': ke_id,
+                                        'ke_name': ke_name,
+                                        'ke_row': row.to_dict(),  # Convert Series to dict for PDF generation
+                                        'gene_details': gene_details,
+                                        'gene_names': gene_names,
+                                        'log2fc_values': log2fc_values
+                                    })
+                            
+                            # Store PDF data in session state
+                            st.session_state[f"{key_prefix}_pdf_data"] = pdf_ke_data_list
+                            
+                            # Add download PDF button
+                            if pdf_ke_data_list:
+                                st.markdown("---")
+                                col_download1, col_download2 = st.columns([3, 1])
+                                with col_download1:
+                                    st.markdown("**Download Results**")
+                                with col_download2:
+                                    pdf_filename = f"KE_Enrichment_{analysis_name or f'Analysis_{analysis_num}'}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                                    
+                                    # Generate PDF when button is clicked
+                                    if st.button("📥 Generate & Download PDF", key=f"{key_prefix}_download_pdf", use_container_width=True):
+                                        with st.spinner("Generating PDF..."):
+                                            try:
+                                                pdf_bytes = generate_ke_pdf(
+                                                    pdf_ke_data_list,
+                                                    analysis_name=analysis_name or f"Analysis {analysis_num}"
+                                                )
+                                                st.session_state[f"{key_prefix}_pdf_bytes"] = pdf_bytes
+                                                st.session_state[f"{key_prefix}_pdf_filename"] = pdf_filename
+                                                st.success("PDF generated successfully!")
+                                            except Exception as e:
+                                                st.error(f"Error generating PDF: {str(e)}")
+                                    
+                                    # Show download button if PDF is ready
+                                    if f"{key_prefix}_pdf_bytes" in st.session_state:
+                                        st.download_button(
+                                            label="⬇️ Download PDF",
+                                            data=st.session_state[f"{key_prefix}_pdf_bytes"],
+                                            file_name=st.session_state[f"{key_prefix}_pdf_filename"],
+                                            mime="application/pdf",
+                                            key=f"{key_prefix}_pdf_download_btn"
+                                        )
+                                st.markdown("---")
                 
                             # Display visualizations
                             #st.markdown("---")
@@ -465,7 +521,7 @@ for tab_idx in range(st.session_state.num_analyses):
                                 viz_data = viz_data.sort_values("log2FoldChange", ascending=False)
                     
                                 st.markdown("---")
-                                st.markdown(f"##### {ke_name} ({ke_id})")
+                                st.markdown(f"##### {ke_name} ({ke_id}, {ke_row['AOP']})")
                     
                                 gene_names = viz_data['Gene Name'].tolist() if 'Gene Name' in viz_data.columns else [f"Gene {i}" for i in range(len(viz_data))]
                                 log2fc_values = viz_data['log2FoldChange'].tolist()
