@@ -12,6 +12,7 @@ import numpy as np
 from typing import List, Optional, Dict, Any
 import os
 import io
+import base64
 import matplotlib.pyplot as plt
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter, A4
@@ -21,6 +22,12 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 from reportlab.pdfgen import canvas
 from datetime import datetime
+
+# Import enrichment functions for HTML report
+try:
+    from enrichment import create_enrichment_barplot
+except ImportError:
+    create_enrichment_barplot = None
 
 
 def format_scientific_notation(value: float, decimals: int = 2) -> str:
@@ -657,4 +664,485 @@ def generate_ke_pdf(
     doc.build(elements)
     buffer.seek(0)
     return buffer.getvalue()
+
+
+def figure_to_base64(fig: plt.Figure) -> str:
+    """
+    Convert a matplotlib figure to base64 encoded string for HTML embedding.
+    
+    Parameters
+    ----------
+    fig : plt.Figure
+        Matplotlib figure to convert
+    
+    Returns
+    -------
+    str
+        Base64 encoded image string
+    """
+    buffer = io.BytesIO()
+    fig.savefig(buffer, format='png', dpi=300, bbox_inches='tight')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    plt.close(fig)
+    return image_base64
+
+
+def dataframe_to_html_table(df: pd.DataFrame, table_id: str = "", css_class: str = "data-table") -> str:
+    """
+    Convert a pandas DataFrame to an HTML table string.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame to convert
+    table_id : str
+        Optional ID for the table
+    css_class : str
+        CSS class name for styling
+    
+    Returns
+    -------
+    str
+        HTML table string
+    """
+    if df.empty:
+        return "<p>No data available</p>"
+    
+    html = f'<table id="{table_id}" class="{css_class}">'
+    
+    # Header
+    html += '<thead><tr>'
+    for col in df.columns:
+        html += f'<th>{col}</th>'
+    html += '</tr></thead>'
+    
+    # Body
+    html += '<tbody>'
+    for idx, row in df.iterrows():
+        html += '<tr>'
+        for col in df.columns:
+            value = row[col]
+            # Handle NaN values
+            if pd.isna(value):
+                value = 'N/A'
+            else:
+                value = str(value)
+            # Replace newlines with <br> for HTML
+            value = value.replace('\n', '<br>')
+            html += f'<td>{value}</td>'
+        html += '</tr>'
+    html += '</tbody></table>'
+    
+    return html
+
+
+def generate_ke_html_report(
+    ke_data_list: List[Dict[str, Any]],
+    analysis_name: str = "KE Enrichment Analysis",
+    dataset_name: str = "Not specified",
+    sheet_name: str = "Not specified",
+    summary_table: Optional[List[Dict[str, Any]]] = None,
+    fdr_threshold: float = 0.05,
+    functional_enrichment_data: Optional[Dict[str, Dict[str, pd.DataFrame]]] = None
+) -> str:
+    """
+    Generate an HTML report containing all Key Event enrichment results.
+    
+    Parameters
+    ----------
+    ke_data_list : List[Dict[str, Any]]
+        List of dictionaries, each containing:
+        - 'ke_id': str
+        - 'ke_name': str
+        - 'ke_row': dict with KE statistics
+        - 'gene_details': List[Dict] with gene information
+        - 'gene_names': List[str]
+        - 'log2fc_values': List[float]
+    analysis_name : str
+        Name of the analysis
+    dataset_name : str
+        Name or label of the dataset
+    sheet_name : str
+        Name of the worksheet (if applicable)
+    summary_table : Optional[List[Dict[str, Any]]]
+        Pre-formatted summary rows for the front-page enrichment table
+    fdr_threshold : float
+        Threshold used to define significant KEs
+    functional_enrichment_data : Optional[Dict[str, Dict[str, pd.DataFrame]]]
+        Dictionary with KE IDs as keys, containing 'GO:BP' and 'KEGG' DataFrames
+    
+    Returns
+    -------
+    str
+        HTML report as string
+    """
+    if functional_enrichment_data is None:
+        functional_enrichment_data = {}
+    
+    # HTML template with CSS
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{analysis_name}</title>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        body {{
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }}
+        .container {{
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }}
+        .header {{
+            text-align: center;
+            border-bottom: 3px solid #4ECDC4;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }}
+        .header h1 {{
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }}
+        .header-info {{
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }}
+        .summary-section {{
+            margin: 30px 0;
+        }}
+        .summary-section h2 {{
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4ECDC4;
+            padding-left: 10px;
+        }}
+        .ke-section {{
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }}
+        .ke-section h2 {{
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4ECDC4;
+        }}
+        .ke-info-heatmap-container {{
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }}
+        .ke-info-box {{
+            background-color: #f0f2f6;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #4ECDC4;
+        }}
+        .ke-info-box p {{
+            margin: 8px 0;
+        }}
+        .ke-info-box strong {{
+            color: #2c3e50;
+        }}
+        @media (max-width: 768px) {{
+            .ke-info-heatmap-container {{
+                grid-template-columns: 1fr;
+            }}
+        }}
+        .data-table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+        }}
+        .data-table th {{
+            background-color: #4ECDC4;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }}
+        .data-table td {{
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }}
+        .data-table tr:nth-child(even) {{
+            background-color: #f9f9f9;
+        }}
+        .data-table tr:hover {{
+            background-color: #f0f0f0;
+        }}
+        .heatmap-container {{
+            text-align: center;
+            margin: 20px 0;
+        }}
+        .heatmap-container img {{
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }}
+        .enrichment-section {{
+            margin: 30px 0;
+        }}
+        .enrichment-section h3 {{
+            color: #2c3e50;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }}
+        .enrichment-tables {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }}
+        .enrichment-plots {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }}
+        .enrichment-plot-container {{
+            text-align: center;
+        }}
+        .enrichment-plot-container img {{
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }}
+        @media (max-width: 768px) {{
+            .enrichment-tables {{
+                grid-template-columns: 1fr;
+            }}
+            .enrichment-plots {{
+                grid-template-columns: 1fr;
+            }}
+        }}
+        .page-break {{
+            page-break-after: always;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{analysis_name}</h1>
+            <div class="header-info">
+                <p><strong>Dataset:</strong> {dataset_name}</p>
+                <p><strong>Sheet:</strong> {sheet_name}</p>
+                <p><strong>Generated:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+                <p><strong>FDR Threshold:</strong> {fdr_threshold}</p>
+                <p><strong>Number of Enriched Key Events:</strong> {len(ke_data_list)}</p>
+            </div>
+        </div>
+"""
+    
+    # Summary Table
+    if summary_table:
+        html += """
+        <div class="summary-section">
+            <h2>Summary of Enriched Key Events</h2>
+"""
+        summary_df = pd.DataFrame(summary_table)
+        html += dataframe_to_html_table(summary_df, "summary-table")
+        html += """
+        </div>
+"""
+    
+    # Key Event Sections
+    for idx, ke_data in enumerate(ke_data_list):
+        ke_id = ke_data.get('ke_id', 'N/A')
+        ke_name = ke_data.get('ke_name', 'N/A')
+        ke_row = ke_data.get('ke_row', {})
+        gene_details = ke_data.get('gene_details', [])
+        gene_names = ke_data.get('gene_names', [])
+        log2fc_values = ke_data.get('log2fc_values', [])
+        
+        html += f"""
+        <div class="ke-section">
+            <h2>{ke_name} ({ke_id})</h2>
+            
+            <div class="ke-info-heatmap-container">
+"""
+        
+        # Heatmap on the left (bigger)
+        if gene_names and log2fc_values:
+            try:
+                fig = create_ke_heatmap_figure(
+                    gene_names, 
+                    log2fc_values, 
+                    ke_name, 
+                    ke_id, 
+                    ke_row.get('AOP')
+                )
+                heatmap_base64 = figure_to_base64(fig)
+                html += f"""
+                <div class="heatmap-container">
+                    <img src="data:image/png;base64,{heatmap_base64}" alt="Heatmap for {ke_name}">
+                </div>
+"""
+            except Exception as e:
+                html += f'<div><p style="color: red;">Error generating heatmap: {str(e)}</p></div>'
+        else:
+            html += """
+                <div></div>
+"""
+        
+        # Info box on the right (smaller)
+        html += f"""
+                <div class="ke-info-box">
+                    <p><strong>KE ID:</strong> {ke_id}</p>
+                    <p><strong>KE Name:</strong> {ke_name}</p>
+                    <p><strong>AOP:</strong> {ke_row.get('AOP', 'N/A')}</p>
+                    <p><strong>DEGs in KE:</strong> {ke_row.get('DEGs in KE', 'N/A')}</p>
+                    <p><strong>KE Size:</strong> {ke_row.get('KE size', 'N/A')}</p>
+                    <p><strong>Percent Covered:</strong> {f"{ke_row.get('Percent of KE covered', 0):.1f}%" if isinstance(ke_row.get('Percent of KE covered', 0), (int, float)) else str(ke_row.get('Percent of KE covered', 'N/A'))}</p>
+                    <p><strong>Adjusted p-value:</strong> {format_scientific_notation(ke_row.get('adjusted p-value', 0))}</p>
+                    <p><strong>Odds Ratio:</strong> {ke_row.get('Odds ratio', 0):.2f}</p>
+                </div>
+            </div>
+"""
+        
+        # Gene Table
+        if gene_details:
+            gene_df = pd.DataFrame(gene_details)
+            if 'Gene Name' in gene_df.columns:
+                display_cols = ['Gene Name', 'Ensembl ID', 'log2FoldChange', 'padj']
+                gene_display = gene_df[display_cols].copy()
+                gene_display['log2FoldChange'] = gene_display['log2FoldChange'].apply(lambda x: f"{x:.3f}")
+                gene_display['padj'] = gene_display['padj'].apply(format_scientific_notation)
+                gene_display = gene_display.sort_values('log2FoldChange', key=lambda x: x.astype(float).abs(), ascending=False)
+            else:
+                gene_display = gene_df.copy()
+            
+            html += """
+            <h3>DEGs in Key Event</h3>
+"""
+            html += dataframe_to_html_table(gene_display, f"gene-table-{ke_id}")
+        
+        # Functional Enrichment Results
+        if ke_id in functional_enrichment_data:
+            fe_data = functional_enrichment_data[ke_id]
+            html += """
+            <div class="enrichment-section">
+                <h3>Functional Enrichment Results</h3>
+"""
+            # Barplots side by side
+            html += """
+                <div class="enrichment-plots">
+"""
+            if 'GO:BP' in fe_data and 'GO:BP_raw' in fe_data and not fe_data['GO:BP_raw'].empty:
+                try:
+                    if create_enrichment_barplot:
+                        fig_gobp = create_enrichment_barplot(fe_data['GO:BP_raw'], f"GO:BP - {ke_name}", color='skyblue', max_terms=10)
+                        if fig_gobp:
+                            gobp_plot_base64 = figure_to_base64(fig_gobp)
+                            html += f"""
+                    <div class="enrichment-plot-container">
+                        <h4>GO:BP</h4>
+                        <img src="data:image/png;base64,{gobp_plot_base64}" alt="GO:BP Enrichment">
+                    </div>
+"""
+                    else:
+                        html += """
+                    <div></div>
+"""
+                except Exception as e:
+                    html += f'<div><p style="color: red;">Error generating GO:BP plot: {str(e)}</p></div>'
+            else:
+                html += """
+                    <div></div>
+"""
+            
+            if 'KEGG' in fe_data and 'KEGG_raw' in fe_data and not fe_data['KEGG_raw'].empty:
+                try:
+                    if create_enrichment_barplot:
+                        fig_kegg = create_enrichment_barplot(fe_data['KEGG_raw'], f"KEGG - {ke_name}", color='lightcoral', max_terms=10)
+                        if fig_kegg:
+                            kegg_plot_base64 = figure_to_base64(fig_kegg)
+                            html += f"""
+                    <div class="enrichment-plot-container">
+                        <h4>KEGG</h4>
+                        <img src="data:image/png;base64,{kegg_plot_base64}" alt="KEGG Enrichment">
+                    </div>
+"""
+                    else:
+                        html += """
+                    <div></div>
+"""
+                except Exception as e:
+                    html += f'<div><p style="color: red;">Error generating KEGG plot: {str(e)}</p></div>'
+            else:
+                html += """
+                    <div></div>
+"""
+            
+            html += """
+                </div>
+"""
+            
+            # Tables side by side
+            html += """
+                <div class="enrichment-tables">
+"""
+            if 'GO:BP' in fe_data and not fe_data['GO:BP'].empty:
+                html += """
+                    <div>
+                        <h4>GO:BP</h4>
+"""
+                html += dataframe_to_html_table(fe_data['GO:BP'], f"gobp-table-{ke_id}")
+                html += """
+                    </div>
+"""
+            if 'KEGG' in fe_data and not fe_data['KEGG'].empty:
+                html += """
+                    <div>
+                        <h4>KEGG</h4>
+"""
+                html += dataframe_to_html_table(fe_data['KEGG'], f"kegg-table-{ke_id}")
+                html += """
+                    </div>
+"""
+            html += """
+                </div>
+            </div>
+"""
+        
+        html += """
+        </div>
+"""
+        
+        # Add page break except for last item
+        if idx < len(ke_data_list) - 1:
+            html += '<div class="page-break"></div>'
+    
+    html += """
+    </div>
+</body>
+</html>
+"""
+    
+    return html
 

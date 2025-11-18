@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 # Project modules
-from enrichment import perform_functional_enrichment, filter_enrichment_results, create_enrichment_barplot, convert_intersections_to_gene_names
+from enrichment import perform_functional_enrichment, filter_enrichment_results, create_enrichment_barplot, convert_intersections_to_gene_names, wrap_gene_names
 from ke_enrichment import (
     perform_ke_enrichment,
     apply_fdr_correction,
@@ -14,7 +14,7 @@ from ke_enrichment import (
     format_ke_results_for_display
 )
 from data_loader import load_deg_file, load_deg_from_path, prepare_ke_data, apply_column_mapping, filter_degs, get_excel_sheet_names
-from utils import format_scientific_notation, get_gene_name_column, generate_ke_pdf
+from utils import format_scientific_notation, get_gene_name_column, generate_ke_pdf, generate_ke_html_report
 
 st.set_page_config(layout="wide", page_title="KE & Functional Enrichment")
 
@@ -426,6 +426,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                                     genes_data = source_df_reset[intersections_col].apply(
                                                         lambda x: convert_intersections_to_gene_names(x, ensembl_to_gene)
                                                     ).tolist()
+                                                    # Apply text wrapping to genes
+                                                    genes_data = [wrap_gene_names(g, genes_per_line=8) for g in genes_data]
                                                 else:
                                                     genes_data = ['N/A'] * n_rows
                                             else:
@@ -445,7 +447,19 @@ for tab_idx in range(st.session_state.num_analyses):
                                                 'Genes': genes_data
                                             })
                                             
-                                            st.dataframe(display_df, use_container_width=True)
+                                            # Display with column configuration for text wrapping
+                                            st.dataframe(
+                                                display_df,
+                                                use_container_width=True,
+                                                column_config={
+                                                    "Genes": st.column_config.TextColumn(
+                                                        "Genes",
+                                                        help="Genes in the enriched term",
+                                                        width="large"
+                                                    )
+                                                },
+                                                hide_index=True
+                                            )
                                         else:
                                             st.info("No significant GO:BP terms found")
                         
@@ -512,6 +526,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                                     genes_data = source_df_reset[intersections_col].apply(
                                                         lambda x: convert_intersections_to_gene_names(x, ensembl_to_gene)
                                                     ).tolist()
+                                                    # Apply text wrapping to genes
+                                                    genes_data = [wrap_gene_names(g, genes_per_line=8) for g in genes_data]
                                                 else:
                                                     genes_data = ['N/A'] * n_rows
                                             else:
@@ -531,7 +547,19 @@ for tab_idx in range(st.session_state.num_analyses):
                                                 'Genes': genes_data
                                             })
                                             
-                                            st.dataframe(display_df, use_container_width=True)
+                                            # Display with column configuration for text wrapping
+                                            st.dataframe(
+                                                display_df,
+                                                use_container_width=True,
+                                                column_config={
+                                                    "Genes": st.column_config.TextColumn(
+                                                        "Genes",
+                                                        help="Genes in the enriched term",
+                                                        width="large"
+                                                    )
+                                                },
+                                                hide_index=True
+                                            )
                                         else:
                                             st.info("No significant KEGG pathways found")
         
@@ -641,17 +669,17 @@ for tab_idx in range(st.session_state.num_analyses):
                             st.session_state[f"{key_prefix}_pdf_data"] = pdf_ke_data_list
                             st.session_state[f"{key_prefix}_summary_table"] = summary_table_data
                             
-                            # Add download PDF button
+                            # Add download buttons
                             if pdf_ke_data_list:
                                 st.markdown("---")
-                                col_download1, col_download2 = st.columns([3, 1])
+                                col_download1, col_download2, col_download3 = st.columns([2, 1, 1])
                                 with col_download1:
                                     st.markdown("**Download Results**")
                                 with col_download2:
                                     pdf_filename = f"KE_Enrichment_{analysis_name or f'Analysis_{analysis_num}'}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
                                     
                                     # Generate PDF when button is clicked
-                                    if st.button("📥 Generate & Download PDF", key=f"{key_prefix}_download_pdf", use_container_width=True):
+                                    if st.button("📥 Generate PDF", key=f"{key_prefix}_download_pdf", use_container_width=True):
                                         with st.spinner("Generating PDF..."):
                                             try:
                                                 pdf_bytes = generate_ke_pdf(
@@ -676,6 +704,41 @@ for tab_idx in range(st.session_state.num_analyses):
                                             file_name=st.session_state[f"{key_prefix}_pdf_filename"],
                                             mime="application/pdf",
                                             key=f"{key_prefix}_pdf_download_btn"
+                                        )
+                                
+                                with col_download3:
+                                    html_filename = f"KE_Enrichment_{analysis_name or f'Analysis_{analysis_num}'}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
+                                    
+                                    # Generate HTML when button is clicked
+                                    if st.button("🌐 Generate HTML", key=f"{key_prefix}_download_html", use_container_width=True):
+                                        with st.spinner("Generating HTML report..."):
+                                            try:
+                                                # Get functional enrichment data from session state if available
+                                                fe_data = st.session_state.get(f"{key_prefix}_functional_enrichment", {})
+                                                
+                                                html_content = generate_ke_html_report(
+                                                    pdf_ke_data_list,
+                                                    analysis_name=analysis_name or f"Analysis {analysis_num}",
+                                                    dataset_name=st.session_state.get(f"{key_prefix}_dataset_label", "Not specified"),
+                                                    sheet_name=st.session_state.get(f"{key_prefix}_dataset_sheet", "Not specified"),
+                                                    summary_table=summary_table_data,
+                                                    fdr_threshold=0.05,
+                                                    functional_enrichment_data=fe_data
+                                                )
+                                                st.session_state[f"{key_prefix}_html_content"] = html_content
+                                                st.session_state[f"{key_prefix}_html_filename"] = html_filename
+                                                st.success("HTML report generated successfully!")
+                                            except Exception as e:
+                                                st.error(f"Error generating HTML: {str(e)}")
+                                    
+                                    # Show download button if HTML is ready
+                                    if f"{key_prefix}_html_content" in st.session_state:
+                                        st.download_button(
+                                            label="⬇️ Download HTML",
+                                            data=st.session_state[f"{key_prefix}_html_content"],
+                                            file_name=st.session_state[f"{key_prefix}_html_filename"],
+                                            mime="text/html",
+                                            key=f"{key_prefix}_html_download_btn"
                                         )
                                 st.markdown("---")
                 
@@ -773,6 +836,14 @@ for tab_idx in range(st.session_state.num_analyses):
                                 
                                             gobp_ke_filtered = filter_enrichment_results(gobp_ke, 'GO')
                                             kegg_ke_filtered = filter_enrichment_results(kegg_ke, 'KEGG')
+                                            
+                                            # Store raw filtered data for barplot generation
+                                            if f"{key_prefix}_functional_enrichment" not in st.session_state:
+                                                st.session_state[f"{key_prefix}_functional_enrichment"] = {}
+                                            if ke_id not in st.session_state[f"{key_prefix}_functional_enrichment"]:
+                                                st.session_state[f"{key_prefix}_functional_enrichment"][ke_id] = {}
+                                            st.session_state[f"{key_prefix}_functional_enrichment"][ke_id]['GO:BP_raw'] = gobp_ke_filtered
+                                            st.session_state[f"{key_prefix}_functional_enrichment"][ke_id]['KEGG_raw'] = kegg_ke_filtered
                                 
                                             with st.expander("Enrichment Results", expanded=True):
                                                 col_gobp, col_kegg = st.columns(2)
@@ -780,7 +851,7 @@ for tab_idx in range(st.session_state.num_analyses):
                                                 with col_gobp:
                                                     st.markdown("**GO:BP**")
                                                     if not gobp_ke_filtered.empty:
-                                                        fig_gobp_ke = create_enrichment_barplot(gobp_ke_filtered, f"GO:BP - {ke_name}", color='skyblue', max_terms=10)
+                                                        fig_gobp_ke = create_enrichment_barplot(gobp_ke_filtered, f"GO:BP - DEGs in {ke_name}", color='skyblue', max_terms=10)
                                                         if fig_gobp_ke:
                                                             st.pyplot(fig_gobp_ke)
                                                         
@@ -828,6 +899,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                                                 genes_data = source_df_reset[ke_intersections_col].apply(
                                                                     lambda x: convert_intersections_to_gene_names(x, ke_ensembl_to_gene)
                                                                 ).tolist()
+                                                                # Apply text wrapping to genes
+                                                                genes_data = [wrap_gene_names(g, genes_per_line=8) for g in genes_data]
                                                             else:
                                                                 genes_data = ['N/A'] * n_rows
                                                         else:
@@ -845,14 +918,56 @@ for tab_idx in range(st.session_state.num_analyses):
                                                             'Genes': genes_data
                                                         })
                                                         
-                                                        st.dataframe(display_gobp, use_container_width=True, hide_index=True)
+                                                        # Store for HTML report (remove wrapping for storage)
+                                                        if f"{key_prefix}_functional_enrichment" not in st.session_state:
+                                                            st.session_state[f"{key_prefix}_functional_enrichment"] = {}
+                                                        if ke_id not in st.session_state[f"{key_prefix}_functional_enrichment"]:
+                                                            st.session_state[f"{key_prefix}_functional_enrichment"][ke_id] = {}
+                                                        
+                                                        # Store without wrapping for HTML (HTML will handle wrapping)
+                                                        gobp_for_html = gobp_ke_head.copy()
+                                                        if ke_intersections_col and ke_intersections_col in gobp_for_html.columns:
+                                                            gobp_for_html['Genes'] = gobp_for_html[ke_intersections_col].apply(
+                                                                lambda x: convert_intersections_to_gene_names(x, ke_ensembl_to_gene)
+                                                            )
+                                                        else:
+                                                            gobp_for_html['Genes'] = 'N/A'
+                                                        
+                                                        if ke_term_id_col and ke_term_id_col in gobp_for_html.columns:
+                                                            gobp_for_html['Term ID'] = gobp_for_html[ke_term_id_col]
+                                                        else:
+                                                            gobp_for_html['Term ID'] = 'N/A'
+                                                        
+                                                        gobp_html_df = pd.DataFrame({
+                                                            'Term ID': gobp_for_html.get('Term ID', 'N/A'),
+                                                            'Term Name': gobp_for_html['name'],
+                                                            'p-value': gobp_for_html['p_value'].apply(format_scientific_notation),
+                                                            'Genes in Term': gobp_for_html['intersection_size'],
+                                                            'Genes': gobp_for_html['Genes']
+                                                        }).head(10)
+                                                        
+                                                        st.session_state[f"{key_prefix}_functional_enrichment"][ke_id]['GO:BP'] = gobp_html_df
+                                                        
+                                                        # Display with column configuration for text wrapping
+                                                        st.dataframe(
+                                                            display_gobp,
+                                                            use_container_width=True,
+                                                            column_config={
+                                                                "Genes": st.column_config.TextColumn(
+                                                                    "Genes",
+                                                                    help="Genes in the enriched term",
+                                                                    width="large"
+                                                                )
+                                                            },
+                                                            hide_index=True
+                                                        )
                                                     else:
                                                         st.info("No significant terms")
                                     
                                                 with col_kegg:
                                                     st.markdown("**KEGG**")
                                                     if not kegg_ke_filtered.empty:
-                                                        fig_kegg_ke = create_enrichment_barplot(kegg_ke_filtered, f"KEGG - {ke_name}", color='lightcoral', max_terms=10)
+                                                        fig_kegg_ke = create_enrichment_barplot(kegg_ke_filtered, f"KEGG - DEGs in {ke_name}", color='lightcoral', max_terms=10)
                                                         if fig_kegg_ke:
                                                             st.pyplot(fig_kegg_ke)
                                                         
@@ -900,6 +1015,8 @@ for tab_idx in range(st.session_state.num_analyses):
                                                                 genes_data = source_df_reset[ke_intersections_col].apply(
                                                                     lambda x: convert_intersections_to_gene_names(x, ke_ensembl_to_gene)
                                                                 ).tolist()
+                                                                # Apply text wrapping to genes
+                                                                genes_data = [wrap_gene_names(g, genes_per_line=8) for g in genes_data]
                                                             else:
                                                                 genes_data = ['N/A'] * n_rows
                                                         else:
@@ -917,7 +1034,49 @@ for tab_idx in range(st.session_state.num_analyses):
                                                             'Genes': genes_data
                                                         })
                                                         
-                                                        st.dataframe(display_kegg, use_container_width=True, hide_index=True)
+                                                        # Store for HTML report
+                                                        if f"{key_prefix}_functional_enrichment" not in st.session_state:
+                                                            st.session_state[f"{key_prefix}_functional_enrichment"] = {}
+                                                        if ke_id not in st.session_state[f"{key_prefix}_functional_enrichment"]:
+                                                            st.session_state[f"{key_prefix}_functional_enrichment"][ke_id] = {}
+                                                        
+                                                        # Store without wrapping for HTML
+                                                        kegg_for_html = kegg_ke_head.copy()
+                                                        if ke_intersections_col and ke_intersections_col in kegg_for_html.columns:
+                                                            kegg_for_html['Genes'] = kegg_for_html[ke_intersections_col].apply(
+                                                                lambda x: convert_intersections_to_gene_names(x, ke_ensembl_to_gene)
+                                                            )
+                                                        else:
+                                                            kegg_for_html['Genes'] = 'N/A'
+                                                        
+                                                        if ke_term_id_col and ke_term_id_col in kegg_for_html.columns:
+                                                            kegg_for_html['Term ID'] = kegg_for_html[ke_term_id_col]
+                                                        else:
+                                                            kegg_for_html['Term ID'] = 'N/A'
+                                                        
+                                                        kegg_html_df = pd.DataFrame({
+                                                            'Term ID': kegg_for_html.get('Term ID', 'N/A'),
+                                                            'Term Name': kegg_for_html['name'],
+                                                            'p-value': kegg_for_html['p_value'].apply(format_scientific_notation),
+                                                            'Genes in Term': kegg_for_html['intersection_size'],
+                                                            'Genes': kegg_for_html['Genes']
+                                                        }).head(10)
+                                                        
+                                                        st.session_state[f"{key_prefix}_functional_enrichment"][ke_id]['KEGG'] = kegg_html_df
+                                                        
+                                                        # Display with column configuration for text wrapping
+                                                        st.dataframe(
+                                                            display_kegg,
+                                                            use_container_width=True,
+                                                            column_config={
+                                                                "Genes": st.column_config.TextColumn(
+                                                                    "Genes",
+                                                                    help="Genes in the enriched term",
+                                                                    width="large"
+                                                                )
+                                                            },
+                                                            hide_index=True
+                                                        )
                                                     else:
                                                         st.info("No significant pathways")
                                         else:

@@ -254,6 +254,38 @@ def convert_intersections_to_gene_names(intersections, ensembl_to_gene_map):
     return ", ".join(gene_names)
 
 
+def wrap_gene_names(gene_names_str, genes_per_line=8):
+    """
+    Wrap gene names string into multiple lines for better display
+    
+    Parameters:
+    -----------
+    gene_names_str : str
+        Comma-separated string of gene names
+    genes_per_line : int
+        Number of genes to display per line (default: 8)
+    
+    Returns:
+    --------
+    str
+        Gene names wrapped with line breaks (using newline characters)
+    """
+    if not gene_names_str or gene_names_str == "" or gene_names_str == "N/A":
+        return gene_names_str
+    
+    # Split by comma
+    genes = [g.strip() for g in gene_names_str.split(',')]
+    
+    # Group into chunks
+    wrapped_lines = []
+    for i in range(0, len(genes), genes_per_line):
+        chunk = genes[i:i + genes_per_line]
+        wrapped_lines.append(", ".join(chunk))
+    
+    # Join with newline characters
+    return "\n".join(wrapped_lines)
+
+
 def get_version_info():
     """Get version information for all packages used"""
     packages = [
