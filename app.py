@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 # Project modules
-from enrichment import perform_functional_enrichment, filter_enrichment_results, create_enrichment_barplot
+from enrichment import perform_functional_enrichment, filter_enrichment_results, create_enrichment_barplot, convert_intersections_to_gene_names
 from ke_enrichment import (
     perform_ke_enrichment,
     apply_fdr_correction,
@@ -80,7 +80,6 @@ ke_map, background_genes = prepare_ke_data(ke_map_path, ke_desc_path)
 if ke_map is None:
     st.error("Failed to load KE data. Please check the data files.")
     st.stop()
-
 
 # Create tabs with custom names
 tab_names = []
@@ -343,6 +342,15 @@ for tab_idx in range(st.session_state.num_analyses):
                                 gene_list = []
                 
                             if gene_list:
+                                # Create mapping from Ensembl IDs to gene names for intersection conversion
+                                ensembl_to_gene = {}
+                                if 'human_ensembl_id' in filtered_df.columns and 'gene' in filtered_df.columns:
+                                    for _, row in filtered_df.iterrows():
+                                        ensembl_id = row.get('human_ensembl_id')
+                                        gene_name = row.get('gene')
+                                        if pd.notna(ensembl_id) and pd.notna(gene_name):
+                                            ensembl_to_gene[str(ensembl_id)] = str(gene_name)
+                                
                                 # Run GO:BP enrichment
                                 gobp_results = perform_functional_enrichment(gene_list, sources=['GO:BP'])
                                 gobp_filtered = filter_enrichment_results(gobp_results, 'GO')
@@ -363,9 +371,80 @@ for tab_idx in range(st.session_state.num_analyses):
                                             fig_gobp = create_enrichment_barplot(gobp_filtered, "GO:BP Enrichment", color='skyblue', max_terms=15)
                                             if fig_gobp:
                                                 st.pyplot(fig_gobp)
-                                            # Display table
-                                            display_df = gobp_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
-                                            display_df['p_value'] = display_df['p_value'].apply(format_scientific_notation)
+                                            # Display table with term_id and intersections
+                                            # Work with head(20) from the start to ensure consistent indexing
+                                            gobp_head = gobp_filtered.head(20).copy()
+                                            
+                                            # Check what columns gprofiler actually returned
+                                            available_cols = list(gobp_head.columns)
+                                            
+                                            # Find term_id column - check all possible names
+                                            term_id_col = None
+                                            for col in available_cols:
+                                                if col.lower() in ['native', 'native_id', 'term_id', 'native_term_id', 'native_term']:
+                                                    term_id_col = col
+                                                    break
+                                            
+                                            # If not found by name, check if any column contains term IDs (GO: or hsa:)
+                                            if not term_id_col and not gobp_head.empty:
+                                                for col in available_cols:
+                                                    try:
+                                                        sample_val = str(gobp_head[col].iloc[0])
+                                                        if sample_val.startswith('GO:') or sample_val.startswith('hsa:'):
+                                                            term_id_col = col
+                                                            break
+                                                    except:
+                                                        continue
+                                            
+                                            # Find intersections column - check all possible names
+                                            intersections_col = None
+                                            for col in available_cols:
+                                                if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                    intersections_col = col
+                                                    break
+                                            # Also check in original results
+                                            if not intersections_col:
+                                                for col in gobp_results.columns:
+                                                    if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                        intersections_col = col
+                                                        break
+                                            
+                                            # Build display dataframe with ALL 5 columns from the start
+                                            n_rows = len(gobp_head)
+                                            
+                                            # Create Term ID column
+                                            if term_id_col and term_id_col in gobp_head.columns:
+                                                term_id_data = gobp_head[term_id_col].reset_index(drop=True).tolist()
+                                            else:
+                                                term_id_data = ['N/A'] * n_rows
+                                            
+                                            # Create Genes column
+                                            if intersections_col:
+                                                source_df = gobp_head if intersections_col in gobp_head.columns else gobp_results.head(20)
+                                                if intersections_col in source_df.columns:
+                                                    source_df_reset = source_df.reset_index(drop=True)
+                                                    genes_data = source_df_reset[intersections_col].apply(
+                                                        lambda x: convert_intersections_to_gene_names(x, ensembl_to_gene)
+                                                    ).tolist()
+                                                else:
+                                                    genes_data = ['N/A'] * n_rows
+                                            else:
+                                                genes_data = ['N/A'] * n_rows
+                                            
+                                            # Get base columns
+                                            name_data = gobp_head['name'].reset_index(drop=True).tolist()
+                                            pvalue_data = gobp_head['p_value'].reset_index(drop=True).apply(format_scientific_notation).tolist()
+                                            intersection_size_data = gobp_head['intersection_size'].reset_index(drop=True).tolist()
+                                            
+                                            # Build final dataframe with all 5 columns
+                                            display_df = pd.DataFrame({
+                                                'Term ID': term_id_data,
+                                                'Term Name': name_data,
+                                                'p-value': pvalue_data,
+                                                'Genes in Term': intersection_size_data,
+                                                'Genes': genes_data
+                                            })
+                                            
                                             st.dataframe(display_df, use_container_width=True)
                                         else:
                                             st.info("No significant GO:BP terms found")
@@ -378,9 +457,80 @@ for tab_idx in range(st.session_state.num_analyses):
                                             fig_kegg = create_enrichment_barplot(kegg_filtered, "KEGG Enrichment", color='lightcoral', max_terms=15)
                                             if fig_kegg:
                                                 st.pyplot(fig_kegg)
-                                            # Display table
-                                            display_df = kegg_filtered[['name', 'p_value', 'intersection_size', 'term_size']].head(20)
-                                            display_df['p_value'] = display_df['p_value'].apply(format_scientific_notation)
+                                            # Display table with term_id and intersections
+                                            # Work with head(20) from the start to ensure consistent indexing
+                                            kegg_head = kegg_filtered.head(20).copy()
+                                            
+                                            # Check what columns gprofiler actually returned
+                                            available_cols = list(kegg_head.columns)
+                                            
+                                            # Find term_id column - check all possible names
+                                            term_id_col = None
+                                            for col in available_cols:
+                                                if col.lower() in ['native', 'native_id', 'term_id', 'native_term_id', 'native_term']:
+                                                    term_id_col = col
+                                                    break
+                                            
+                                            # If not found by name, check if any column contains term IDs (GO: or hsa:)
+                                            if not term_id_col and not kegg_head.empty:
+                                                for col in available_cols:
+                                                    try:
+                                                        sample_val = str(kegg_head[col].iloc[0])
+                                                        if sample_val.startswith('GO:') or sample_val.startswith('hsa:'):
+                                                            term_id_col = col
+                                                            break
+                                                    except:
+                                                        continue
+                                            
+                                            # Find intersections column - check all possible names
+                                            intersections_col = None
+                                            for col in available_cols:
+                                                if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                    intersections_col = col
+                                                    break
+                                            # Also check in original results
+                                            if not intersections_col:
+                                                for col in kegg_results.columns:
+                                                    if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                        intersections_col = col
+                                                        break
+                                            
+                                            # Build display dataframe with ALL 5 columns from the start
+                                            n_rows = len(kegg_head)
+                                            
+                                            # Create Term ID column
+                                            if term_id_col and term_id_col in kegg_head.columns:
+                                                term_id_data = kegg_head[term_id_col].reset_index(drop=True).tolist()
+                                            else:
+                                                term_id_data = ['N/A'] * n_rows
+                                            
+                                            # Create Genes column
+                                            if intersections_col:
+                                                source_df = kegg_head if intersections_col in kegg_head.columns else kegg_results.head(20)
+                                                if intersections_col in source_df.columns:
+                                                    source_df_reset = source_df.reset_index(drop=True)
+                                                    genes_data = source_df_reset[intersections_col].apply(
+                                                        lambda x: convert_intersections_to_gene_names(x, ensembl_to_gene)
+                                                    ).tolist()
+                                                else:
+                                                    genes_data = ['N/A'] * n_rows
+                                            else:
+                                                genes_data = ['N/A'] * n_rows
+                                            
+                                            # Get base columns
+                                            name_data = kegg_head['name'].reset_index(drop=True).tolist()
+                                            pvalue_data = kegg_head['p_value'].reset_index(drop=True).apply(format_scientific_notation).tolist()
+                                            intersection_size_data = kegg_head['intersection_size'].reset_index(drop=True).tolist()
+                                            
+                                            # Build final dataframe with all 5 columns
+                                            display_df = pd.DataFrame({
+                                                'Term ID': term_id_data,
+                                                'Term Name': name_data,
+                                                'p-value': pvalue_data,
+                                                'Genes in Term': intersection_size_data,
+                                                'Genes': genes_data
+                                            })
+                                            
                                             st.dataframe(display_df, use_container_width=True)
                                         else:
                                             st.info("No significant KEGG pathways found")
@@ -610,6 +760,14 @@ for tab_idx in range(st.session_state.num_analyses):
                                             ke_gene_list = ke_genes_df[gene_col].dropna().tolist()
                             
                                         if ke_gene_list:
+                                            # Create mapping from Ensembl IDs to gene names for intersection conversion
+                                            ke_ensembl_to_gene = {}
+                                            for gene_info in gene_details:
+                                                ensembl_id = gene_info.get('Ensembl ID')
+                                                gene_name = gene_info.get('Gene Name')
+                                                if ensembl_id and gene_name:
+                                                    ke_ensembl_to_gene[str(ensembl_id)] = str(gene_name)
+                                            
                                             gobp_ke = perform_functional_enrichment(ke_gene_list, sources=['GO:BP'])
                                             kegg_ke = perform_functional_enrichment(ke_gene_list, sources=['KEGG'])
                                 
@@ -625,8 +783,68 @@ for tab_idx in range(st.session_state.num_analyses):
                                                         fig_gobp_ke = create_enrichment_barplot(gobp_ke_filtered, f"GO:BP - {ke_name}", color='skyblue', max_terms=10)
                                                         if fig_gobp_ke:
                                                             st.pyplot(fig_gobp_ke)
-                                                        display_gobp = gobp_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
-                                                        display_gobp['p_value'] = display_gobp['p_value'].apply(format_scientific_notation)
+                                                        
+                                                        # Build display dataframe with ALL 5 columns
+                                                        gobp_ke_head = gobp_ke_filtered.head(10).copy()
+                                                        n_rows = len(gobp_ke_head)
+                                                        
+                                                        # Find term_id and intersections columns
+                                                        ke_term_id_col = None
+                                                        for col in gobp_ke_head.columns:
+                                                            if col.lower() in ['native', 'native_id', 'term_id', 'native_term_id', 'native_term']:
+                                                                ke_term_id_col = col
+                                                                break
+                                                        if not ke_term_id_col and not gobp_ke_head.empty:
+                                                            for col in gobp_ke_head.columns:
+                                                                try:
+                                                                    sample_val = str(gobp_ke_head[col].iloc[0])
+                                                                    if sample_val.startswith('GO:') or sample_val.startswith('hsa:'):
+                                                                        ke_term_id_col = col
+                                                                        break
+                                                                except:
+                                                                    continue
+                                                        
+                                                        ke_intersections_col = None
+                                                        for col in gobp_ke_head.columns:
+                                                            if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                                ke_intersections_col = col
+                                                                break
+                                                        if not ke_intersections_col:
+                                                            for col in gobp_ke.columns:
+                                                                if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                                    ke_intersections_col = col
+                                                                    break
+                                                        
+                                                        # Create all 5 columns
+                                                        if ke_term_id_col and ke_term_id_col in gobp_ke_head.columns:
+                                                            term_id_data = gobp_ke_head[ke_term_id_col].reset_index(drop=True).tolist()
+                                                        else:
+                                                            term_id_data = ['N/A'] * n_rows
+                                                        
+                                                        if ke_intersections_col:
+                                                            source_df = gobp_ke_head if ke_intersections_col in gobp_ke_head.columns else gobp_ke.head(10)
+                                                            if ke_intersections_col in source_df.columns:
+                                                                source_df_reset = source_df.reset_index(drop=True)
+                                                                genes_data = source_df_reset[ke_intersections_col].apply(
+                                                                    lambda x: convert_intersections_to_gene_names(x, ke_ensembl_to_gene)
+                                                                ).tolist()
+                                                            else:
+                                                                genes_data = ['N/A'] * n_rows
+                                                        else:
+                                                            genes_data = ['N/A'] * n_rows
+                                                        
+                                                        name_data = gobp_ke_head['name'].reset_index(drop=True).tolist()
+                                                        pvalue_data = gobp_ke_head['p_value'].reset_index(drop=True).apply(format_scientific_notation).tolist()
+                                                        intersection_size_data = gobp_ke_head['intersection_size'].reset_index(drop=True).tolist()
+                                                        
+                                                        display_gobp = pd.DataFrame({
+                                                            'Term ID': term_id_data,
+                                                            'Term Name': name_data,
+                                                            'p-value': pvalue_data,
+                                                            'Genes in Term': intersection_size_data,
+                                                            'Genes': genes_data
+                                                        })
+                                                        
                                                         st.dataframe(display_gobp, use_container_width=True, hide_index=True)
                                                     else:
                                                         st.info("No significant terms")
@@ -637,8 +855,68 @@ for tab_idx in range(st.session_state.num_analyses):
                                                         fig_kegg_ke = create_enrichment_barplot(kegg_ke_filtered, f"KEGG - {ke_name}", color='lightcoral', max_terms=10)
                                                         if fig_kegg_ke:
                                                             st.pyplot(fig_kegg_ke)
-                                                        display_kegg = kegg_ke_filtered[['name', 'p_value', 'intersection_size']].head(10)
-                                                        display_kegg['p_value'] = display_kegg['p_value'].apply(format_scientific_notation)
+                                                        
+                                                        # Build display dataframe with ALL 5 columns
+                                                        kegg_ke_head = kegg_ke_filtered.head(10).copy()
+                                                        n_rows = len(kegg_ke_head)
+                                                        
+                                                        # Find term_id and intersections columns
+                                                        ke_term_id_col = None
+                                                        for col in kegg_ke_head.columns:
+                                                            if col.lower() in ['native', 'native_id', 'term_id', 'native_term_id', 'native_term']:
+                                                                ke_term_id_col = col
+                                                                break
+                                                        if not ke_term_id_col and not kegg_ke_head.empty:
+                                                            for col in kegg_ke_head.columns:
+                                                                try:
+                                                                    sample_val = str(kegg_ke_head[col].iloc[0])
+                                                                    if sample_val.startswith('GO:') or sample_val.startswith('hsa:'):
+                                                                        ke_term_id_col = col
+                                                                        break
+                                                                except:
+                                                                    continue
+                                                        
+                                                        ke_intersections_col = None
+                                                        for col in kegg_ke_head.columns:
+                                                            if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                                ke_intersections_col = col
+                                                                break
+                                                        if not ke_intersections_col:
+                                                            for col in kegg_ke.columns:
+                                                                if col.lower() in ['intersections', 'intersection', 'evidence', 'intersection_gene_names', 'intersection_genes']:
+                                                                    ke_intersections_col = col
+                                                                    break
+                                                        
+                                                        # Create all 5 columns
+                                                        if ke_term_id_col and ke_term_id_col in kegg_ke_head.columns:
+                                                            term_id_data = kegg_ke_head[ke_term_id_col].reset_index(drop=True).tolist()
+                                                        else:
+                                                            term_id_data = ['N/A'] * n_rows
+                                                        
+                                                        if ke_intersections_col:
+                                                            source_df = kegg_ke_head if ke_intersections_col in kegg_ke_head.columns else kegg_ke.head(10)
+                                                            if ke_intersections_col in source_df.columns:
+                                                                source_df_reset = source_df.reset_index(drop=True)
+                                                                genes_data = source_df_reset[ke_intersections_col].apply(
+                                                                    lambda x: convert_intersections_to_gene_names(x, ke_ensembl_to_gene)
+                                                                ).tolist()
+                                                            else:
+                                                                genes_data = ['N/A'] * n_rows
+                                                        else:
+                                                            genes_data = ['N/A'] * n_rows
+                                                        
+                                                        name_data = kegg_ke_head['name'].reset_index(drop=True).tolist()
+                                                        pvalue_data = kegg_ke_head['p_value'].reset_index(drop=True).apply(format_scientific_notation).tolist()
+                                                        intersection_size_data = kegg_ke_head['intersection_size'].reset_index(drop=True).tolist()
+                                                        
+                                                        display_kegg = pd.DataFrame({
+                                                            'Term ID': term_id_data,
+                                                            'Term Name': name_data,
+                                                            'p-value': pvalue_data,
+                                                            'Genes in Term': intersection_size_data,
+                                                            'Genes': genes_data
+                                                        })
+                                                        
                                                         st.dataframe(display_kegg, use_container_width=True, hide_index=True)
                                                     else:
                                                         st.info("No significant pathways")

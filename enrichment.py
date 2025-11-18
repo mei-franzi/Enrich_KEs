@@ -158,6 +158,102 @@ def create_enrichment_barplot(enrichment_df, title, color='skyblue', max_terms=1
     return fig
 
 
+def convert_intersections_to_gene_names(intersections, ensembl_to_gene_map):
+    """
+    Convert intersections (Ensembl IDs or gene symbols) to gene names
+    
+    Parameters:
+    -----------
+    intersections : str, list, pandas Series, or numpy array
+        Gene IDs from enrichment results (can be Ensembl IDs or gene symbols)
+    ensembl_to_gene_map : dict
+        Dictionary mapping Ensembl IDs to gene names
+    
+    Returns:
+    --------
+    str
+        Comma-separated string of gene names
+    """
+    # Handle pandas Series - convert to scalar first
+    if isinstance(intersections, pd.Series):
+        if intersections.empty:
+            return ""
+        # Take the first value if it's a Series
+        intersections = intersections.iloc[0] if len(intersections) > 0 else None
+    
+    # Handle numpy arrays - convert to list
+    if isinstance(intersections, np.ndarray):
+        if intersections.size == 0:
+            return ""
+        # Flatten and take first element if 1D, or convert to list
+        if intersections.ndim == 0:
+            intersections = intersections.item()
+        elif intersections.ndim == 1:
+            intersections = intersections.tolist()
+        else:
+            # Multi-dimensional array - take first element
+            intersections = intersections.flat[0] if intersections.size > 0 else None
+    
+    # Check for None first (before any pandas operations)
+    if intersections is None:
+        return ""
+    
+    # Check for NaN values (scalar check only)
+    try:
+        # Only check for scalar NaN values
+        if isinstance(intersections, (int, float, str)) or (hasattr(intersections, '__len__') and len(intersections) == 1):
+            if pd.isna(intersections):
+                return ""
+    except (TypeError, ValueError):
+        # If pd.isna fails, continue
+        pass
+    
+    # Check if empty (only for sequences, not scalars)
+    try:
+        if hasattr(intersections, '__len__') and len(intersections) == 0:
+            return ""
+    except (TypeError, AttributeError):
+        pass
+    
+    # Handle both list and string formats
+    if isinstance(intersections, str):
+        # Check if it's actually empty string
+        if not intersections.strip():
+            return ""
+        gene_ids = [g.strip() for g in intersections.split(',')]
+    elif isinstance(intersections, list):
+        # Filter out any None/NaN values from list
+        gene_ids = [g for g in intersections if g is not None and not (isinstance(g, float) and pd.isna(g))]
+    else:
+        # Try to convert to string as last resort
+        try:
+            intersections_str = str(intersections)
+            if intersections_str and intersections_str.lower() not in ['none', 'nan', '']:
+                gene_ids = [intersections_str.strip()]
+            else:
+                return ""
+        except:
+            return ""
+    
+    gene_names = []
+    for gene_id in gene_ids:
+        gene_id = str(gene_id).strip()
+        # Check if it's an Ensembl ID and convert
+        if gene_id in ensembl_to_gene_map:
+            gene_names.append(ensembl_to_gene_map[gene_id])
+        elif gene_id.startswith('ENS'):
+            # Try to find in mapping
+            if gene_id in ensembl_to_gene_map:
+                gene_names.append(ensembl_to_gene_map[gene_id])
+            else:
+                gene_names.append(gene_id)  # Keep as is if not found
+        else:
+            # Already a gene symbol, keep it
+            gene_names.append(gene_id)
+    
+    return ", ".join(gene_names)
+
+
 def get_version_info():
     """Get version information for all packages used"""
     packages = [
