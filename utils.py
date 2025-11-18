@@ -390,7 +390,14 @@ def create_ke_heatmap_figure(gene_names: List[str], log2fc_values: List[float],
     return fig
 
 
-def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE Enrichment Analysis") -> bytes:
+def generate_ke_pdf(
+    ke_data_list: List[Dict[str, Any]],
+    analysis_name: str = "KE Enrichment Analysis",
+    dataset_name: str = "Not specified",
+    sheet_name: str = "Not specified",
+    summary_table: Optional[List[Dict[str, Any]]] = None,
+    fdr_threshold: float = 0.05
+) -> bytes:
     """
     Generate a PDF document containing all Key Event heatmaps, info boxes, and gene tables.
     
@@ -406,6 +413,14 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
         - 'log2fc_values': List[float]
     analysis_name : str
         Name of the analysis (default: "KE Enrichment Analysis")
+    dataset_name : str
+        Name or label of the dataset used for analysis
+    sheet_name : str
+        Name of the worksheet (if applicable)
+    summary_table : Optional[List[Dict[str, Any]]]
+        Pre-formatted summary rows for the front-page enrichment table
+    fdr_threshold : float
+        Threshold used to define significant KEs (for reporting)
     
     Returns
     -------
@@ -426,7 +441,7 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
         'CustomTitle',
         parent=styles['Heading1'],
         fontSize=18,
-        textColor=colors.HexColor('#1f77b4'),
+        textColor=colors.black,
         spaceAfter=30,
         alignment=TA_CENTER
     )
@@ -435,7 +450,7 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
         'CustomHeading',
         parent=styles['Heading2'],
         fontSize=14,
-        textColor=colors.HexColor('#2c3e50'),
+        textColor=colors.black,
         spaceAfter=12,
         spaceBefore=12
     )
@@ -443,10 +458,10 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
     ke_title_style = ParagraphStyle(
         'KETitle',
         parent=styles['Heading2'],
-        fontSize=14,
-        textColor=colors.HexColor('#4ECDC4'),
+        fontSize=12,
+        textColor=colors.black,
         spaceAfter=10,
-        spaceBefore=20
+        spaceBefore=15
     )
     
     normal_style = styles['Normal']
@@ -456,14 +471,64 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
     elements.append(Paragraph(analysis_name, title_style))
     elements.append(Spacer(1, 0.2*inch))
     
-    # Date
-    date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # Date (date-only for front matter)
+    date_str = datetime.now().strftime("%Y-%m-%d")
     elements.append(Paragraph(f"Generated on: {date_str}", normal_style))
+    elements.append(Spacer(1, 0.15*inch))
+    
+    # Dataset metadata
+    elements.append(Paragraph(f"Dataset: {dataset_name}", normal_style))
+    elements.append(Paragraph(f"Sheet: {sheet_name}", normal_style))
+    total_kes = len(summary_table) if summary_table is not None else len(ke_data_list)
+    elements.append(Paragraph(f"Number of enriched key events (FDR < {fdr_threshold:.2f}): {total_kes}", normal_style))
     elements.append(Spacer(1, 0.3*inch))
     
-    # Summary
-    elements.append(Paragraph(f"Total Key Events: {len(ke_data_list)}", heading_style))
-    elements.append(Spacer(1, 0.2*inch))
+    # Front-page summary table
+    if summary_table:
+        elements.append(Paragraph("Key Event Enrichment Summary", heading_style))
+        elements.append(Spacer(1, 0.1*inch))
+        
+        header = ["KE", "KE name", "DEGs in KE", "Percent covered", "Odds Ratio", "adjusted p-value"]
+        table_data = [header]
+        for row in summary_table:
+            table_data.append([
+                row.get("KE", ""),
+                row.get("KE name", ""),
+                row.get("DEGs in KE", ""),
+                row.get("Percent covered", ""),
+                row.get("Odds Ratio", ""),
+                row.get("adjusted p-value", "")
+            ])
+        
+        summary_col_widths = [
+            0.6*inch,
+            2.4*inch,
+            0.7*inch,
+            1.1*inch,
+            0.7*inch,
+            1.0*inch
+        ]
+        
+        summary_table_flowable = Table(table_data, colWidths=summary_col_widths, repeatRows=1)
+        summary_table_flowable.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#f2f2f2')),
+            ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 0), (-1, -1), 7),
+            ('ALIGN', (2, 1), (-1, -1), 'RIGHT'),
+            ('ALIGN', (0, 0), (1, -1), 'LEFT'),
+            ('GRID', (0, 0), (-1, -1), 0.25, colors.HexColor('#b0b0b0')),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+            ('TOPPADDING', (0, 0), (-1, 0), 8),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+            ('TOPPADDING', (0, 1), (-1, -1), 6),
+        ]))
+        elements.append(summary_table_flowable)
+        elements.append(Spacer(1, 0.3*inch))
+        elements.append(PageBreak())
+    else:
+        elements.append(PageBreak())
     
     # Process each Key Event
     for idx, ke_data in enumerate(ke_data_list, 1):
@@ -474,8 +539,13 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
         log2fc_values = ke_data['log2fc_values']
         gene_details = ke_data['gene_details']
         
-        # Key Event Title
-        elements.append(Paragraph(f"{idx}. {ke_name} ({ke_id})", ke_title_style))
+        # Key Event Title (include AOP if available)
+        aop_label = ke_row.get('AOP', None)
+        if aop_label and aop_label != 'N/A':
+            title_text = f"{idx}. {ke_name} ({ke_id}, {aop_label})"
+        else:
+            title_text = f"{idx}. {ke_name} ({ke_id})"
+        elements.append(Paragraph(title_text, ke_title_style))
         elements.append(Spacer(1, 0.1*inch))
         
         # Key Event Information Box
@@ -492,16 +562,16 @@ def generate_ke_pdf(ke_data_list: List[Dict[str, Any]], analysis_name: str = "KE
         
         info_table = Table(info_data, colWidths=[2*inch, 4*inch])
         info_table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (0, -1), colors.HexColor('#f0f2f6')),
+            ('BACKGROUND', (0, 0), (-1, -1), colors.white),
             ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
             ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
             ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
             ('FONTNAME', (1, 0), (1, -1), 'Helvetica'),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
+            ('FONTSIZE', (0, 0), (-1, -1), 9),
             ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
             ('TOPPADDING', (0, 0), (-1, -1), 8),
-            ('LEFTPADDING', (0, 0), (-1, -1), 12),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 12),
+            ('LEFTPADDING', (0, 0), (-1, -1), 10),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 10),
             ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
         ]))
         elements.append(info_table)

@@ -199,6 +199,12 @@ for tab_idx in range(st.session_state.num_analyses):
                     if deg_file_data is None:
                         st.error("Failed to load file. Please check the format.")
                         st.stop()
+
+                    # Store dataset label for reporting
+                    dataset_label = file_name if file_name else "Uploaded dataset"
+                    st.session_state[f"{key_prefix}_dataset_label"] = dataset_label
+                    sheet_label = selected_sheet if selected_sheet else "Not specified"
+                    st.session_state[f"{key_prefix}_dataset_sheet"] = sheet_label
         
                     # =============================================================================
                     # 2. COLUMN MAPPING
@@ -425,6 +431,7 @@ for tab_idx in range(st.session_state.num_analyses):
                             
                             # Collect data for PDF generation
                             pdf_ke_data_list = []
+                            summary_table_data = []
                 
                             # Collect gene data for visualizations
                             all_ke_gene_data = {}
@@ -470,9 +477,19 @@ for tab_idx in range(st.session_state.num_analyses):
                                         'gene_names': gene_names,
                                         'log2fc_values': log2fc_values
                                     })
+
+                                    summary_table_data.append({
+                                        'KE': ke_id,
+                                        'KE name': ke_name,
+                                        'DEGs in KE': row.get('DEGs in KE', 0),
+                                        'Percent covered': f"{row.get('Percent of KE covered', 0):.1f}%",
+                                        'Odds Ratio': f"{row.get('Odds ratio', 0):.2f}",
+                                        'adjusted p-value': f"{row.get('adjusted p-value', 0):.2e}"
+                                    })
                             
                             # Store PDF data in session state
                             st.session_state[f"{key_prefix}_pdf_data"] = pdf_ke_data_list
+                            st.session_state[f"{key_prefix}_summary_table"] = summary_table_data
                             
                             # Add download PDF button
                             if pdf_ke_data_list:
@@ -489,7 +506,11 @@ for tab_idx in range(st.session_state.num_analyses):
                                             try:
                                                 pdf_bytes = generate_ke_pdf(
                                                     pdf_ke_data_list,
-                                                    analysis_name=analysis_name or f"Analysis {analysis_num}"
+                                                    analysis_name=analysis_name or f"Analysis {analysis_num}",
+                                                    dataset_name=st.session_state.get(f"{key_prefix}_dataset_label", "Not specified"),
+                                                    sheet_name=st.session_state.get(f"{key_prefix}_dataset_sheet", "Not specified"),
+                                                    summary_table=summary_table_data,
+                                                    fdr_threshold=0.05
                                                 )
                                                 st.session_state[f"{key_prefix}_pdf_bytes"] = pdf_bytes
                                                 st.session_state[f"{key_prefix}_pdf_filename"] = pdf_filename
